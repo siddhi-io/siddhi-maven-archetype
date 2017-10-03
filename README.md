@@ -1,0 +1,1 @@
+# siddhi-maven-acrchetype
