@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Execution-Test-Suite">
+    <test name="execution-tests" enabled="true" preserve-order="true">
+        <classes>
+            <class name="${package}.${executionType}.aggregate.TestCaseOf${classNameOfAggregateFunction}"/>
+            <class name="${package}.${executionType}.function.TestCaseOf${classNameOfFunction}"/>
+            <class name="${package}.${executionType}.streamfunction.TestCaseOf${classNameOfStreamFunction}"/>
+            <class name="${package}.${executionType}.streamprocessor.TestCaseOf${classNameOfStreamProcessor}"/>
+            <class name="${package}.${executionType}.window.TestCaseOf${classNameOfWindow}"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Script-Test-Suite">
+    <test name="script-tests" enabled="true" preserve-order="true">
+        <classes>
+
+        </classes>
+    </test>
+</suite>

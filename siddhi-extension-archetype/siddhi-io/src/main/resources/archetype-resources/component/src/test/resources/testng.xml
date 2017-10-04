@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Io-Test-Suite">
+    <test name="io-tests" enabled="true" preserve-order="true">
+        <classes>
+            <class name="${package}.${typeOf_IO}.sink.TestCaseOf${classNameOfSink}"/>
+            <class name="${package}.${typeOf_IO}.source.TestCaseOf${classNameOfSource}"/>
+        </classes>
+    </test>
+</suite>
