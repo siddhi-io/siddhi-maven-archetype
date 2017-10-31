@@ -7,7 +7,7 @@
         <artifactId>wso2</artifactId>
         <version>5</version>
     </parent>
-    <groupId>${groupId}.${mapType}</groupId>
+    <groupId>${groupId}.${mapTypeInLowerCase}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
     <name>Siddhi map ${mapType}</name>
@@ -129,7 +129,7 @@
         </plugins>
     </build>
     <properties>
-        <siddhi.version>4.0.0-M78</siddhi.version>
+        <siddhi.version>4.0.0-M106</siddhi.version>
         <log4j.version>1.2.17.wso2v1</log4j.version>
         <testng.version>6.8</testng.version>
         <jacoco.plugin.version>0.7.9</jacoco.plugin.version>

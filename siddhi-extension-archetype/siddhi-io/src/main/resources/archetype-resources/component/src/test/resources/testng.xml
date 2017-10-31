@@ -2,11 +2,11 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Io-Test-Suite">
-    <test name="io-tests" enabled="true" preserve-order="true">
+<suite name="Siddhi-Io-${typeOf_IOinCamelCase}-Test-Suite">
+    <test name="Siddhi-io-${typeOf_IOinLowerCase}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.${typeOf_IO}.sink.TestCaseOf${classNameOfSink}"/>
-            <class name="${package}.${typeOf_IO}.source.TestCaseOf${classNameOfSource}"/>
+            <class name="${package}.${typeOf_IOinLowerCase}.sink.TestCaseOf${classNameOfSink}"/>
+            <class name="${package}.${typeOf_IOinLowerCase}.source.TestCaseOf${classNameOfSource}"/>
         </classes>
     </test>
 </suite>

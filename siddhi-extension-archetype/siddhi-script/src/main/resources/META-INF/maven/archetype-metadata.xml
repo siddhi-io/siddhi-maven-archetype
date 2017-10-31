@@ -18,14 +18,19 @@
     <requiredProperties>
         <requiredProperty key="typeOfScript">
         </requiredProperty>
-        <requiredProperty key="artifactId">
-            <defaultValue>
-                siddhi-script-${typeOfScript}
-            </defaultValue>
-        </requiredProperty>
         <requiredProperty key="typeOfScriptinCamelCase">
             <defaultValue>
                 ${typeOfScript.substring(0,1).toUpperCase()}${typeOfScript.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="typeOfScriptinLowerCase">
+            <defaultValue>
+                ${typeOfScript.toLowerCase()}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-script-${typeOfScriptinLowerCase}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfScript">

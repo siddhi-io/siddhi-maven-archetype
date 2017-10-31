@@ -2,10 +2,10 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Siddhi-script-${storeType}-Test-Suite">
-    <test name="Siddhi-script-${storeType}-tests" preserve-order="true" parallel="false">
+<suite name="Siddhi-Store-${storeTypeIncamelCase}-Test-Suite" parallel="false">
+    <test name="Siddhi-store-${storeTypeInLowerCase}-tests" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.${storeType}.TestCaseOf${className}"/>
+            <class name="${package}.${storeTypeInLowerCase}.TestCaseOf${className}"/>
         </classes>
     </test>
 </suite>

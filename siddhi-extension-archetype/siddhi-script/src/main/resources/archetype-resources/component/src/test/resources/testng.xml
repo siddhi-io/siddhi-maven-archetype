@@ -2,10 +2,10 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Script-Test-Suite">
-    <test name="script-tests" enabled="true" preserve-order="true">
+<suite name="Siddhi-Script-${typeOfScriptinCamelCase}-Test-Suite">
+    <test name="Siddhi-script-${typeOfScriptinLowerCase}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-
+            <class name="${package}.${typeOfScriptinLowerCase}.TestCaseOf${classNameOfScript}"/>
         </classes>
     </test>
 </suite>

@@ -18,14 +18,19 @@
     <requiredProperties>
         <requiredProperty key="executionType">
         </requiredProperty>
-        <requiredProperty key="artifactId">
-            <defaultValue>
-                siddhi-execution-${executionType}
-            </defaultValue>
-        </requiredProperty>
         <requiredProperty key="executionTypeinCamelCase">
             <defaultValue>
                 ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="executionTypeinLowerCase">
+            <defaultValue>
+                ${executionType.toLowerCase()}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-execution-${executionTypeinLowerCase}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfAggregateFunction">

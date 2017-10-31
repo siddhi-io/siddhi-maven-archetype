@@ -18,14 +18,19 @@
     <requiredProperties>
         <requiredProperty key="typeOf_IO">
         </requiredProperty>
-        <requiredProperty key="artifactId">
-            <defaultValue>
-                siddhi-io-${typeOf_IO}
-            </defaultValue>
-        </requiredProperty>
         <requiredProperty key="typeOf_IOinCamelCase">
             <defaultValue>
                 ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="typeOf_IOinLowerCase">
+            <defaultValue>
+                ${typeOf_IO.toLowerCase()}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-io-${typeOf_IOinLowerCase}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfSink">

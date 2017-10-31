@@ -12,7 +12,7 @@
     <modules>
         <module>component</module>
     </modules>
-    <groupId>${groupId}.${typeOf_IO}</groupId>
+    <groupId>${groupId}.${typeOf_IOinLowerCase}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
     <name>Siddhi I/O ${typeOf_IO}</name>
@@ -108,38 +108,10 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>jacoco-initialize</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                        <configuration>
-                            <destFile>${basedir}/target/coverage-reports/jacoco.exec</destFile>
-                            <propertyName>surefireArgLine</propertyName>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                        <configuration>
-                            <dataFile>${basedir}/target/coverage-reports/jacoco.exec</dataFile>
-                            <outputDirectory>${basedir}/target/coverage-reports/</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <properties>
-        <siddhi.version>4.0.0-M78</siddhi.version>
+        <siddhi.version>4.0.0-M106</siddhi.version>
         <log4j.version>1.2.17.wso2v1</log4j.version>
         <carbon.transport.version>4.4.15</carbon.transport.version>
         <siddhi.map.json.version>4.0.3</siddhi.map.json.version>

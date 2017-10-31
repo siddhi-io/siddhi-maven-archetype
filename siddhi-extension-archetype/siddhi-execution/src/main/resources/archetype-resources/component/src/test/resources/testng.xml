@@ -2,14 +2,14 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Execution-Test-Suite">
-    <test name="execution-tests" enabled="true" preserve-order="true">
+<suite name="Siddhi-Execution-${executionTypeinCamelCase}-Test-Suite">
+    <test name="Siddhi-execution-${executionTypeinLowerCase}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.${executionType}.aggregate.TestCaseOf${classNameOfAggregateFunction}"/>
-            <class name="${package}.${executionType}.function.TestCaseOf${classNameOfFunction}"/>
-            <class name="${package}.${executionType}.streamfunction.TestCaseOf${classNameOfStreamFunction}"/>
-            <class name="${package}.${executionType}.streamprocessor.TestCaseOf${classNameOfStreamProcessor}"/>
-            <class name="${package}.${executionType}.window.TestCaseOf${classNameOfWindow}"/>
+            <class name="${package}.${executionTypeinLowerCase}.aggregate.TestCaseOf${classNameOfAggregateFunction}"/>
+            <class name="${package}.${executionTypeinLowerCase}.function.TestCaseOf${classNameOfFunction}"/>
+            <class name="${package}.${executionTypeinLowerCase}.streamfunction.TestCaseOf${classNameOfStreamFunction}"/>
+            <class name="${package}.${executionTypeinLowerCase}.streamprocessor.TestCaseOf${classNameOfStreamProcessor}"/>
+            <class name="${package}.${executionTypeinLowerCase}.window.TestCaseOf${classNameOfWindow}"/>
         </classes>
     </test>
 </suite>

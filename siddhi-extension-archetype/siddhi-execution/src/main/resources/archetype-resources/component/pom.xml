@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>${groupId}.${executionType}</groupId>
+        <groupId>${groupId}.${executionTypeinLowerCase}</groupId>
         <artifactId>${artifactId}-parent</artifactId>
         <version>${version}</version>
     </parent>
@@ -86,8 +86,8 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
                         <Export-Package>
-                            ${package}.${executionType},
-                            ${package}.${executionType}.*
+                            ${package}.${executionTypeinLowerCase},
+                            ${package}.${executionTypeinLowerCase}.*
                         </Export-Package>
                         <Import-Package>
                             *;resolution:=optional

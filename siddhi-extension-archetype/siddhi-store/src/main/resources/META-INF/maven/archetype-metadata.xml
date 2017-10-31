@@ -18,14 +18,19 @@
     <requiredProperties>
         <requiredProperty key="storeType">
         </requiredProperty>
-        <requiredProperty key="artifactId">
-            <defaultValue>
-                siddhi-store-${storeType}
-            </defaultValue>
-        </requiredProperty>
         <requiredProperty key="storeTypeIncamelCase">
             <defaultValue>
                 ${storeType.substring(0,1).toUpperCase()}${storeType.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="storeTypeInLowerCase">
+            <defaultValue>
+                ${storeType.toLowerCase()}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-store-${storeTypeInLowerCase}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="className">
