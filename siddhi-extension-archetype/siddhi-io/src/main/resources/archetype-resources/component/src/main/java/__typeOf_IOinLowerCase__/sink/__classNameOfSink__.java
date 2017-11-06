@@ -25,7 +25,7 @@ import java.util.Map;
  * name = "The name of the extension",
  * namespace = "The namespace of the extension",
  * description = "The description of the extension (optional).",
- * //Source configurations
+ * //Sink configurations
  * parameters = {
  * {@literal @}Parameter(name = "The name of the first parameter", type = "Supprted parameter types.
  *                              eg:{DataType.STRING,DataType.INT, DataType.LONG etc},dynamic=false ,optinal=true/false ,
@@ -74,7 +74,8 @@ public class ${classNameOfSink} extends Sink {
      */
     @Override
     public Class[] getSupportedInputEventClasses() {
-            return new Class[0]; }
+            return new Class[0];
+    }
 
     /**
      * Returns a list of supported dynamic options (that means for each event value of the option can change) by
@@ -84,7 +85,8 @@ public class ${classNameOfSink} extends Sink {
      */
     @Override
     public String[] getSupportedDynamicOptions() {
-            return new String[0]; }
+            return new String[0];
+    }
 
     /**
      * The initialization method for {@link Sink}, will be called before other methods. It used to validate
@@ -100,7 +102,7 @@ public class ${classNameOfSink} extends Sink {
     protected void init(StreamDefinition streamDefinition, OptionHolder optionHolder, ConfigReader configReader,
             SiddhiAppContext siddhiAppContext) {
 
-            }
+    }
 
     /**
      * This method will be called when events need to be published via this sink
@@ -112,7 +114,7 @@ public class ${classNameOfSink} extends Sink {
     @Override
     public void publish(Object payload, DynamicOptions dynamicOptions) throws ConnectionUnavailableException {
 
-            }
+    }
 
     /**
      * This method will be called before the processing method.
@@ -123,7 +125,7 @@ public class ${classNameOfSink} extends Sink {
     @Override
     public void connect() throws ConnectionUnavailableException {
 
-            }
+    }
 
     /**
      * Called after all publishing is done, or when {@link ConnectionUnavailableException} is thrown
@@ -132,7 +134,7 @@ public class ${classNameOfSink} extends Sink {
     @Override
     public void disconnect() {
 
-            }
+    }
 
     /**
      * The method can be called when removing an event receiver.
@@ -141,7 +143,7 @@ public class ${classNameOfSink} extends Sink {
     @Override
     public void destroy() {
 
-            }
+    }
 
     /**
      * Used to collect the serializable state of the processing element, that need to be
@@ -152,7 +154,7 @@ public class ${classNameOfSink} extends Sink {
     @Override
     public Map<String, Object> currentState() {
             return null;
-            }
+    }
 
     /**
      * Used to restore serialized state of the processing element, for reconstructing
@@ -162,5 +164,8 @@ public class ${classNameOfSink} extends Sink {
      *              This map will have the  same keys that is created upon calling currentState() method.
      */
     @Override
-    public void restoreState(Map<String, Object> map) {}
+    public void restoreState(Map<String, Object> map) {
+
+    }
 }
+

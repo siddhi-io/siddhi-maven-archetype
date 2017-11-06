@@ -62,7 +62,7 @@ public class ${classNameOfFunction} extends FunctionExecutor {
 
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
-     * the all configuration and getting the intial values.
+     * the all configuration and getting the initial values.
      * @param attributeExpressionExecutors are the executors of each attributes in the Function
      * @param configReader                 this hold the {@link FunctionExecutor} extensions configuration reader.
      * @param siddhiAppContext             Siddhi app runtime context

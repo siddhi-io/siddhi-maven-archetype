@@ -87,7 +87,7 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
     /**
      * The initialization method for {@link StreamFunctionProcessor},
      * which will be called before other methods and validate
-     * the all configuration and getting the intial values.
+     * the all configuration and getting the initial values.
      * @param inputDefinition               the incoming stream definition
      * @param attributeExpressionExecutors     the executors of each function parameters
      * @param configReader                     this hold the {@link StreamFunctionProcessor} extensions

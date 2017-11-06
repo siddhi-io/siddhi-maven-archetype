@@ -26,7 +26,7 @@ import java.util.Map;
  * name = "The name of the extension",
  * namespace = "The namespace of the extension",
  * description = "The description of the extension (optional).",
- * //Sink configurations
+ * //AbstractRecordTable configurations
  * parameters = {
  * {@literal @}Parameter(name = "The name of the first parameter",
  *                               description= "The description of the first parameter",
@@ -47,7 +47,7 @@ import java.util.Map;
  *                               optional= "true/false, defaultValue= if it is optional then assign a default value
  *                                         according to the type."),
  * },
- * //If Source system configurations will need then
+ * //If AbstractRecordTable system configurations will need then
  * systemParameters = {
  * {@literal @}SystemParameter(name = "The name of the first  system parameter",
  *                                      description="The description of the first system parameter." ,
@@ -104,7 +104,9 @@ public class ${className} extends AbstractRecordTable {
       * @param configReader this hold the {@link AbstractRecordTable} configuration reader.
       */
      @Override
-     protected void init(TableDefinition tableDefinition, ConfigReader configReader) {}
+     protected void init(TableDefinition tableDefinition, ConfigReader configReader) {
+
+     }
 
      /**
      * Add records to the Table
@@ -113,7 +115,9 @@ public class ${className} extends AbstractRecordTable {
      *                the attributes of the Table Definition.
      */
      @Override
-     protected void add(List<Object[]> records) throws ConnectionUnavailableException {}
+     protected void add(List<Object[]> records) throws ConnectionUnavailableException {
+
+     }
 
      /**
      * Find records matching the compiled condition
@@ -127,7 +131,7 @@ public class ${className} extends AbstractRecordTable {
      protected RecordIterator<Object[]> find(Map<String, Object> findConditionParameterMap,
             CompiledCondition compiledCondition) throws ConnectionUnavailableException {
             return null;
-            }
+     }
 
       /**
       * Check if matching record exist or not
@@ -141,7 +145,7 @@ public class ${className} extends AbstractRecordTable {
      protected boolean contains(Map<String, Object> containsConditionParameterMap,
             CompiledCondition compiledCondition) throws ConnectionUnavailableException {
             return false;
-            }
+     }
 
      /**
      * Delete all matching records
@@ -156,7 +160,7 @@ public class ${className} extends AbstractRecordTable {
      protected void delete(List<Map<String, Object>> deleteConditionParameterMaps, CompiledCondition compiledCondition)
             throws ConnectionUnavailableException {
 
-            }
+     }
 
      /**
      * Update all matching records
@@ -174,7 +178,7 @@ public class ${className} extends AbstractRecordTable {
             Map<String, CompiledExpression> map, List<Map<String, Object>> list1)
             throws ConnectionUnavailableException {
 
-            }
+     }
 
      /**
      * Try updating the records if they exist else add the records
@@ -193,7 +197,7 @@ public class ${className} extends AbstractRecordTable {
             Map<String, CompiledExpression> map, List<Map<String, Object>> list1,
             List<Object[]> list2) throws ConnectionUnavailableException {
 
-            }
+     }
 
      /**
      * Compile the matching condition
@@ -205,7 +209,7 @@ public class ${className} extends AbstractRecordTable {
      @Override
      protected CompiledCondition compileCondition(ExpressionBuilder expressionBuilder) {
             return null;
-            }
+     }
 
      /**
      * Compile the matching condition
@@ -217,7 +221,7 @@ public class ${className} extends AbstractRecordTable {
      @Override
      protected CompiledExpression compileSetAttribute(ExpressionBuilder expressionBuilder) {
             return null;
-            }
+     }
 
      /**
      * This method will be called before the processing method.
@@ -226,20 +230,25 @@ public class ${className} extends AbstractRecordTable {
      *                                        such that the  system will take care retrying for connection
      */
      @Override
-     protected void connect() throws ConnectionUnavailableException {}
+     protected void connect() throws ConnectionUnavailableException {
+
+     }
 
      /**
      * Called after all publishing is done, or when {@link ConnectionUnavailableException} is thrown
      * Implementation of this method should contain the steps needed to disconnect.
      */
      @Override
-     protected void disconnect() {}
+     protected void disconnect() {
+
+     }
 
      /**
      * The method can be called when removing an event receiver.
      * The cleanups that have to be done after removing the receiver could be done here.
      */
      @Override
-     protected void destroy() {}
-}
+     protected void destroy() {
 
+     }
+}

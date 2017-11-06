@@ -19,8 +19,8 @@
 
 ```
      <dependency>
-        <groupId>org.wso2.extension.siddhi.io.</groupId>
-        <artifactId>siddhi-io-</artifactId>
+        <groupId>org.wso2.extension.siddhi.script.</groupId>
+        <artifactId>siddhi-script-</artifactId>
         <version>x.x.x</version>
      </dependency>
 ```

@@ -23,7 +23,7 @@ import java.util.Map;
  * name = "The name of the extension",
  * namespace = "The namespace of the extension",
  * description = "The description of the extension (optional).",
- * //Sink configurations
+ * //Source configurations
  * parameters = {
  * {@literal @}Parameter(name = "The name of the first parameter",
  *                               description= "The description of the first parameter",
@@ -175,5 +175,8 @@ public class ${classNameOfSource} extends Source {
      * This map will have the  same keys that is created upon calling currentState() method.
      */
      @Override
-     public void restoreState(Map<String, Object> map) {}
+     public void restoreState(Map<String, Object> map) {
+
+     }
 }
+

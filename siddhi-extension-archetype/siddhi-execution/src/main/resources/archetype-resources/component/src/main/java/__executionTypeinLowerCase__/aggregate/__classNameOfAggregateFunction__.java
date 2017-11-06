@@ -64,7 +64,7 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
 
     /**
      * The initialization method for {@link AttributeAggregator}, which will be called before other methods and validate
-     * the all configuration and getting the intial values.
+     * the all configuration and getting the initial values.
      * @param attributeExpressionExecutors are the executors of each attributes in the Function
      * @param configReader        this hold the {@link AttributeAggregator} extensions configuration reader.
      * @param siddhiAppContext    Siddhi app runtime context

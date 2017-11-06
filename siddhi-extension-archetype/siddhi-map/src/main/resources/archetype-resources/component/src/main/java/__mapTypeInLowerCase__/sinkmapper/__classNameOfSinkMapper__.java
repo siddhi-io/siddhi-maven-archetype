@@ -25,7 +25,7 @@ import java.util.Map;
  * name = "The name of the extension",
  * namespace = "The namespace of the extension",
  * description = "The description of the extension (optional).",
- * //Sink configurations
+ * //Sink Mapper configurations
  * parameters = {
  * {@literal @}Parameter(name = "The name of the first parameter",
  *                               description= "The description of the first parameter",
@@ -46,7 +46,7 @@ import java.util.Map;
  *                               optional= "true/false, defaultValue= if it is optional then assign a default value
  *                                         according to the type."),
  * },
- * //If Source system configurations will need then
+ * //If Sink Mapper system configurations will need then
  * systemParameters = {
  * {@literal @}SystemParameter(name = "The name of the first  system parameter",
  *                                      description="The description of the first system parameter." ,
@@ -99,7 +99,7 @@ public class ${classNameOfSinkMapper} extends SinkMapper {
 
     /**
      The initialization method for {@link SinkMapper}, which will be called before other methods and validate
-     * the all configuration and getting the intial values.
+     * the all configuration and getting the initial values.
      * @param streamDefinition       containing stream definition bind to the {@link SinkMapper}
      * @param optionHolder           Option holder containing static and dynamic configuration related
      *                               to the {@link SinkMapper}
