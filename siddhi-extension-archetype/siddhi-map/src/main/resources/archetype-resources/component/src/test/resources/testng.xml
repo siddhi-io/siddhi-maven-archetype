@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Siddhi-Map-${mapTypeInCamelCase}-Test-Suite">
+    <test name="Siddhi-map-${mapTypeInLowerCase}-tests" enabled="true" preserve-order="true" parallel="false">
+        <classes>
+            <class name="${package}.${mapTypeInLowerCase}.sinkmapper.TestCaseOf${classNameOfSinkMapper}"/>
+            <class name="${package}.${mapTypeInLowerCase}.sourcemapper.TestCaseOf${classNameOfSourceMapper}"/>
+        </classes>
+    </test>
+</suite>
