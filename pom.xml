@@ -54,4 +54,11 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <scm>
+        <url>https://github.com/wso2-extensions/siddhi-maven-archetype.git</url>
+        <developerConnection>scm:git:https://github.com/wso2-extensions/siddhi-maven-archetype.git</developerConnection>
+        <connection>scm:git:https://github.com/wso2-extensions/siddhi-maven-archetype.git</connection>
+        <tag>HEAD</tag>
+    </scm>
 </project>
