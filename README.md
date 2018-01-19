@@ -11,7 +11,7 @@ Follow these steps to create Siddhi Extensions using maven archetypes
        * Run the following command
             ```
                 mvn archetype:generate
-                    -DarchetypeGroupId=org.wso2.siddhi.archetype.execution
+                    -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                     -DarchetypeArtifactId=siddhi-archetype-execution
                     -DarchetypeVersion=1.0.0-SNAPSHOT
                     -DgroupId=org.wso2.extension.siddhi.execution
@@ -29,7 +29,7 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                 
           ```
                mvn archetype:generate
-                   -DarchetypeGroupId=org.wso2.siddhi.archetype.io
+                   -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                    -DarchetypeArtifactId=siddhi-archetype-io
                    -DarchetypeVersion=1.0.0-SNAPSHOT
                    -DgroupId=org.wso2.extension.siddhi.io
@@ -47,7 +47,7 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                     
             ```
                 mvn archetype:generate
-                    -DarchetypeGroupId=org.wso2.siddhi.archetype.map
+                    -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                     -DarchetypeArtifactId=siddhi-archetype-map
                     -DarchetypeVersion=1.0.0-SNAPSHOT
                     -DgroupId=org.wso2.extension.siddhi.map
@@ -65,7 +65,7 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                         
            ```
                mvn archetype:generate
-                   -DarchetypeGroupId=org.wso2.siddhi.archetype.script
+                   -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                    -DarchetypeArtifactId=siddhi-archetype-script
                    -DarchetypeVersion=1.0.0-SNAPSHOT
                    -DgroupId=org.wso2.extension.siddhi.script
@@ -83,7 +83,7 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                             
             ```
                mvn archetype:generate
-                  -DarchetypeGroupId=org.wso2.siddhi.archetype.store
+                  -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                   -DarchetypeArtifactId=siddhi-archetype-store
                   -DarchetypeVersion=1.0.0-SNAPSHOT
                   -DgroupId=org.wso2.extension.siddhi.store
