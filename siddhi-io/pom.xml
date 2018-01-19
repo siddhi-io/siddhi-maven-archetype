@@ -23,7 +23,6 @@
         <artifactId>siddhi-extension-archetype</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.wso2.siddhi.archetype.io</groupId>
     <artifactId>siddhi-archetype-io</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>

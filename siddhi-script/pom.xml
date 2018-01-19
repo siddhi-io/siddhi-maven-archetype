@@ -24,7 +24,6 @@
         <artifactId>siddhi-extension-archetype</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.wso2.siddhi.archetype.script</groupId>
     <artifactId>siddhi-archetype-script</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
