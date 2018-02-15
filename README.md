@@ -13,7 +13,6 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                 mvn archetype:generate
                     -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                     -DarchetypeArtifactId=siddhi-archetype-execution
-                    -DarchetypeVersion=1.0.0-SNAPSHOT
                     -DgroupId=org.wso2.extension.siddhi.execution
                     -Dversion=1.0.0-SNAPSHOT
             ```
@@ -31,7 +30,6 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                mvn archetype:generate
                    -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                    -DarchetypeArtifactId=siddhi-archetype-io
-                   -DarchetypeVersion=1.0.0-SNAPSHOT
                    -DgroupId=org.wso2.extension.siddhi.io
                    -Dversion=1.0.0-SNAPSHOT
             ```
@@ -49,7 +47,6 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                 mvn archetype:generate
                     -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                     -DarchetypeArtifactId=siddhi-archetype-map
-                    -DarchetypeVersion=1.0.0-SNAPSHOT
                     -DgroupId=org.wso2.extension.siddhi.map
                     -Dversion=1.0.0-SNAPSHOT
             ```
@@ -67,7 +64,6 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                mvn archetype:generate
                    -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                    -DarchetypeArtifactId=siddhi-archetype-script
-                   -DarchetypeVersion=1.0.0-SNAPSHOT
                    -DgroupId=org.wso2.extension.siddhi.script
                    -Dversion=1.0.0-SNAPSHOT
            ```
@@ -85,7 +81,6 @@ Follow these steps to create Siddhi Extensions using maven archetypes
                mvn archetype:generate
                   -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
                   -DarchetypeArtifactId=siddhi-archetype-store
-                  -DarchetypeVersion=1.0.0-SNAPSHOT
                   -DgroupId=org.wso2.extension.siddhi.store
                   -Dversion=1.0.0-SNAPSHOT
             ```
