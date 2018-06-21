@@ -41,14 +41,14 @@
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>3.0.1</version>
+                <version>${archetype.packaging.version}</version>
             </extension>
         </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <artifactId>maven-archetype-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>${maven.archetype.plugin.version}</version>
                     <extensions>true</extensions>
                 </plugin>
             </plugins>
@@ -61,4 +61,9 @@
         <connection>scm:git:https://github.com/wso2-extensions/siddhi-maven-archetype.git</connection>
         <tag>HEAD</tag>
     </scm>
+
+    <properties>
+        <archetype.packaging.version>3.0.1</archetype.packaging.version>
+        <maven.archetype.plugin.version>3.0.1</maven.archetype.plugin.version>
+    </properties>
 </project>
