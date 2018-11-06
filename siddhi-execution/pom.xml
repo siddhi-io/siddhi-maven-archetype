@@ -44,8 +44,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    <properties>
-        <archetype.packaging.version>3.0.1</archetype.packaging.version>
-        <maven.archetype.plugin.version>3.0.1</maven.archetype.plugin.version>
-    </properties>
 </project>
