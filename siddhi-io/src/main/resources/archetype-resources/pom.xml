@@ -84,11 +84,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.wso2.carbon.maven</groupId>
-                <artifactId>carbon-feature-plugin</artifactId>
-                <version>${carbon.feature.plugin.version}</version>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
@@ -117,6 +112,5 @@
         <siddhi.map.json.version>4.0.15</siddhi.map.json.version>
         <siddhi.map.xml.version>4.0.11</siddhi.map.xml.version>
         <jacoco.plugin.version>0.7.9</jacoco.plugin.version>
-        <carbon.feature.plugin.version>3.0.0</carbon.feature.plugin.version>
     </properties>
 </project>
