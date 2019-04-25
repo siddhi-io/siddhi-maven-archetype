@@ -32,14 +32,14 @@
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>3.0.1</version>
+                <version>${archetype.packaging.version}</version>
             </extension>
         </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <artifactId>maven-archetype-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>${maven.archetype.plugin.version}</version>
                     <extensions>true</extensions>
                 </plugin>
             </plugins>

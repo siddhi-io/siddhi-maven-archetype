@@ -168,4 +168,3 @@ public class ${classNameOfSink} extends Sink {
 
     }
 }
-

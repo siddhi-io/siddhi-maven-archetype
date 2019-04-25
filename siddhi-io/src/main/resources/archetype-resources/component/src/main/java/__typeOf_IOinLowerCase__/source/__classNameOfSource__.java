@@ -179,4 +179,3 @@ public class ${classNameOfSource} extends Source {
 
      }
 }
-
