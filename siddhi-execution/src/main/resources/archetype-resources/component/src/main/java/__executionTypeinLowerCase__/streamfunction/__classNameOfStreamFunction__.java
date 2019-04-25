@@ -1,5 +1,7 @@
 package ${package}.${executionTypeinLowerCase}.streamfunction;
 
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.query.processor.stream.function.StreamFunctionProcessor;
@@ -20,9 +22,9 @@ import java.util.Map;
  * eg:-
  * {@literal @}Extension(
  * name = "The name of the extension",
- * namespace = "The namespace of the extension",
+ * namespace = "The namespace of the extension, that is used to group multiple extensions",
  * description = "The description of the extension (optional).",
- * //Sink configurations
+ * //Execution configurations
  * parameters = {
  * {@literal @}Parameter(name = "The name of the first parameter",
  *                               description= "The description of the first parameter",
@@ -59,6 +61,26 @@ import java.util.Map;
  * )
  * </code></pre>
  */
+
+@Extension(
+        name = "${executionTypeinLowerCase}",
+        namespace = "",
+        description = " ",
+        parameters = {
+                /*@Parameter(name = " ",
+                        description = " " ,
+                        dynamic = false/true,
+                        optional = true/false, defaultValue = " ",
+                        type = {DataType.INT, DataType.BOOL, DataType.STRING, DataType.DOUBLE, }),
+                        type = {DataType.INT, DataType.BOOL, DataType.STRING, DataType.DOUBLE, }),*/
+        },
+        examples = {
+                @Example(
+                        syntax = " ",
+                        description = " "
+                )
+        }
+)
 
 public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
 

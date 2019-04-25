@@ -1,16 +1,30 @@
-site_name: Siddhi-Script-${typeOfScriptinCamelCase}
+site_name: Siddhi Script ${typeOfScriptinCamelCase}
+site_description: Siddhi Script ${typeOfScriptinCamelCase} Extension
+site_author:
+site_url:
 extra_css:
-- stylesheets/extra.css
+  - stylesheets/extra.css
 extra_javascript:
-- javascripts/extra.js
-site_favicon: images/favicon.ico
-extra:
+  - javascripts/extra.js
+repo_name: Siddhi-Script-${typeOfScriptinCamelCase}
+repo_url:
+copyright:
+theme:
+  name: 'material'
   logo: images/siddhi-logo-w.svg
+  favicon: images/favicon.ico
   palette:
     primary: teal
     accent: teal
+google_analytics:
+extra:
+  social:
+markdown_extensions:
+  - admonition
+  - toc(permalink=true)
+  - codehilite(guess_lang=false)
 pages:
-- Welcome to WSO2 Siddhi Script ${typeOfScriptinCamelCase}: index.md
-- API Docs:
-- License: about/license.md
-theme: material
+  - Welcome : index.md
+  - API Docs:
+  - License: about/license.md
+

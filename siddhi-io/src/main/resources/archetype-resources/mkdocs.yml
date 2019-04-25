@@ -1,16 +1,29 @@
-site_name: Siddhi-IO-${typeOf_IOinCamelCase}
+site_name: Siddhi IO ${typeOf_IOinCamelCase}
+site_description: Siddhi IO ${typeOf_IOinCamelCase} Extension
+site_author:
+site_url:
 extra_css:
 - stylesheets/extra.css
 extra_javascript:
 - javascripts/extra.js
-site_favicon: images/favicon.ico
-extra:
+repo_name: Siddhi-Map-${typeOf_IOinCamelCase}
+repo_url:
+copyright:
+theme:
+  name: 'material'
   logo: images/siddhi-logo-w.svg
+  favicon: images/favicon.ico
   palette:
     primary: teal
     accent: teal
+google_analytics:
+extra:
+  social:
+markdown_extensions:
+  - admonition
+  - toc(permalink=true)
+  - codehilite(guess_lang=false)
 pages:
-- Welcome to WSO2 Siddhi IO ${typeOf_IOinCamelCase}: index.md
-- API Docs:
-- License: about/license.md
-theme: material
+  - Welcome : index.md
+  - API Docs:
+  - License: about/license.md
