@@ -1,5 +1,7 @@
 package ${package}.${executionTypeinLowerCase}.window;
 
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
 import org.wso2.siddhi.core.event.ComplexEventChunk;
 import org.wso2.siddhi.core.event.state.StateEvent;
@@ -69,7 +71,7 @@ import java.util.Map;
  */
 
 @Extension(
-        name = "",
+        name = "${executionTypeinLowerCase}",
         namespace = "",
         description = " ",
         parameters = {

@@ -1,5 +1,7 @@
 package ${package}.${executionTypeinLowerCase}.aggregate;
 
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.query.selector.attribute.aggregator.AttributeAggregator;
@@ -59,7 +61,7 @@ import java.util.Map;
  */
 
 @Extension(
-        name = "",
+        name = "${executionTypeinLowerCase}",
         namespace = "",
         description = " ",
         parameters = {
