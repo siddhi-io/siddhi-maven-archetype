@@ -45,6 +45,12 @@ import java.util.Map;
  *                               optional= "true/false, defaultValue= if it is optional then assign a default value
  *                                         according to the type."),
  * },
+ * returnAttributes = {
+ * {@literal @}ReturnAttribute(
+ *                          description = "Description of the returned attribute from the function",
+ *                          type =   "Supported parameter types.
+ *                                    eg:{DataType.STRING, DataType.INT, DataType.LONG etc}" ),
+ * },
  * //If Source system configurations will need then
  * systemParameters = {
  * {@literal @}SystemParameter(name = "The name of the first  system parameter",
