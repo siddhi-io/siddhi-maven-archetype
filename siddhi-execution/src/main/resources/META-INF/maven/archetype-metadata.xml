@@ -20,7 +20,12 @@
         <requiredProperty key="_nameSpaceOfFunction"/>
         <requiredProperty key="groupIdPostfix">
             <defaultValue>
-                ${_nameOfFunction.toLowerCase()}
+                ${_nameSpaceOfFunction.toLowerCase()}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="package">
+            <defaultValue>
+                ${groupId}.${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="artifactId">
