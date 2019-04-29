@@ -1,95 +1,118 @@
 
 siddhi-maven-archetype
 ======================================
-Follow these steps to create Siddhi Extensions using maven archetypes
-* Navigate to `<siddhi-maven-archetype>/siddhi-extension-archetype` directory and run the following command :
-        
-     `mvn clean install`
-     
-* Follow one of the step below, based on your project :
-    * If you want to create a project as siddhi-execution : 
-       * Run the following command
-            ```
-                mvn archetype:generate
-                    -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
-                    -DarchetypeArtifactId=siddhi-archetype-execution
-                    -DgroupId=org.wso2.extension.siddhi.execution
-                    -Dversion=1.0.0-SNAPSHOT
-            ```
-       * Then the system will pop-up the following message to enter the execution name
-           
-            eg:- Define value for property 'executionType': ML
-            
-       * Finally confirm all property values are correct or not by typing Y or press Enter, else type N
-                  
-    * If you want to create a project as siddhi-io : 
-    
-       * Run the following command
-                
-          ```
-               mvn archetype:generate
-                   -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
-                   -DarchetypeArtifactId=siddhi-archetype-io
-                   -DgroupId=org.wso2.extension.siddhi.io
-                   -Dversion=1.0.0-SNAPSHOT
-            ```
-       * Then the system will pop-up the following message to enter the typeOf_IO
-           
-         eg:- Define value for property 'typeOf_IO': http
 
-       * Finally confirm all property values are correct or not by typing Y or press Enter, else type N
-         
-    * If you want to create a project as siddhi-map : 
-        
-       * Run the following command
-                    
-            ```
-                mvn archetype:generate
-                    -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
-                    -DarchetypeArtifactId=siddhi-archetype-map
-                    -DgroupId=org.wso2.extension.siddhi.map
-                    -Dversion=1.0.0-SNAPSHOT
-            ```
-       * Then the system will pop-up the following message to enter the mapType
-       
-            eg:- Define value for property 'mapType':CSV
-    
-       * Finally confirm all property values are correct or not by typing Y or press Enter, else type N
-                   
-    * If you want to create a project as siddhi-script : 
-            
-       * Run the following command
-                        
-           ```
-               mvn archetype:generate
-                   -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
-                   -DarchetypeArtifactId=siddhi-archetype-script
-                   -DgroupId=org.wso2.extension.siddhi.script
-                   -Dversion=1.0.0-SNAPSHOT
-           ```
-       * Then the system will pop-up the following message to enter the script type
-       
-         eg:- Define value for property 'typeOfScript':
+---
+|  Branch | Build Status |
+| :------------ |:-------------
+| master      | [![Build Status](https://wso2.org/jenkins/view/All%20Builds/job/siddhi/job/siddhi-maven-acrchetype/badge/icon)](https://wso2.org/jenkins/view/All%20Builds/job/siddhi/job/siddhi-maven-acrchetype/) |
+---
 
-       * Finally confirm all property values are correct or not by typing Y or press Enter, else type N
-       
-    * If you want to create a project as siddhi-store : 
-       
-       * Run the following command
-                            
-            ```
-               mvn archetype:generate
-                  -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
-                  -DarchetypeArtifactId=siddhi-archetype-store
-                  -DgroupId=org.wso2.extension.siddhi.store
-                  -Dversion=1.0.0-SNAPSHOT
-            ```
-       * Then the system will pop-up the following message to enter the store type
-                          
-          eg:- Define value for property 'storeType': RDBMS
+This project contains components which implements functionality of siddhi-extensions Maven archetypes.
+
+## How to generate extension projects
+
+To generate specific type of extensions archetype, issue the command from your CLI.
+
+1. Siddhi Execution
+
+        mvn archetype:generate
+            -DarchetypeGroupId=io.siddhi.extension.archetype
+            -DarchetypeArtifactId=siddhi-archetype-execution
+            -DgroupId=io.extension.siddhi.execution
+            -Dversion=1.0.0-SNAPSHOT
+            
+    |Properties | Description | Mandatory | Default Value |
+    |------------- |-------------| ---- | ----- |
+    |_nameOfFunction | Name of the custom function to be created | Y | - |
+    |_nameSpaceOfFunction | Namespace of the function, used to grouped similar custom functions | Y | -
+    |groupIdPostfix| Namespace of the function is added as postfix to the groupId as a convention | N | {_nameSpaceOfFunction}
+    |artifactId | Artifact Id of the project | N | siddhi-execution-{_nameSpaceOfFunction}
+    |classNameOfAggregateFunction| Class name of the Aggregate Function | N | ${_nameOfFunction}AggregateFunction
+    |classNameOfFunction|Class name of the Function|N|${_nameOfFunction}Function
+    |classNameOfStreamFunction|Class name of the Stream Function|N|${_nameOfFunction}StreamFunction
+    |classNameOfStreamProcessor|Class name of the Stream Processor|N|${_nameOfFunction}StreamProcessor
+    |classNameOfWindow|Class name of the Window|N|${_nameOfFunction}Window
     
-       * Finally confirm all property values are correct or not by typing Y or press Enter, else type N
-                           
+1. Siddhi IO
+
+       mvn archetype:generate
+           -DarchetypeGroupId=io.siddhi.extension.archetype
+           -DarchetypeArtifactId=siddhi-archetype-io
+           -DgroupId=io.extension.siddhi.io
+           -Dversion=1.0.0-SNAPSHOT
+           
+    | Properties | Description | Mandatory | Default Value |
+    | ------------- |-------------| ---- | ----- |
+    | _IOType | Type of IO for which Siddhi-io extension is written | Y | - 
+    | groupIdPostfix| Type of the IO is added as postfix to the groupId as a convention | N | {_IOType} 
+    | artifactId | Artifact Id of the project | N | siddhi-io-{_IOType}
+    | classNameOfSink | Class name of the Sink | N | {_IOType}Sink
+    | classNameOfSource | Class name of the Source | N | {_IOType}Source
+    
+1. Siddhi Map
+
+        mvn archetype:generate
+            -DarchetypeGroupId=io.siddhi.extension.archetype
+            -DarchetypeArtifactId=siddhi-archetype-map
+            -DgroupId=io.extension.siddhi.map
+            -Dversion=1.0.0-SNAPSHOT
+            
+    | Properties | Description | Mandatory | Default Value |
+    | ------------- |-------------| ---- | ----- |
+    | _mapType | Type of Mapper for which Siddhi-map extension is written | Y | - 
+    | groupIdPostfix| Type of the Map is added as postfix to the groupId as a convention | N | {_mapType} 
+    | artifactId | Artifact Id of the project | N | siddhi-map-{_mapType}
+    | classNameOfSinkMapper | Class name of the Sink Mapper| N | {_mapType}SinkMapper
+    | classNameOfSourceMapper | Class name of the Source Mapper | N | {_mapType}SourceMapper
+   
+1. Siddhi Store
+
+       mvn archetype:generate
+          -DarchetypeGroupId=io.siddhi.extension.archetype
+          -DarchetypeArtifactId=siddhi-archetype-store
+          -DgroupId=io.extension.siddhi.store
+          -Dversion=1.0.0-SNAPSHOT
+          
+    | Properties | Description | Mandatory | Default Value |
+    | ------------- |-------------| ---- | ----- |
+    | _storeType | Type of Store for which Siddhi-store extension is written | Y | - 
+    | groupIdPostfix| Type of the Store is added as postfix to the groupId as a convention | N | {_storeType} 
+    | artifactId | Artifact Id of the project | N | siddhi-store-{_storeType}
+    | className | Class name of the Store | N | {_storeType}EventTable
+    
+1. Siddhi Script
+
+       mvn archetype:generate
+           -DarchetypeGroupId=io.siddhi.extension.archetype
+           -DarchetypeArtifactId=siddhi-archetype-script
+           -DgroupId=io.extension.siddhi.script
+           -Dversion=1.0.0-SNAPSHOT
+           
+    | Properties | Description | Mandatory | Default Value |
+    | ------------- |-------------| ---- | ----- |
+    | _nameOfScript | Name of Custom Script for which Siddhi-script extension is written | Y | - 
+    | groupIdPostfix| Name of the Script is added as postfix to the groupId as a convention | N | {_nameOfScript} 
+    | artifactId | Artifact Id of the project | N | siddhi-script-{_nameOfScript}
+    | classNameOfScript | Class name of the Script | N | Eval{_nameOfScript}
+
+## How to build from the source
+### Prerequisites
+* Java 8 or above
+* [Apache Maven](https://maven.apache.org/download.cgi#) 3.x.x
+### Steps
+1. Install above prerequisites if they have not been already installed
+2. Get a clone or download source from [Github](https://github.com/wso2-extensions/siddhi-maven-archetype.git)
+    ```bash
+    git clone https://github.com/wso2-extensions/siddhi-maven-archetype.git
+    ```
+3. Run the following maven commands from siddhi-maven-archetype directory
+     ```bash 
+     mvn clean install
+     ```
+4. Run the archetype creation with -DarchetypeVersion={SNAPSHOT version of the project}
+
+
                               
                        
                           
