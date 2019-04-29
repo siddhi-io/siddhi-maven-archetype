@@ -2,10 +2,10 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Siddhi-Script-${typeOfScriptinCamelCase}-Test-Suite">
-    <test name="Siddhi-script-${typeOfScriptinLowerCase}-tests" enabled="true" preserve-order="true" parallel="false">
+<suite name="Siddhi-Script-#if($className.startsWith("Eval"))$className.substring(4)#else$_nameOfScript.substring(0,1).toUpperCase()$_nameOfScript.substring(1)#end-Test-Suite">
+    <test name="Siddhi-script-${_nameOfScript.toLowerCase()}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.${typeOfScriptinLowerCase}.TestCaseOf${classNameOfScript}"/>
+            <class name="${package}.TestCaseOf${classNameOfScript}"/>
         </classes>
     </test>
 </suite>

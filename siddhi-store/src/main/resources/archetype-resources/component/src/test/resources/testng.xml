@@ -1,11 +1,12 @@
+#set ($stringLength = $className.length() - 10)
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Siddhi-Store-${storeTypeIncamelCase}-Test-Suite" parallel="false">
-    <test name="Siddhi-store-${storeTypeInLowerCase}-tests" preserve-order="true" parallel="false">
+<suite name="Siddhi-Store-#if($className.endsWith("EventTable"))$className.substring(0, $stringLength)#else$_storeType.substring(0,1).toUpperCase()$_storeType.substring(1)#end-Test-Suite" parallel="false">
+    <test name="Siddhi-store-${_storeType.toLowerCase()}-tests" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.${storeTypeInLowerCase}.TestCaseOf${className}"/>
+            <class name="${package}.TestCaseOf${className}"/>
         </classes>
     </test>
 </suite>

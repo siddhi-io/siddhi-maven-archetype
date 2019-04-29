@@ -7,10 +7,10 @@
         <artifactId>wso2</artifactId>
         <version>5</version>
     </parent>
-    <groupId>${groupId}.${storeTypeInLowerCase}</groupId>
+    <groupId>${groupId}.${groupIdPostfix}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
-    <name>WSO2 Siddhi Extension - ${storeType} Store</name>
+    <name>Siddhi Store ${_storeType} Parent</name>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 

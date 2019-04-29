@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>${groupId}.${typeOfScriptinLowerCase}</groupId>
+        <groupId>${groupId}.${groupIdPostfix}</groupId>
         <artifactId>${artifactId}-parent</artifactId>
         <version>${version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>${artifactId}</artifactId>
     <packaging>bundle</packaging>
-    <name>Siddhi Script ${typeOfScript} extension</name>
+    <name>Siddhi Script ${_nameOfScript} extension</name>
 
     <dependencies>
         <dependency>
@@ -83,7 +83,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
                         <Export-Package>
-                            ${package}.${typeOfScriptinLowerCase},
+                            ${package}.*
                         </Export-Package>
                         <Import-Package>
                             *;resolution:=optional

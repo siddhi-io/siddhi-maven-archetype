@@ -16,31 +16,30 @@
 -->
 <archetype-descriptor>
     <requiredProperties>
-        <requiredProperty key="storeType">
-        </requiredProperty>
-        <requiredProperty key="storeTypeIncamelCase">
+        <requiredProperty key="_storeType"/>
+        <requiredProperty key="groupIdPostfix">
             <defaultValue>
-                ${storeType.substring(0,1).toUpperCase()}${storeType.substring(1)}
+                ${_storeType.toLowerCase()}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="storeTypeInLowerCase">
+        <requiredProperty key="package">
             <defaultValue>
-                ${storeType.toLowerCase()}
+                ${groupId}.${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="artifactId">
             <defaultValue>
-                siddhi-store-${storeTypeInLowerCase}
+                siddhi-store-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="className">
             <defaultValue>
-                ${storeTypeIncamelCase}EventTable
+                ${_storeType.substring(0,1).toUpperCase()}${_storeType.substring(1)}EventTable
             </defaultValue>
         </requiredProperty>
     </requiredProperties>
     <fileSets>
-        <fileSet filtered="true" >
+        <fileSet filtered="true">
             <directory></directory>
             <includes>
                 <include>pom.xml</include>

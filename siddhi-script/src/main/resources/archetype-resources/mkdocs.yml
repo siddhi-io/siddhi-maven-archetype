@@ -1,12 +1,16 @@
-site_name: Siddhi Script ${typeOfScriptinCamelCase}
-site_description: Siddhi Script ${typeOfScriptinCamelCase} Extension
+#macro( strip $className $_nameOfScript)
+#if($className.startsWith("Eval"))$className.substring(4)#else$_nameOfScript.substring(0,1).toUpperCase()$_nameOfScript.substring(1)#end
+#end
+#set( $nameOfScriptInCamelCase = "#strip( $classNameOfScript, $_nameOfScript )" )
+site_name: Siddhi Script ${nameOfScriptInCamelCase}
+site_description: Siddhi Script ${nameOfScriptInCamelCase} Extension
 site_author:
 site_url:
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/extra.js
-repo_name: Siddhi-Script-${typeOfScriptinCamelCase}
+repo_name: Siddhi-Script-${nameOfScriptInCamelCase}
 repo_url:
 copyright:
 theme:

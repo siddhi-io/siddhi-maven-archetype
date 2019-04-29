@@ -1,12 +1,17 @@
-site_name:
-site_description:
+#macro( strip $className $_IOType)
+#set ($stringLength = $className.length() - 8)
+#if($className.endsWith("Function"))$className.substring(0, $stringLength)#else$_IOType.substring(0,1).toUpperCase()$_IOType.substring(1)#end
+#end
+#set( $nameOfFunctioninCamel = "#strip( $classNameOfFunction, $_nameOfFunction )")
+site_name: Siddhi Execution ${nameOfFunctioninCamel}
+site_description: Siddhi Execution ${nameOfFunctioninCamel} Extension
 site_author:
 site_url:
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/extra.js
-repo_name:
+repo_name: Siddhi-Execution-${nameOfFunctioninCamel}
 repo_url:
 copyright:
 theme:

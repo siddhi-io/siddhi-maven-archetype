@@ -7,10 +7,10 @@
         <artifactId>wso2</artifactId>
         <version>5</version>
     </parent>
-    <groupId>${groupId}.${executionTypeinLowerCase}</groupId>
+    <groupId>${groupId}.${groupIdPostfix}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
-    <name>siddhi execution ${executionType}</name>
+    <name>siddhi execution ${_nameOfFunction}</name>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 

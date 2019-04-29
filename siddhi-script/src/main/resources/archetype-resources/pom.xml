@@ -10,11 +10,11 @@
         <version>5</version>
     </parent>
 
-    <groupId>${groupId}.${typeOfScriptinLowerCase}</groupId>
+    <groupId>${groupId}.${groupIdPostfix}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
     <packaging>pom</packaging>
-    <name>Siddhi Script ${typeOfScript} extension</name>
+    <name>Siddhi Script ${_nameOfScript} extension</name>
 
     <modules>
         <module>component</module>

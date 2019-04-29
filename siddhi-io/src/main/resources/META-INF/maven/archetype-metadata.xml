@@ -16,31 +16,30 @@
 -->
 <archetype-descriptor>
     <requiredProperties>
-        <requiredProperty key="typeOf_IO">
-        </requiredProperty>
-        <requiredProperty key="typeOf_IOinCamelCase">
+        <requiredProperty key="_IOType"/>
+        <requiredProperty key="groupIdPostfix">
             <defaultValue>
-                ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}
+                ${_IOType.toLowerCase()}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="typeOf_IOinLowerCase">
+        <requiredProperty key="package">
             <defaultValue>
-                ${typeOf_IO.toLowerCase()}
+                ${groupId}.${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="artifactId">
             <defaultValue>
-                siddhi-io-${typeOf_IOinLowerCase}
+                siddhi-io-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfSink">
             <defaultValue>
-                ${typeOf_IOinCamelCase}Sink
+                ${_IOType.substring(0,1).toUpperCase()}${_IOType.substring(1)}Sink
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfSource">
             <defaultValue>
-                    ${typeOf_IOinCamelCase}Source
+                ${_IOType.substring(0,1).toUpperCase()}${_IOType.substring(1)}Source
             </defaultValue>
         </requiredProperty>
     </requiredProperties>

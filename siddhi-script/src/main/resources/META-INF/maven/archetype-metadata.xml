@@ -16,26 +16,25 @@
 -->
 <archetype-descriptor>
     <requiredProperties>
-        <requiredProperty key="typeOfScript">
-        </requiredProperty>
-        <requiredProperty key="typeOfScriptinCamelCase">
+        <requiredProperty key="_nameOfScript"/>
+        <requiredProperty key="groupIdPostfix">
             <defaultValue>
-                ${typeOfScript.substring(0,1).toUpperCase()}${typeOfScript.substring(1)}
+                ${_nameOfScript.toLowerCase()}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="typeOfScriptinLowerCase">
-            <defaultValue>
-                ${typeOfScript.toLowerCase()}
-            </defaultValue>
+        <requiredProperty key="package">
+        <defaultValue>
+            ${groupId}.${groupIdPostfix}
+        </defaultValue>
         </requiredProperty>
         <requiredProperty key="artifactId">
             <defaultValue>
-                siddhi-script-${typeOfScriptinLowerCase}
+                siddhi-script-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfScript">
             <defaultValue>
-                Eval${typeOfScriptinCamelCase}
+                Eval${_nameOfScript.substring(0,1).toUpperCase()}${_nameOfScript.substring(1)}
             </defaultValue>
         </requiredProperty>
     </requiredProperties>

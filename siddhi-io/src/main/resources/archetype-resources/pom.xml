@@ -12,10 +12,10 @@
     <modules>
         <module>component</module>
     </modules>
-    <groupId>${groupId}.${typeOf_IOinLowerCase}</groupId>
+    <groupId>${groupId}.${groupIdPostfix}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
-    <name>Siddhi I/O ${typeOf_IO}</name>
+    <name>Siddhi I/O ${_IOType}</name>
     <dependencyManagement>
         <dependencies>
             <dependency>
