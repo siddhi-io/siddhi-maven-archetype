@@ -1,16 +1,17 @@
 package ${package}.sink;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.ConnectionUnavailableException;
-import org.wso2.siddhi.core.stream.output.sink.Sink;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.core.util.transport.DynamicOptions;
-import org.wso2.siddhi.core.util.transport.OptionHolder;
-import org.wso2.siddhi.query.api.definition.StreamDefinition;
-
-import java.util.Map;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.config.SiddhiAppContext;
+import io.siddhi.core.exception.ConnectionUnavailableException;
+import io.siddhi.core.stream.ServiceDeploymentInfo;
+import io.siddhi.core.stream.output.sink.Sink;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.core.util.transport.DynamicOptions;
+import io.siddhi.core.util.transport.OptionHolder;
+import io.siddhi.query.api.definition.StreamDefinition;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -59,7 +60,7 @@ import java.util.Map;
         }
 )
 
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#sink
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#sink
 
 public class ${classNameOfSink} extends Sink {
 
@@ -93,13 +94,13 @@ public class ${classNameOfSink} extends Sink {
      * @param optionHolder            Option holder containing static and dynamic configuration related
      *                                to the {@link Sink}
      * @param configReader        to read the sink related system configuration.
-     * @param siddhiAppContext        the context of the {@link org.wso2.siddhi.query.api.SiddhiApp} used to
+     * @param siddhiAppContext        the context of the {@link io.siddhi.query.api.SiddhiApp} used to
      *                                get siddhi related utility functions.
      */
     @Override
-    protected void init(StreamDefinition streamDefinition, OptionHolder optionHolder, ConfigReader configReader,
-            SiddhiAppContext siddhiAppContext) {
-
+    protected StateFactory init(StreamDefinition streamDefinition, OptionHolder optionHolder, ConfigReader configReader,
+                                SiddhiAppContext siddhiAppContext) {
+        return null;
     }
 
     /**
@@ -110,7 +111,8 @@ public class ${classNameOfSink} extends Sink {
      *                                        such that the  system will take care retrying for connection
      */
     @Override
-    public void publish(Object payload, DynamicOptions dynamicOptions) throws ConnectionUnavailableException {
+    public void publish(Object payload, DynamicOptions dynamicOptions, State state)
+                                                                              throws ConnectionUnavailableException {
 
     }
 
@@ -143,26 +145,9 @@ public class ${classNameOfSink} extends Sink {
 
     }
 
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     * This is also used to identify the internal states and debugging
-     * @return all internal states should be return as an map with meaning full keys
-     */
     @Override
-    public Map<String, Object> currentState() {
-            return null;
+    protected ServiceDeploymentInfo exposeServiceDeploymentInfo() {
+        return null;
     }
 
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param map the stateful objects of the processing element as a map.
-     *              This map will have the  same keys that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> map) {
-
-    }
 }
