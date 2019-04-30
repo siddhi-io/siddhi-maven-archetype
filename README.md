@@ -19,7 +19,7 @@ To generate specific type of extensions archetype, issue the command from your C
         mvn archetype:generate
             -DarchetypeGroupId=io.siddhi.extension.archetype
             -DarchetypeArtifactId=siddhi-archetype-execution
-            -DgroupId=io.extension.siddhi.execution
+            -DgroupId=io.siddhi.extension.execution
             -Dversion=1.0.0-SNAPSHOT
             
     |Properties | Description | Mandatory | Default Value |
@@ -39,7 +39,7 @@ To generate specific type of extensions archetype, issue the command from your C
        mvn archetype:generate
            -DarchetypeGroupId=io.siddhi.extension.archetype
            -DarchetypeArtifactId=siddhi-archetype-io
-           -DgroupId=io.extension.siddhi.io
+           -DgroupId=io.siddhi.extension.io
            -Dversion=1.0.0-SNAPSHOT
            
     | Properties | Description | Mandatory | Default Value |
@@ -55,7 +55,7 @@ To generate specific type of extensions archetype, issue the command from your C
         mvn archetype:generate
             -DarchetypeGroupId=io.siddhi.extension.archetype
             -DarchetypeArtifactId=siddhi-archetype-map
-            -DgroupId=io.extension.siddhi.map
+            -DgroupId=io.siddhi.extension.map
             -Dversion=1.0.0-SNAPSHOT
             
     | Properties | Description | Mandatory | Default Value |
@@ -71,7 +71,7 @@ To generate specific type of extensions archetype, issue the command from your C
        mvn archetype:generate
           -DarchetypeGroupId=io.siddhi.extension.archetype
           -DarchetypeArtifactId=siddhi-archetype-store
-          -DgroupId=io.extension.siddhi.store
+          -DgroupId=io.siddhi.extension.store
           -Dversion=1.0.0-SNAPSHOT
           
     | Properties | Description | Mandatory | Default Value |
@@ -86,7 +86,7 @@ To generate specific type of extensions archetype, issue the command from your C
        mvn archetype:generate
            -DarchetypeGroupId=io.siddhi.extension.archetype
            -DarchetypeArtifactId=siddhi-archetype-script
-           -DgroupId=io.extension.siddhi.script
+           -DgroupId=io.siddhi.extension.script
            -Dversion=1.0.0-SNAPSHOT
            
     | Properties | Description | Mandatory | Default Value |
