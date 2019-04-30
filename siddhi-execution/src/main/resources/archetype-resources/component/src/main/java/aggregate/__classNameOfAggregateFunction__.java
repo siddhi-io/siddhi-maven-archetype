@@ -96,7 +96,7 @@ import io.siddhi.query.api.definition.Attribute;
         }
 )
 // for more information refer
-//                      https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#aggregate-function
+//                      https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#aggregate-function
 public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor<State> {
 
     /**

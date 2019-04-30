@@ -97,7 +97,7 @@ import java.util.Map;
         }
 )
 
-// for more information refer https://wso2.github.io/siddhi/documentation/siddhi-4.0/#windows
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#window
 
 public class ${classNameOfWindow} extends WindowProcessor implements FindableProcessor {
 

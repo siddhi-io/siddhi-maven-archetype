@@ -93,7 +93,7 @@ import java.util.Map;
         }
 )
 
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#table
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#table
 
 public class ${className} extends AbstractRecordTable {
 

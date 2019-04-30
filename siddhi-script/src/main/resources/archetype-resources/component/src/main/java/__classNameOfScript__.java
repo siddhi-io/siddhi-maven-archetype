@@ -66,7 +66,7 @@ import io.siddhi.query.api.definition.Attribute.Type;
         }
 )
 
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#script
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#script
 
 public class ${classNameOfScript} extends Script {
 
