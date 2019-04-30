@@ -23,11 +23,6 @@
         <log4j.version>1.2.17.wso2v1</log4j.version>
         <testng.version>6.9.10</testng.version>
         <jacoco.maven.version>0.7.8</jacoco.maven.version>
-        <maven.scr.plugin.version>1.7.2</maven.scr.plugin.version>
-        <maven.bundle.plugin.version>2.3.5</maven.bundle.plugin.version>
-        <maven.source.plugin.version>2.1.2</maven.source.plugin.version>
-        <maven.assembly.plugin.version>2.2-beta-2</maven.assembly.plugin.version>
-        <maven.project.info.reports.plugin.version>2.4</maven.project.info.reports.plugin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
