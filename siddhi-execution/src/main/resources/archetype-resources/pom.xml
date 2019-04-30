@@ -37,6 +37,16 @@
                 <version>${siddhi.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.wso2.siddhi</groupId>
+                <artifactId>siddhi-annotations</artifactId>
+                <version>${siddhi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.siddhi</groupId>
+                <artifactId>siddhi-query-compiler</artifactId>
+                <version>${siddhi.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.log4j.wso2</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
@@ -82,6 +92,19 @@
                     <preparationGoals>clean install -Pdocumentation-deploy</preparationGoals>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wso2.siddhi</groupId>
+                <artifactId>siddhi-doc-gen</artifactId>
+                <version>${siddhi.version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate-md-docs</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
