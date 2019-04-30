@@ -9,13 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>component</module>
-    </modules>
     <groupId>${groupId}.${groupIdPostfix}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
     <version>${version}</version>
     <name>Siddhi I/O ${_IOType}</name>
+
+    <modules>
+        <module>component</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

@@ -30,9 +30,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <modules>
-                <module>component</module>
-            </modules>
         </profile>
         <profile>
             <id>documentation-deploy</id>
