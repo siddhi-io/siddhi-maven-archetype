@@ -1,15 +1,15 @@
 package ${package}.sinkmapper;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.event.Event;
-import org.wso2.siddhi.core.stream.output.sink.SinkListener;
-import org.wso2.siddhi.core.stream.output.sink.SinkMapper;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.core.util.transport.OptionHolder;
-import org.wso2.siddhi.core.util.transport.TemplateBuilder;
-import org.wso2.siddhi.query.api.definition.StreamDefinition;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.config.SiddhiAppContext;
+import io.siddhi.core.event.Event;
+import io.siddhi.core.stream.output.sink.SinkListener;
+import io.siddhi.core.stream.output.sink.SinkMapper;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.transport.OptionHolder;
+import io.siddhi.core.util.transport.TemplateBuilder;
+import io.siddhi.query.api.definition.StreamDefinition;
 
 import java.util.Map;
 
@@ -82,7 +82,7 @@ import java.util.Map;
         }
 )
 
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#sink-mapper
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#sink-mapper
 
 public class ${classNameOfSinkMapper} extends SinkMapper {
 
@@ -105,7 +105,7 @@ public class ${classNameOfSinkMapper} extends SinkMapper {
      *                               to the {@link SinkMapper}
      * @param map                    Unmapped payload for reference
      * @param configReader           to read the sink related system configuration.
-     * @param siddhiAppContext       the context of the {@link org.wso2.siddhi.query.api.SiddhiApp} used to
+     * @param siddhiAppContext       the context of the {@link io.siddhi.query.api.SiddhiApp} used to
      *                               get siddhi related utilty functions.
      */
     @Override
