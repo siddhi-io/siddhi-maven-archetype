@@ -1,16 +1,18 @@
 package ${package}.aggregate;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.query.selector.attribute.aggregator.AttributeAggregator;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.query.processor.ProcessingMode;
+import io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
 
-import java.util.Map;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -95,20 +97,7 @@ import java.util.Map;
 )
 // for more information refer
 //                      https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#aggregate-function
-public class ${classNameOfAggregateFunction} extends AttributeAggregator {
-
-    /**
-     * The initialization method for {@link AttributeAggregator}, which will be called before other methods and validate
-     * the all configuration and getting the initial values.
-     * @param attributeExpressionExecutors are the executors of each attributes in the Function
-     * @param configReader        this hold the {@link AttributeAggregator} extensions configuration reader.
-     * @param siddhiAppContext    Siddhi app runtime context
-     */
-    @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
-
-    }
+public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor<State> {
 
     /**
      * Get attribute's type in the expressionExecutors .
@@ -129,7 +118,7 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * @return the Function result
      */
     @Override
-    public Object processAdd(Object data) {
+    public Object processAdd(Object data, State state) {
         return null;
     }
 
@@ -141,7 +130,7 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * @return the value
      */
     @Override
-    public Object processAdd(Object[] data) {
+    public Object processAdd(Object[] data, State state) {
         return null;
     }
 
@@ -154,7 +143,7 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * @return the value
      */
     @Override
-    public Object processRemove(Object data) {
+    public Object processRemove(Object data, State state) {
         return null;
     }
 
@@ -167,13 +156,20 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * @return the value
      */
     @Override
-    public Object processRemove(Object[] data) {
+    public Object processRemove(Object[] data, State state) {
         return null;
     }
 
+    /**
+     * The initialization method for {@link AttributeAggregatorExecutor<State>}, which will be called before other
+     * methods and validate the all configuration and getting the initial values.
+     * @param configReader        this hold the {@link AttributeAggregatorExecutor<State>} extensions configuration
+     *                            reader.
+     */
     @Override
-    public boolean canDestroy() {
-        return false;
+    protected StateFactory<State> init(ExpressionExecutor[] expressionExecutors, ProcessingMode processingMode,
+                                       boolean b, ConfigReader configReader, SiddhiQueryContext siddhiQueryContext) {
+        return null;
     }
 
     /**
@@ -182,30 +178,7 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * @return the value
      */
     @Override
-    public Object reset() {
+    public Object reset(State state) {
         return null;
-    }
-
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
     }
 }

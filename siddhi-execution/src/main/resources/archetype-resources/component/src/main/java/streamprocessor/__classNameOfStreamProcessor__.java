@@ -1,21 +1,24 @@
 package ${package}.streamprocessor;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.event.ComplexEventChunk;
-import org.wso2.siddhi.core.event.stream.StreamEvent;
-import org.wso2.siddhi.core.event.stream.StreamEventCloner;
-import org.wso2.siddhi.core.event.stream.populater.ComplexEventPopulater;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.query.processor.Processor;
-import org.wso2.siddhi.core.query.processor.stream.StreamProcessor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.AbstractDefinition;
-import org.wso2.siddhi.query.api.definition.Attribute;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.event.ComplexEventChunk;
+import io.siddhi.core.event.stream.MetaStreamEvent;
+import io.siddhi.core.event.stream.StreamEventCloner;
+import io.siddhi.core.event.stream.holder.StreamEventClonerHolder;
+import io.siddhi.core.event.stream.populater.ComplexEventPopulater;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.query.processor.ProcessingMode;
+import io.siddhi.core.query.processor.Processor;
+import io.siddhi.core.query.processor.stream.StreamProcessor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.AbstractDefinition;
+import io.siddhi.query.api.definition.Attribute;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -88,23 +91,24 @@ import java.util.Map;
 )
 
 public class ${classNameOfStreamProcessor}  extends StreamProcessor {
-    @Override
-    protected void process(ComplexEventChunk<StreamEvent> streamEventChunk, Processor nextProcessor,
-                           StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater) {
 
+
+    @Override
+    protected void process(ComplexEventChunk complexEventChunk, Processor processor,
+                           StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater,
+                           State state) {
     }
 
     /**
      * The initialization method for {@link StreamProcessor}, which will be called before other methods and validate
      * the all configuration and getting the initial values.
-     * @param attributeExpressionExecutors are the executors of each attributes in the Function
      * @param configReader        this hold the {@link StreamProcessor} extensions configuration reader.
-     * @param siddhiAppContext    Siddhi app runtime context
      */
     @Override
-    protected List<Attribute> init(AbstractDefinition inputDefinition,
-                                   ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                                   SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
+                                ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                                StreamEventClonerHolder streamEventClonerHolder, boolean b, boolean b1,
+                                SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
@@ -129,26 +133,13 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
 
     }
 
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
     @Override
-    public Map<String, Object> currentState() {
+    public List<Attribute> getReturnAttributes() {
         return null;
     }
 
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
     @Override
-    public void restoreState(Map<String, Object> state) {
-
+    public ProcessingMode getProcessingMode() {
+        return null;
     }
 }
