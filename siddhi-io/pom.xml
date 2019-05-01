@@ -21,10 +21,10 @@
     <parent>
         <groupId>org.wso2.siddhi.extension.archetype</groupId>
         <artifactId>siddhi-extension-archetype</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
     <artifactId>siddhi-archetype-io</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
     <build>
         <extensions>
