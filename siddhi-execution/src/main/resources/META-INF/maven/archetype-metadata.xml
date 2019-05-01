@@ -16,46 +16,46 @@
 -->
 <archetype-descriptor>
     <requiredProperties>
-        <requiredProperty key="executionType">
-        </requiredProperty>
-        <requiredProperty key="executionTypeinCamelCase">
+        <requiredProperty key="_nameOfFunction"/>
+        <requiredProperty key="_nameSpaceOfFunction"/>
+        <requiredProperty key="groupIdPostfix">
             <defaultValue>
-                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}
+                ${_nameSpaceOfFunction.toLowerCase()}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="executionTypeinLowerCase">
+        <requiredProperty key="package">
             <defaultValue>
-                ${executionType.toLowerCase()}
+                ${groupId}.${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="artifactId">
             <defaultValue>
-                siddhi-execution-${executionTypeinLowerCase}
+                siddhi-execution-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfAggregateFunction">
             <defaultValue>
-                ${executionTypeinCamelCase}AggregateFunction
+                ${_nameOfFunction.substring(0,1).toUpperCase()}${_nameOfFunction.substring(1)}AggregateFunction
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfFunction">
             <defaultValue>
-                ${executionTypeinCamelCase}Function
+                ${_nameOfFunction.substring(0,1).toUpperCase()}${_nameOfFunction.substring(1)}Function
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfStreamFunction">
             <defaultValue>
-                ${executionTypeinCamelCase}StreamFunction
+                ${_nameOfFunction.substring(0,1).toUpperCase()}${_nameOfFunction.substring(1)}StreamFunction
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfStreamProcessor">
             <defaultValue>
-                ${executionTypeinCamelCase}StreamProcessor
+                ${_nameOfFunction.substring(0,1).toUpperCase()}${_nameOfFunction.substring(1)}StreamProcessor
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfWindow">
             <defaultValue>
-                ${executionTypeinCamelCase}Window
+                ${_nameOfFunction.substring(0,1).toUpperCase()}${_nameOfFunction.substring(1)}Window
             </defaultValue>
         </requiredProperty>
     </requiredProperties>

@@ -1,12 +1,13 @@
+#set ($stringLength = $classNameOfSink.length() - 4)
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Siddhi-Io-${typeOf_IOinCamelCase}-Test-Suite">
-    <test name="Siddhi-io-${typeOf_IOinLowerCase}-tests" enabled="true" preserve-order="true" parallel="false">
+<suite name="Siddhi-IO-#if($classNameOfSink.endsWith("Sink"))$classNameOfSink.substring(0, $stringLength)#else$_IOType.substring(0,1).toUpperCase()$_IOType.substring(1)#end-Test-Suite">
+    <test name="Siddhi-io-${_IOType.toLowerCase()}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.${typeOf_IOinLowerCase}.sink.TestCaseOf${classNameOfSink}"/>
-            <class name="${package}.${typeOf_IOinLowerCase}.source.TestCaseOf${classNameOfSource}"/>
+            <class name="${package}.sink.TestCaseOf${classNameOfSink}"/>
+            <class name="${package}.source.TestCaseOf${classNameOfSource}"/>
         </classes>
     </test>
 </suite>

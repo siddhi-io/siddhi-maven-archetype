@@ -1,12 +1,17 @@
-site_name: Siddhi Store ${storeTypeIncamelCase}
-site_description: Siddhi Store ${storeTypeIncamelCase} Extension
+#macro( strip $className $_StoreType)
+#set ($stringLength = $className.length() - 4)
+#if($className.endsWith("Sink"))$className.substring(0, $stringLength)#else$_StoreType.substring(0,1).toUpperCase()$_StoreType.substring(1)#end
+#end
+#set( $typeOfStoreinCamelCase = "#strip( $className, $_storeType )" )
+site_name: Siddhi Store ${typeOfStoreinCamelCase}
+site_description: Siddhi Store ${typeOfStoreinCamelCase} Extension
 site_author:
 site_url:
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/extra.js
-repo_name: Siddhi-Store-${storeTypeIncamelCase}
+repo_name: Siddhi-Store-${typeOfStoreinCamelCase}
 repo_url:
 copyright:
 theme:
@@ -26,4 +31,5 @@ markdown_extensions:
 pages:
   - Welcome : index.md
   - API Docs:
+      - 1.0.0-SNAPSHOT: api/1.0.0-SNAPSHOT.md
   - License: about/license.md

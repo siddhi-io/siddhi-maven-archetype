@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>${groupId}.${typeOf_IOinLowerCase}</groupId>
+        <groupId>${groupId}.${groupIdPostfix}</groupId>
         <artifactId>${artifactId}-parent</artifactId>
         <version>${version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>${artifactId}</artifactId>
     <packaging>bundle</packaging>
-    <name>Siddhi io ${typeOf_IO} extension</name>
+    <name>Siddhi IO ${_IOType} extension</name>
     <dependencies>
         <dependency>
             <groupId>org.wso2.siddhi</groupId>
@@ -47,6 +47,36 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>documentation-deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wso2.siddhi</groupId>
+                        <artifactId>siddhi-doc-gen</artifactId>
+                        <version>${siddhi.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>deploy-mkdocs-github-pages</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -96,8 +126,8 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
                         <Export-Package>
-                            ${package}.${typeOf_IOinLowerCase},
-                            ${package}.${typeOf_IOinLowerCase}.*
+                            ${package}.*,
+                            ${package}.*
                         </Export-Package>
                         <Import-Package>
                             *;resolution:=optional
