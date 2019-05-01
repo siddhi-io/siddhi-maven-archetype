@@ -11,6 +11,7 @@ import io.siddhi.core.event.stream.populater.ComplexEventPopulater;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.query.processor.ProcessingMode;
 import io.siddhi.core.query.processor.Processor;
+import io.siddhi.core.query.processor.stream.AbstractStreamProcessor;
 import io.siddhi.core.query.processor.stream.StreamProcessor;
 import io.siddhi.core.util.config.ConfigReader;
 import io.siddhi.core.util.snapshot.state.State;
@@ -92,7 +93,15 @@ import java.util.List;
 
 public class ${classNameOfStreamProcessor}  extends StreamProcessor {
 
-
+    /**
+     * The main processing method that will be called upon event arrival
+     *
+     * @param complexEventChunk     the event chunk that need to be processed
+     * @param processor             the next processor to which the success events need to be passed
+     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
+     * @param complexEventPopulater helps to populate the events with the resultant attributes
+     * @param state                 current processor state
+     */
     @Override
     protected void process(ComplexEventChunk complexEventChunk, Processor processor,
                            StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater,
@@ -102,13 +111,22 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
     /**
      * The initialization method for {@link StreamProcessor}, which will be called before other methods and validate
      * the all configuration and getting the initial values.
-     * @param configReader        this hold the {@link StreamProcessor} extensions configuration reader.
+     *
+     * @param metaStreamEvent              the stream event meta
+     * @param abstractDefinition           the incoming stream definition
+     * @param expressionExecutors          the executors of each function parameters
+     * @param configReader                 this hold the {@link AbstractStreamProcessor} extensions configuration
+     * @param streamEventClonerHolder      stream event cloner holder
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param findToBeExecuted             find will be executed
+     * @param siddhiQueryContext           current siddhi query context
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
     protected StateFactory init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
-                                ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
-                                StreamEventClonerHolder streamEventClonerHolder, boolean b, boolean b1,
-                                SiddhiQueryContext siddhiQueryContext) {
+            ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+            StreamEventClonerHolder streamEventClonerHolder, boolean outputExpectsExpiredEvents,
+            boolean findToBeExecuted, SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
@@ -133,11 +151,21 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
 
     }
 
+    /**
+     * The method should return the output's additional attributes list introduced by the function
+     *
+     * @return List of additional attributes from the function
+     */
     @Override
     public List<Attribute> getReturnAttributes() {
         return null;
     }
 
+    /**
+     * Defines the behaviour of the processing, will be called after the init
+     *
+     * @return ProcessingMode processing mode of the processor
+     */
     @Override
     public ProcessingMode getProcessingMode() {
         return null;

@@ -14,6 +14,7 @@ import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.VariableExpressionExecutor;
 import io.siddhi.core.query.processor.ProcessingMode;
 import io.siddhi.core.query.processor.Processor;
+import io.siddhi.core.query.processor.stream.AbstractStreamProcessor;
 import io.siddhi.core.query.processor.stream.window.FindableProcessor;
 import io.siddhi.core.query.processor.stream.window.WindowProcessor;
 import io.siddhi.core.table.Table;
@@ -104,20 +105,32 @@ public class ${classNameOfWindow} extends WindowProcessor implements FindablePro
     /**
      * The init method of the {@link WindowProcessor}, this method will be called before other methods
      *
-     * @param configReader                 the config reader of window
+     * @param metaStreamEvent              the stream event meta
+     * @param abstractDefinition           the incoming stream definition
+     * @param expressionExecutors          the executors of each function parameters
+     * @param configReader                 this hold the {@link AbstractStreamProcessor} extensions configuration
+     * @param streamEventClonerHolder      stream event cloner holder
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param findToBeExecuted             find will be executed
+     * @param siddhiQueryContext           current siddhi query context
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
     protected StateFactory init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
-                                ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
-                                StreamEventClonerHolder streamEventClonerHolder, boolean b, boolean b1,
-                                SiddhiQueryContext siddhiQueryContext) {
+            ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+            StreamEventClonerHolder streamEventClonerHolder, boolean outputExpectsExpiredEvents,
+            boolean findToBeExecuted, SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
     /**
      * The main processing method that will be called upon event arrival
      *
-     * @param streamEventCloner helps to clone the incoming event for local storage or modification
+     * @param complexEventChunk     the event chunk that need to be processed
+     * @param processor             the next processor to which the success events need to be passed
+     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
+     * @param complexEventPopulater helps to populate the events with the resultant attributes
+     * @param state                 current state of the processor
      */
     @Override
     protected void processEventChunk(ComplexEventChunk complexEventChunk, Processor processor,
@@ -163,17 +176,25 @@ public class ${classNameOfWindow} extends WindowProcessor implements FindablePro
      * To construct a finder having the capability of finding events at the processor that corresponds to the incoming
      * matchingEvent and the given matching expression logic.
      *
-     * @param expression                  the matching expression
+     * @param expression                   the matching condition
      * @param matchingMetaInfoHolder      the meta structure of the incoming matchingEvent
+     * @param variableExpressionExecutors the list of variable ExpressionExecutors already created
+     * @param tableMap                    map of event tables
+     * @param siddhiQueryContext          current siddhi query context
      * @return compiled Condition having the capability of matching events against the incoming matchingEvent
      */
     @Override
     public CompiledCondition compileCondition(Expression expression, MatchingMetaInfoHolder matchingMetaInfoHolder,
-                                              List<VariableExpressionExecutor> list, Map<String, Table> map,
-                                              SiddhiQueryContext siddhiQueryContext) {
+            List<VariableExpressionExecutor> variableExpressionExecutors,
+            Map<String, Table> tableMap, SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
+    /**
+     * Defines the behaviour of the processing, will be called after the init
+     *
+     * @return ProcessingMode processing mode of the processor
+     */
     @Override
     public ProcessingMode getProcessingMode() {
         return null;

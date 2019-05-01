@@ -113,8 +113,9 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
      * The main execution method which will be called upon event arrival
      * when there are zero or one Function parameter
      *
-     * @param  data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param  data     null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
      * @return the Function result
      */
     @Override
@@ -126,7 +127,8 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
      * The main execution method which will be called upon event arrival
      * when there are more than one Function parameter
      *
-     * @param  data the runtime values of  parameters
+     * @param data      the runtime values of  parameters
+     * @param state     current query state
      * @return the value
      */
     @Override
@@ -138,8 +140,9 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
      * The main execution method which will be called upon event expired or out
      *when there are zero or one Function parameter
      *
-     * @param data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param data      null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
      * @return the value
      */
     @Override
@@ -151,8 +154,9 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
      * The main execution method which will be called upon event expired or out
      * when there are more than one Function parameter
      *
-     * @param  data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param  data     null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
      * @return the value
      */
     @Override
@@ -163,18 +167,26 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
     /**
      * The initialization method for {@link AttributeAggregatorExecutor<State>}, which will be called before other
      * methods and validate the all configuration and getting the initial values.
-     * @param configReader        this hold the {@link AttributeAggregatorExecutor<State>} extensions configuration
-     *                            reader.
+     *
+     * @param expressionExecutors          are the executors of each attributes in the function
+     * @param processingMode               query processing mode
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param configReader                 this hold the {@link AttributeAggregatorExecutor} extensions
+     *                                     configuration reader.
+     * @param siddhiQueryContext           Siddhi query runtime context
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
     protected StateFactory<State> init(ExpressionExecutor[] expressionExecutors, ProcessingMode processingMode,
-                                       boolean b, ConfigReader configReader, SiddhiQueryContext siddhiQueryContext) {
+            boolean outputExpectsExpiredEvents, ConfigReader configReader,
+            SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
     /**
      * The execution method which will be called to reset the event
      *
+     * @param state     current query state
      * @return the value
      */
     @Override

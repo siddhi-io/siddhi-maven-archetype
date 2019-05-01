@@ -99,7 +99,11 @@ public class ${classNameOfFunction} extends FunctionExecutor {
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
      * the all configuration and getting the initial values.
-     * @param configReader                 this hold the {@link FunctionExecutor} extensions configuration reader.
+     *
+     * @param expressionExecutors          are the executors of each function parameters
+     * @param configReader                 This hold the {@link FunctionExecutor} extensions configuration reader.
+     * @param siddhiQueryContext           the context of the siddhi query
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
     protected StateFactory init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
@@ -111,7 +115,8 @@ public class ${classNameOfFunction} extends FunctionExecutor {
      * The main execution method which will be called upon event arrival
      * when there are more than one Function parameter
      *
-     * @param data the runtime values of Function parameters
+     * @param data      the runtime values of Function parameters
+     * @param state     current query state
      * @return the Function result
      */
     @Override
@@ -123,8 +128,8 @@ public class ${classNameOfFunction} extends FunctionExecutor {
      * The main execution method which will be called upon event arrival
      * when there are zero or one Function parameter
      *
-     * @param data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param data      null if the Function parameter count is zero or runtime data value of the Function parameter
+     * @param state     current query state
      * @return the Function result
      */
     @Override

@@ -87,12 +87,15 @@ public class ${classNameOfSource} extends Source {
     /**
      * The initialization method for {@link Source}, will be called before other methods. It used to validate
      * all configurations and to get initial values.
-     * @param sourceEventListener After receiving events, the source should trigger onEvent() of this listener.
-     *                            Listener will then pass on the events to the appropriate mappers for processing .
-     * @param optionHolder        Option holder containing static configuration related to the {@link Source}
-     * @param configReader        ConfigReader is used to read the {@link Source} related system configuration.
-     * @param siddhiAppContext    the context of the {@link io.siddhi.query.api.SiddhiApp} used to get Siddhi
-     *                            related utility functions.
+     *
+     * @param sourceEventListener             The listener to pass the events for processing which are consumed
+     *                                        by the source
+     * @param optionHolder                    Contains static options of the source
+     * @param requestedTransportPropertyNames Requested transport properties that should be passed to
+     *                                        SourceEventListener
+     * @param configReader                    System configuration reader for source
+     * @param siddhiAppContext                Siddhi application context
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
     public StateFactory init(SourceEventListener sourceEventListener, OptionHolder optionHolder,
@@ -117,6 +120,7 @@ public class ${classNameOfSource} extends Source {
      *
      * @param connectionCallback Callback to pass the ConnectionUnavailableException in case of connection failure after
      *                           initial successful connection. (can be used when events are receiving asynchronously)
+     * @param state              current state of the source
      * @throws ConnectionUnavailableException if it cannot connect to the source backend immediately.
      */
     @Override
@@ -156,6 +160,11 @@ public class ${classNameOfSource} extends Source {
 
     }
 
+    /**
+     * Give information to the deployment about the service exposed by the sink.
+     *
+     * @return ServiceDeploymentInfo  Service related information to the deployment
+     */
     @Override
     protected ServiceDeploymentInfo exposeServiceDeploymentInfo() {
         return null;

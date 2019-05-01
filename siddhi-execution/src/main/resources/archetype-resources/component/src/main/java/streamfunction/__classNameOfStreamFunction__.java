@@ -107,19 +107,21 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
     }
 
     /**
-     * The initialization method for {@link StreamFunctionProcessor},
-     * which will be called before other methods and validate
-     * the all configuration and getting the initial values.
-     * @param inputDefinition               the incoming stream definition
-     * @param attributeExpressionExecutors     the executors of each function parameters
-     * @param configReader                     this hold the {@link StreamFunctionProcessor} extensions
-     *                                         configuration reader.
-     * @return the output's additional attributes list introduced by the function
+     * The initialization method for {@link StreamFunctionProcessor}, which will be called before other methods and
+     * to validate the all configuration and getting the initial values.
+     *
+     * @param inputDefinition              the incoming stream definition
+     * @param attributeExpressionExecutors the executors of each function parameters
+     * @param configReader                 this hold the {@link StreamFunctionProcessor} extensions configuration
+     *                                     reader.
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param siddhiQueryContext           the context of the siddhi query
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected StateFactory init(AbstractDefinition inputDefinition,
-                                ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                                boolean b, SiddhiQueryContext siddhiQueryContext) {
+    protected StateFactory init(AbstractDefinition inputDefinition, ExpressionExecutor[] attributeExpressionExecutors,
+            ConfigReader configReader, boolean outputExpectsExpiredEvents,
+            SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
@@ -144,6 +146,10 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
 
     }
 
+    /** The method should return the output's additional attributes list introduced by the function
+     *
+     * @return List of additional attributes from the function
+     */
     @Override
     public List<Attribute> getReturnAttributes() {
         return null;

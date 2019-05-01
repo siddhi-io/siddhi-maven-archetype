@@ -112,7 +112,3 @@ To generate specific type of extensions archetype, issue the command from your C
      ```
 4. Run the archetype creation with -DarchetypeVersion={SNAPSHOT version of the project}
 
-
-                              
-                       
-                          
