@@ -1,16 +1,16 @@
 package ${package}.streamfunction;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.query.processor.stream.function.StreamFunctionProcessor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.AbstractDefinition;
-import org.wso2.siddhi.query.api.definition.Attribute;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.query.processor.stream.function.StreamFunctionProcessor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.AbstractDefinition;
+import io.siddhi.query.api.definition.Attribute;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -107,20 +107,21 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
     }
 
     /**
-     * The initialization method for {@link StreamFunctionProcessor},
-     * which will be called before other methods and validate
-     * the all configuration and getting the initial values.
-     * @param inputDefinition               the incoming stream definition
-     * @param attributeExpressionExecutors     the executors of each function parameters
-     * @param configReader                     this hold the {@link StreamFunctionProcessor} extensions
-     *                                         configuration reader.
-     * @param siddhiAppContext                 the context of the siddhi app
-     * @return the output's additional attributes list introduced by the function
+     * The initialization method for {@link StreamFunctionProcessor}, which will be called before other methods and
+     * to validate the all configuration and getting the initial values.
+     *
+     * @param inputDefinition              the incoming stream definition
+     * @param attributeExpressionExecutors the executors of each function parameters
+     * @param configReader                 this hold the {@link StreamFunctionProcessor} extensions configuration
+     *                                     reader.
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param siddhiQueryContext           the context of the siddhi query
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected List<Attribute> init(AbstractDefinition inputDefinition,
-                                   ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                                   SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(AbstractDefinition inputDefinition, ExpressionExecutor[] attributeExpressionExecutors,
+            ConfigReader configReader, boolean outputExpectsExpiredEvents,
+            SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
@@ -145,26 +146,12 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
 
     }
 
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
+    /** The method should return the output's additional attributes list introduced by the function
      *
-     * @return stateful objects of the processing element as an map
+     * @return List of additional attributes from the function
      */
     @Override
-    public Map<String, Object> currentState() {
+    public List<Attribute> getReturnAttributes() {
         return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
     }
 }

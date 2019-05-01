@@ -1,10 +1,10 @@
 package ${package};
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.function.Script;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute.Type;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.function.Script;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.query.api.definition.Attribute.Type;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -66,7 +66,7 @@ import org.wso2.siddhi.query.api.definition.Attribute.Type;
         }
 )
 
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#script
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#script
 
 public class ${classNameOfScript} extends Script {
 

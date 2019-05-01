@@ -1,16 +1,18 @@
 package ${package}.aggregate;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.query.selector.attribute.aggregator.AttributeAggregator;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.query.processor.ProcessingMode;
+import io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
 
-import java.util.Map;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -94,21 +96,8 @@ import java.util.Map;
         }
 )
 // for more information refer
-//                      https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#aggregate-function
-public class ${classNameOfAggregateFunction} extends AttributeAggregator {
-
-    /**
-     * The initialization method for {@link AttributeAggregator}, which will be called before other methods and validate
-     * the all configuration and getting the initial values.
-     * @param attributeExpressionExecutors are the executors of each attributes in the Function
-     * @param configReader        this hold the {@link AttributeAggregator} extensions configuration reader.
-     * @param siddhiAppContext    Siddhi app runtime context
-     */
-    @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
-
-    }
+//                      https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#aggregate-function
+public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor<State> {
 
     /**
      * Get attribute's type in the expressionExecutors .
@@ -124,12 +113,13 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * The main execution method which will be called upon event arrival
      * when there are zero or one Function parameter
      *
-     * @param  data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param  data     null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
      * @return the Function result
      */
     @Override
-    public Object processAdd(Object data) {
+    public Object processAdd(Object data, State state) {
         return null;
     }
 
@@ -137,11 +127,12 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * The main execution method which will be called upon event arrival
      * when there are more than one Function parameter
      *
-     * @param  data the runtime values of  parameters
+     * @param data      the runtime values of  parameters
+     * @param state     current query state
      * @return the value
      */
     @Override
-    public Object processAdd(Object[] data) {
+    public Object processAdd(Object[] data, State state) {
         return null;
     }
 
@@ -149,12 +140,13 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * The main execution method which will be called upon event expired or out
      *when there are zero or one Function parameter
      *
-     * @param data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param data      null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
      * @return the value
      */
     @Override
-    public Object processRemove(Object data) {
+    public Object processRemove(Object data, State state) {
         return null;
     }
 
@@ -162,50 +154,43 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregator {
      * The main execution method which will be called upon event expired or out
      * when there are more than one Function parameter
      *
-     * @param  data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param  data     null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
      * @return the value
      */
     @Override
-    public Object processRemove(Object[] data) {
+    public Object processRemove(Object[] data, State state) {
         return null;
     }
 
+    /**
+     * The initialization method for AttributeAggregatorExecutor, which will be called before other
+     * methods and validate the all configuration and getting the initial values.
+     *
+     * @param expressionExecutors          are the executors of each attributes in the function
+     * @param processingMode               query processing mode
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param configReader                 this hold the {@link AttributeAggregatorExecutor} extensions
+     *                                     configuration reader.
+     * @param siddhiQueryContext           Siddhi query runtime context
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
+     */
     @Override
-    public boolean canDestroy() {
-        return false;
+    protected StateFactory<State> init(ExpressionExecutor[] expressionExecutors, ProcessingMode processingMode,
+            boolean outputExpectsExpiredEvents, ConfigReader configReader,
+            SiddhiQueryContext siddhiQueryContext) {
+        return null;
     }
 
     /**
      * The execution method which will be called to reset the event
      *
+     * @param state     current query state
      * @return the value
      */
     @Override
-    public Object reset() {
+    public Object reset(State state) {
         return null;
-    }
-
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
     }
 }

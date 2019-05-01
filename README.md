@@ -17,9 +17,9 @@ To generate specific type of extensions archetype, issue the command from your C
 1. Siddhi Execution
 
         mvn archetype:generate
-            -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
+            -DarchetypeGroupId=io.siddhi.extension.archetype
             -DarchetypeArtifactId=siddhi-archetype-execution
-            -DgroupId=org.wso2.extension.siddhi.execution
+            -DgroupId=io.siddhi.extension.execution
             -Dversion=1.0.0-SNAPSHOT
             
     |Properties | Description | Mandatory | Default Value |
@@ -37,9 +37,9 @@ To generate specific type of extensions archetype, issue the command from your C
 1. Siddhi IO
 
        mvn archetype:generate
-           -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
+           -DarchetypeGroupId=io.siddhi.extension.archetype
            -DarchetypeArtifactId=siddhi-archetype-io
-           -DgroupId=org.wso2.extension.siddhi.io
+           -DgroupId=io.siddhi.extension.io
            -Dversion=1.0.0-SNAPSHOT
            
     | Properties | Description | Mandatory | Default Value |
@@ -53,9 +53,9 @@ To generate specific type of extensions archetype, issue the command from your C
 1. Siddhi Map
 
         mvn archetype:generate
-            -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
+            -DarchetypeGroupId=io.siddhi.extension.archetype
             -DarchetypeArtifactId=siddhi-archetype-map
-            -DgroupId=org.wso2.extension.siddhi.map
+            -DgroupId=io.siddhi.extension.map
             -Dversion=1.0.0-SNAPSHOT
             
     | Properties | Description | Mandatory | Default Value |
@@ -69,9 +69,9 @@ To generate specific type of extensions archetype, issue the command from your C
 1. Siddhi Store
 
        mvn archetype:generate
-          -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
+          -DarchetypeGroupId=io.siddhi.extension.archetype
           -DarchetypeArtifactId=siddhi-archetype-store
-          -DgroupId=org.wso2.extension.siddhi.store
+          -DgroupId=io.siddhi.extension.store
           -Dversion=1.0.0-SNAPSHOT
           
     | Properties | Description | Mandatory | Default Value |
@@ -84,9 +84,9 @@ To generate specific type of extensions archetype, issue the command from your C
 1. Siddhi Script
 
        mvn archetype:generate
-           -DarchetypeGroupId=org.wso2.siddhi.extension.archetype
+           -DarchetypeGroupId=io.siddhi.extension.archetype
            -DarchetypeArtifactId=siddhi-archetype-script
-           -DgroupId=org.wso2.extension.siddhi.script
+           -DgroupId=io.siddhi.extension.script
            -Dversion=1.0.0-SNAPSHOT
            
     | Properties | Description | Mandatory | Default Value |
@@ -112,7 +112,3 @@ To generate specific type of extensions archetype, issue the command from your C
      ```
 4. Run the archetype creation with -DarchetypeVersion={SNAPSHOT version of the project}
 
-
-                              
-                       
-                          

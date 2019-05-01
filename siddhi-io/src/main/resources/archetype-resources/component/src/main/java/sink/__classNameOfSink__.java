@@ -1,16 +1,17 @@
 package ${package}.sink;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.ConnectionUnavailableException;
-import org.wso2.siddhi.core.stream.output.sink.Sink;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.core.util.transport.DynamicOptions;
-import org.wso2.siddhi.core.util.transport.OptionHolder;
-import org.wso2.siddhi.query.api.definition.StreamDefinition;
-
-import java.util.Map;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.config.SiddhiAppContext;
+import io.siddhi.core.exception.ConnectionUnavailableException;
+import io.siddhi.core.stream.ServiceDeploymentInfo;
+import io.siddhi.core.stream.output.sink.Sink;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.core.util.transport.DynamicOptions;
+import io.siddhi.core.util.transport.OptionHolder;
+import io.siddhi.query.api.definition.StreamDefinition;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -59,7 +60,7 @@ import java.util.Map;
         }
 )
 
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#sink
+// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#sink
 
 public class ${classNameOfSink} extends Sink {
 
@@ -89,28 +90,31 @@ public class ${classNameOfSink} extends Sink {
     /**
      * The initialization method for {@link Sink}, will be called before other methods. It used to validate
      * all configurations and to get initial values.
-     * @param streamDefinition  containing stream definition bind to the {@link Sink}
+     * @param streamDefinition        containing stream definition bind to the {@link Sink}
      * @param optionHolder            Option holder containing static and dynamic configuration related
      *                                to the {@link Sink}
-     * @param configReader        to read the sink related system configuration.
-     * @param siddhiAppContext        the context of the {@link org.wso2.siddhi.query.api.SiddhiApp} used to
+     * @param configReader            to read the sink related system configuration.
+     * @param siddhiAppContext        the context of the {@link io.siddhi.query.api.SiddhiApp} used to
      *                                get siddhi related utility functions.
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected void init(StreamDefinition streamDefinition, OptionHolder optionHolder, ConfigReader configReader,
-            SiddhiAppContext siddhiAppContext) {
-
+    protected StateFactory init(StreamDefinition streamDefinition, OptionHolder optionHolder, ConfigReader configReader,
+                                SiddhiAppContext siddhiAppContext) {
+        return null;
     }
 
     /**
      * This method will be called when events need to be published via this sink
-     * @param payload        payload of the event based on the supported event class exported by the extensions
-     * @param dynamicOptions holds the dynamic options of this sink and Use this object to obtain dynamic options.
+     * @param payload         payload of the event based on the supported event class exported by the extensions
+     * @param dynamicOptions  holds the dynamic options of this sink and Use this object to obtain dynamic options.
+     * @param state           current state of the sink
      * @throws ConnectionUnavailableException if end point is unavailable the ConnectionUnavailableException thrown
      *                                        such that the  system will take care retrying for connection
      */
     @Override
-    public void publish(Object payload, DynamicOptions dynamicOptions) throws ConnectionUnavailableException {
+    public void publish(Object payload, DynamicOptions dynamicOptions, State state)
+                                                                              throws ConnectionUnavailableException {
 
     }
 
@@ -144,25 +148,13 @@ public class ${classNameOfSink} extends Sink {
     }
 
     /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     * This is also used to identify the internal states and debugging
-     * @return all internal states should be return as an map with meaning full keys
-     */
-    @Override
-    public Map<String, Object> currentState() {
-            return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
+     * Give information to the deployment about the service exposed by the sink.
      *
-     * @param map the stateful objects of the processing element as a map.
-     *              This map will have the  same keys that is created upon calling currentState() method.
+     * @return ServiceDeploymentInfo  Service related information to the deployment
      */
     @Override
-    public void restoreState(Map<String, Object> map) {
-
+    protected ServiceDeploymentInfo exposeServiceDeploymentInfo() {
+        return null;
     }
+
 }

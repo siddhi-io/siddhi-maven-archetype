@@ -44,6 +44,8 @@
             <directory></directory>
             <includes>
                 <include>pom.xml</include>
+                <include>checkstyle-suppressions.xml</include>
+                <include>findbugs-exclude.xml</include>
                 <include>**/*.yml</include>
                 <include>**/*.md</include>
             </includes>

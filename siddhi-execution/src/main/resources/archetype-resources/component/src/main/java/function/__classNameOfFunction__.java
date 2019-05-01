@@ -1,16 +1,16 @@
 package ${package}.function;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.executor.function.FunctionExecutor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
-
-import java.util.Map;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.executor.function.FunctionExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -99,25 +99,28 @@ public class ${classNameOfFunction} extends FunctionExecutor {
     /**
      * The initialization method for {@link FunctionExecutor}, which will be called before other methods and validate
      * the all configuration and getting the initial values.
-     * @param attributeExpressionExecutors are the executors of each attributes in the Function
-     * @param configReader                 this hold the {@link FunctionExecutor} extensions configuration reader.
-     * @param siddhiAppContext             Siddhi app runtime context
+     *
+     * @param expressionExecutors          are the executors of each function parameters
+     * @param configReader                 This hold the {@link FunctionExecutor} extensions configuration reader.
+     * @param siddhiQueryContext           the context of the siddhi query
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
-
+    protected StateFactory init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                                SiddhiQueryContext siddhiQueryContext) {
+        return null;
     }
 
     /**
      * The main execution method which will be called upon event arrival
      * when there are more than one Function parameter
      *
-     * @param data the runtime values of Function parameters
+     * @param data      the runtime values of Function parameters
+     * @param state     current query state
      * @return the Function result
      */
     @Override
-    protected Object execute(Object[] data) {
+    protected Object execute(Object[] data, State state) {
         return null;
     }
 
@@ -125,12 +128,12 @@ public class ${classNameOfFunction} extends FunctionExecutor {
      * The main execution method which will be called upon event arrival
      * when there are zero or one Function parameter
      *
-     * @param data null if the Function parameter count is zero or
-     *             runtime data value of the Function parameter
+     * @param data      null if the Function parameter count is zero or runtime data value of the Function parameter
+     * @param state     current query state
      * @return the Function result
      */
     @Override
-    protected Object execute(Object data) {
+    protected Object execute(Object data, State state) {
         return null;
     }
 
@@ -144,26 +147,4 @@ public class ${classNameOfFunction} extends FunctionExecutor {
         return null;
     }
 
-    /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
-     *
-     * @return stateful objects of the processing element as an map
-     */
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
-     *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
-     */
-    @Override
-    public void restoreState(Map<String, Object> state) {
-
-    }
 }

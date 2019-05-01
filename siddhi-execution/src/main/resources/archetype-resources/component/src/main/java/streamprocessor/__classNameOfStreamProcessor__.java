@@ -1,21 +1,25 @@
 package ${package}.streamprocessor;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.event.ComplexEventChunk;
-import org.wso2.siddhi.core.event.stream.StreamEvent;
-import org.wso2.siddhi.core.event.stream.StreamEventCloner;
-import org.wso2.siddhi.core.event.stream.populater.ComplexEventPopulater;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.query.processor.Processor;
-import org.wso2.siddhi.core.query.processor.stream.StreamProcessor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.AbstractDefinition;
-import org.wso2.siddhi.query.api.definition.Attribute;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.event.ComplexEventChunk;
+import io.siddhi.core.event.stream.MetaStreamEvent;
+import io.siddhi.core.event.stream.StreamEventCloner;
+import io.siddhi.core.event.stream.holder.StreamEventClonerHolder;
+import io.siddhi.core.event.stream.populater.ComplexEventPopulater;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.query.processor.ProcessingMode;
+import io.siddhi.core.query.processor.Processor;
+import io.siddhi.core.query.processor.stream.AbstractStreamProcessor;
+import io.siddhi.core.query.processor.stream.StreamProcessor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.AbstractDefinition;
+import io.siddhi.query.api.definition.Attribute;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * This is a sample class-level comment, explaining what the extension class does.
@@ -88,23 +92,41 @@ import java.util.Map;
 )
 
 public class ${classNameOfStreamProcessor}  extends StreamProcessor {
-    @Override
-    protected void process(ComplexEventChunk<StreamEvent> streamEventChunk, Processor nextProcessor,
-                           StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater) {
 
+    /**
+     * The main processing method that will be called upon event arrival
+     *
+     * @param complexEventChunk     the event chunk that need to be processed
+     * @param processor             the next processor to which the success events need to be passed
+     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
+     * @param complexEventPopulater helps to populate the events with the resultant attributes
+     * @param state                 current processor state
+     */
+    @Override
+    protected void process(ComplexEventChunk complexEventChunk, Processor processor,
+                           StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater,
+                           State state) {
     }
 
     /**
      * The initialization method for {@link StreamProcessor}, which will be called before other methods and validate
      * the all configuration and getting the initial values.
-     * @param attributeExpressionExecutors are the executors of each attributes in the Function
-     * @param configReader        this hold the {@link StreamProcessor} extensions configuration reader.
-     * @param siddhiAppContext    Siddhi app runtime context
+     *
+     * @param metaStreamEvent              the stream event meta
+     * @param abstractDefinition           the incoming stream definition
+     * @param expressionExecutors          the executors of each function parameters
+     * @param configReader                 this hold the {@link AbstractStreamProcessor} extensions configuration
+     * @param streamEventClonerHolder      stream event cloner holder
+     * @param outputExpectsExpiredEvents   is expired events sent as output
+     * @param findToBeExecuted             find will be executed
+     * @param siddhiQueryContext           current siddhi query context
+     * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected List<Attribute> init(AbstractDefinition inputDefinition,
-                                   ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
-                                   SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
+            ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+            StreamEventClonerHolder streamEventClonerHolder, boolean outputExpectsExpiredEvents,
+            boolean findToBeExecuted, SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
@@ -130,25 +152,22 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
     }
 
     /**
-     * Used to collect the serializable state of the processing element, that need to be
-     * persisted for reconstructing the element to the same state on a different point of time
+     * The method should return the output's additional attributes list introduced by the function
      *
-     * @return stateful objects of the processing element as an map
+     * @return List of additional attributes from the function
      */
     @Override
-    public Map<String, Object> currentState() {
+    public List<Attribute> getReturnAttributes() {
         return null;
     }
 
     /**
-     * Used to restore serialized state of the processing element, for reconstructing
-     * the element to the same state as if was on a previous point of time.
+     * Defines the behaviour of the processing, will be called after the init
      *
-     * @param state the stateful objects of the processing element as a map.
-     *              This is the same map that is created upon calling currentState() method.
+     * @return ProcessingMode processing mode of the processor
      */
     @Override
-    public void restoreState(Map<String, Object> state) {
-
+    public ProcessingMode getProcessingMode() {
+        return null;
     }
 }
