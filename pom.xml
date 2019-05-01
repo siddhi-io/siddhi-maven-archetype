@@ -24,7 +24,7 @@
     </parent>
     <groupId>org.wso2.siddhi.extension.archetype</groupId>
     <artifactId>siddhi-extension-archetype</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
@@ -59,7 +59,7 @@
         <url>https://github.com/wso2-extensions/siddhi-maven-archetype.git</url>
         <developerConnection>scm:git:https://github.com/wso2-extensions/siddhi-maven-archetype.git</developerConnection>
         <connection>scm:git:https://github.com/wso2-extensions/siddhi-maven-archetype.git</connection>
-        <tag>HEAD</tag>
+        <tag>v1.0.2</tag>
     </scm>
 
     <properties>
