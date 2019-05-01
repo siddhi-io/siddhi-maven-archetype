@@ -165,7 +165,7 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
     }
 
     /**
-     * The initialization method for {@link AttributeAggregatorExecutor<State>}, which will be called before other
+     * The initialization method for AttributeAggregatorExecutor, which will be called before other
      * methods and validate the all configuration and getting the initial values.
      *
      * @param expressionExecutors          are the executors of each attributes in the function
