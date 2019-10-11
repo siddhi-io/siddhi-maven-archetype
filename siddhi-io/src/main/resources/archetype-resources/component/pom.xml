@@ -37,12 +37,12 @@
             <artifactId>testng</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.wso2.extension.siddhi.map.xml</groupId>
+            <groupId>io.siddhi.extension.map.xml</groupId>
             <artifactId>siddhi-map-xml</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.wso2.extension.siddhi.map.json</groupId>
+            <groupId>io.siddhi.extension.map.json</groupId>
             <artifactId>siddhi-map-json</artifactId>
             <scope>test</scope>
         </dependency>
@@ -60,7 +60,7 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.wso2.siddhi</groupId>
+                        <groupId>io.siddhi</groupId>
                         <artifactId>siddhi-doc-gen</artifactId>
                         <version>${siddhi.version}</version>
                         <executions>

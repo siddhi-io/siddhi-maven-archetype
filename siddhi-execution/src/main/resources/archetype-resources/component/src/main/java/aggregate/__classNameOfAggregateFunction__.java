@@ -13,7 +13,6 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 
-
 /**
  * This is a sample class-level comment, explaining what the extension class does.
  */
@@ -95,74 +94,8 @@ import io.siddhi.query.api.definition.Attribute;
                 )
         }
 )
-// for more information refer
-//                      https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#aggregate-function
+// for more information refer https://siddhi.io/en/v5.0/docs/query-guide/#aggregate-function
 public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor<State> {
-
-    /**
-     * Get attribute's type in the expressionExecutors .
-     *
-     * @return attribute's type
-     */
-    @Override
-    public Attribute.Type getReturnType() {
-        return null;
-    }
-
-    /**
-     * The main execution method which will be called upon event arrival
-     * when there are zero or one Function parameter
-     *
-     * @param  data     null if the Function parameter count is zero or
-     *                  runtime data value of the Function parameter
-     * @param state     current query state
-     * @return the Function result
-     */
-    @Override
-    public Object processAdd(Object data, State state) {
-        return null;
-    }
-
-    /**
-     * The main execution method which will be called upon event arrival
-     * when there are more than one Function parameter
-     *
-     * @param data      the runtime values of  parameters
-     * @param state     current query state
-     * @return the value
-     */
-    @Override
-    public Object processAdd(Object[] data, State state) {
-        return null;
-    }
-
-    /**
-     * The main execution method which will be called upon event expired or out
-     *when there are zero or one Function parameter
-     *
-     * @param data      null if the Function parameter count is zero or
-     *                  runtime data value of the Function parameter
-     * @param state     current query state
-     * @return the value
-     */
-    @Override
-    public Object processRemove(Object data, State state) {
-        return null;
-    }
-
-    /**
-     * The main execution method which will be called upon event expired or out
-     * when there are more than one Function parameter
-     *
-     * @param  data     null if the Function parameter count is zero or
-     *                  runtime data value of the Function parameter
-     * @param state     current query state
-     * @return the value
-     */
-    @Override
-    public Object processRemove(Object[] data, State state) {
-        return null;
-    }
 
     /**
      * The initialization method for AttributeAggregatorExecutor, which will be called before other
@@ -178,13 +111,78 @@ public class ${classNameOfAggregateFunction} extends AttributeAggregatorExecutor
      */
     @Override
     protected StateFactory<State> init(ExpressionExecutor[] expressionExecutors, ProcessingMode processingMode,
-            boolean outputExpectsExpiredEvents, ConfigReader configReader,
-            SiddhiQueryContext siddhiQueryContext) {
+                                        boolean outputExpectsExpiredEvents, ConfigReader configReader,
+                                        SiddhiQueryContext siddhiQueryContext) {
+        return null;
+    }
+
+
+    /**
+     * Get attribute's type in the expressionExecutors.
+     *
+     * @return attribute's type
+     */
+    @Override
+    public Attribute.Type getReturnType() {
         return null;
     }
 
     /**
-     * The execution method which will be called to reset the event
+     * The main execution method which will be called upon event arrival when there are zero or one Function parameter.
+     *
+     * @param  data     null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
+     * @return the Function result
+     */
+    @Override
+    public Object processAdd(Object data, State state) {
+        return null;
+    }
+
+    /**
+     * The main execution method which will be called upon event arrival
+     * when there are more than one Function parameter.
+     *
+     * @param data      the runtime values of  parameters
+     * @param state     current query state
+     * @return the value
+     */
+    @Override
+    public Object processAdd(Object[] data, State state) {
+        return null;
+    }
+
+    /**
+     * The main execution method which will be called upon event expired or out
+     * when there are zero or one Function parameter.
+     *
+     * @param data      null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
+     * @return the value
+     */
+    @Override
+    public Object processRemove(Object data, State state) {
+        return null;
+    }
+
+    /**
+     * The main execution method which will be called upon event expired or out
+     * when there are more than one Function parameter.
+     *
+     * @param  data     null if the Function parameter count is zero or
+     *                  runtime data value of the Function parameter
+     * @param state     current query state
+     * @return the value
+     */
+    @Override
+    public Object processRemove(Object[] data, State state) {
+        return null;
+    }
+
+    /**
+     * The execution method which will be called to reset the event.
      *
      * @param state     current query state
      * @return the value

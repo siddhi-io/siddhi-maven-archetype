@@ -81,7 +81,7 @@ import io.siddhi.core.util.transport.OptionHolder;
                 )
         }
 )
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#source
+// for more information refer https://siddhi.io/en/v5.0/docs/query-guide/#source
 public class ${classNameOfSource} extends Source {
 
     /**
@@ -116,7 +116,17 @@ public class ${classNameOfSource} extends Source {
     }
 
     /**
-     * Initially Called to connect to the end point for start retrieving the messages asynchronously .
+     * Give information to the deployment about the service exposed by the sink.
+     *
+     * @return ServiceDeploymentInfo  Service related information to the deployment
+     */
+    @Override
+    protected ServiceDeploymentInfo exposeServiceDeploymentInfo() {
+        return null;
+    }
+
+    /**
+     * Initially Called to connect to the end point for start retrieving the messages asynchronously.
      *
      * @param connectionCallback Callback to pass the ConnectionUnavailableException in case of connection failure after
      *                           initial successful connection. (can be used when events are receiving asynchronously)
@@ -129,6 +139,22 @@ public class ${classNameOfSource} extends Source {
     }
 
     /**
+     * Called to pause event consumption.
+     */
+    @Override
+    public void pause() {
+
+    }
+
+    /**
+     * Called to resume event consumption.
+     */
+    @Override
+    public void resume() {
+
+    }
+
+    /**
      * This method can be called when it is needed to disconnect from the end point.
      */
     @Override
@@ -137,36 +163,11 @@ public class ${classNameOfSource} extends Source {
     }
 
     /**
-     * Called at the end to clean all the resources consumed by the {@link Source}
+     * Called at the end to clean all the resources consumed by the {@link Source}.
      */
     @Override
     public void destroy() {
 
     }
 
-    /**
-     * Called to pause event consumption
-     */
-    @Override
-    public void pause() {
-
-    }
-
-    /**
-     * Called to resume event consumption
-     */
-    @Override
-    public void resume() {
-
-    }
-
-    /**
-     * Give information to the deployment about the service exposed by the sink.
-     *
-     * @return ServiceDeploymentInfo  Service related information to the deployment
-     */
-    @Override
-    protected ServiceDeploymentInfo exposeServiceDeploymentInfo() {
-        return null;
-    }
 }

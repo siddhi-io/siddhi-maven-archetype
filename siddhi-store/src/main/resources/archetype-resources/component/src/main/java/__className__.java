@@ -92,13 +92,11 @@ import java.util.Map;
                 )
         }
 )
-
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#table
-
+//For more information refer https://siddhi.io/en/v5.0/docs/query-guide/#table
 public class ${className} extends AbstractRecordTable {
 
      /**
-      * Initializing the Record Table
+      * Initializing the Record Table.
       *
       * @param tableDefinition definintion of the table with annotations if any
       * @param configReader this hold the {@link AbstractRecordTable} configuration reader.
@@ -109,7 +107,42 @@ public class ${className} extends AbstractRecordTable {
      }
 
      /**
-     * Add records to the Table
+      * Compile the matching condition.
+      *
+      * @param expressionBuilder that helps visiting the conditions in order to compile the condition
+      * @return compiled condition that can be used for matching events in find, contains, delete, update and
+      * updateOrAdd
+      */
+     @Override
+     protected CompiledCondition compileCondition(ExpressionBuilder expressionBuilder) {
+        return null;
+     }
+
+     /**
+      * Compile the matching set condition.
+      *
+      * @param expressionBuilder   that helps visiting the conditions in order to compile the condition
+      * @return compiled condition that can be used for matching events in find, contains, delete, update and
+      *                            updateOrAdd
+      */
+     @Override
+     protected CompiledExpression compileSetAttribute(ExpressionBuilder expressionBuilder) {
+        return null;
+     }
+
+     /**
+      * This method will be called before the processing method. Intention to establish connection to publish event.
+      *
+      * @throws ConnectionUnavailableException if end point is unavailable the ConnectionUnavailableException thrown
+      *                                        such that the  system will take care retrying for connection
+      */
+     @Override
+     protected void connect() throws ConnectionUnavailableException {
+
+     }
+
+     /**
+     * Add records to the Table.
      *
      * @param records records that need to be added to the table, each Object[] represent a record and it will match
      *                the attributes of the Table Definition.
@@ -120,7 +153,7 @@ public class ${className} extends AbstractRecordTable {
      }
 
      /**
-     * Find records matching the compiled condition
+     * Find records matching the compiled condition.
      *
      * @param findConditionParameterMap map of matching StreamVariable Ids and their values corresponding to the
      *                                  compiled condition
@@ -134,7 +167,7 @@ public class ${className} extends AbstractRecordTable {
      }
 
       /**
-      * Check if matching record exist or not
+      * Check if matching record exist or not.
       *
       * @param containsConditionParameterMap map of matching StreamVariable Ids and their values corresponding to the
       *                                      compiled condition
@@ -148,7 +181,7 @@ public class ${className} extends AbstractRecordTable {
      }
 
      /**
-     * Delete all matching records
+     * Delete all matching records.
      *
      * @param deleteConditionParameterMaps    map of matching StreamVariable Ids and their values corresponding to the
      *                                        compiled condition
@@ -163,7 +196,7 @@ public class ${className} extends AbstractRecordTable {
      }
 
      /**
-     * Update all matching records
+     * Update all matching records.
      *
      * @param compiledCondition               the compiledCondition against which records should be matched for update
      * @param list                            map of matching StreamVariable Ids and their values corresponding to the
@@ -181,7 +214,7 @@ public class ${className} extends AbstractRecordTable {
      }
 
      /**
-     * Try updating the records if they exist else add the records
+     * Try updating the records if they exist else add the records.
      *
      * @param list                            map of matching StreamVariable Ids and their values corresponding to the
      *                                        compiled condition based on which the records will be updated
@@ -199,40 +232,6 @@ public class ${className} extends AbstractRecordTable {
 
      }
 
-     /**
-     * Compile the matching condition
-     *
-     * @param expressionBuilder that helps visiting the conditions in order to compile the condition
-     * @return compiled condition that can be used for matching events in find, contains, delete, update and
-     * updateOrAdd
-     */
-     @Override
-     protected CompiledCondition compileCondition(ExpressionBuilder expressionBuilder) {
-            return null;
-     }
-
-     /**
-     * Compile the matching condition
-     *
-     * @param expressionBuilder   that helps visiting the conditions in order to compile the condition
-     * @return compiled condition that can be used for matching events in find, contains, delete, update and
-     *                            updateOrAdd
-     */
-     @Override
-     protected CompiledExpression compileSetAttribute(ExpressionBuilder expressionBuilder) {
-            return null;
-     }
-
-     /**
-     * This method will be called before the processing method.
-     * Intention to establish connection to publish event.
-     * @throws ConnectionUnavailableException if end point is unavailable the ConnectionUnavailableException thrown
-     *                                        such that the  system will take care retrying for connection
-     */
-     @Override
-     protected void connect() throws ConnectionUnavailableException {
-
-     }
 
      /**
      * Called after all publishing is done, or when {@link ConnectionUnavailableException} is thrown

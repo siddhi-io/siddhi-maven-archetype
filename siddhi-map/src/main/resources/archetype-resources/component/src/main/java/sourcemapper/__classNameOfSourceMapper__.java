@@ -81,10 +81,7 @@ import java.util.List;
                 )
         }
 )
-
-// for more information refer
-//                          https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#source-mapper
-
+// for more information refer https://siddhi.io/en/v5.0/docs/query-guide/#source-mapper
 public class ${classNameOfSourceMapper} extends SourceMapper {
 
     /**
