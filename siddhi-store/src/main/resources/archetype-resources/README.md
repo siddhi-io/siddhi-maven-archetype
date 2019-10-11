@@ -2,7 +2,7 @@
 Siddhi Store ${typeOfStoreinCamelCase}
 ======================================
 
-The **${artifactId} extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that persist and retrieve events to/from
+The **${artifactId} extension** is an extension to <a target="_blank" href="https://siddhi.io">Siddhi</a> that persist and retrieve events to/from
 
 For information on <a target="_blank" href="https://siddhi.io/">Siddhi</a> and it's features refer <a target="_blank" href="https://siddhi.io/redirect/docs.html">Siddhi Documentation</a>. 
 
