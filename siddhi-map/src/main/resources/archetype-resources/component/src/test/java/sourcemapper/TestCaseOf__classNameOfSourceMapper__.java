@@ -1,6 +1,9 @@
 package ${package}.sourcemapper;
 
+/**
+ * Testcase of ${classNameOfSourceMapper}.
+ */
 public class TestCaseOf${classNameOfSourceMapper} {
-    // If you will know about this related testcase,
-        // refer https://github.com/wso2-extensions/siddhi-map-xml/tree/master/component/src/test/
+    // To know about the related testcase,
+    // refer https://github.com/siddhi-io/siddhi-map-xml/tree/master/component/src/test/
 }

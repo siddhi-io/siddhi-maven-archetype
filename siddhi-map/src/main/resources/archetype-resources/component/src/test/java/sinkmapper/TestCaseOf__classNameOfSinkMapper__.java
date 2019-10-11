@@ -1,6 +1,9 @@
 package ${package}.sinkmapper;
 
+/**
+ * Testcase of ${classNameOfSinkMapper}.
+ */
 public class TestCaseOf${classNameOfSinkMapper} {
-        // If you will want to know about this related testcase,
-        //refer https://github.com/wso2-extensions/siddhi-map-xml/tree/master/component/src/test
+        // To know about the related testcase,
+        // refer https://github.com/siddhi-io/siddhi-map-xml/tree/master/component/src/test/
 }

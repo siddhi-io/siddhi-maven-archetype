@@ -81,21 +81,8 @@ import java.util.Map;
                 )
         }
 )
-
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#sink-mapper
-
+// for more information refer https://siddhi.io/en/v5.0/docs/query-guide/#sink-mapper
 public class ${classNameOfSinkMapper} extends SinkMapper {
-
-    /**
-     * Returns a list of supported dynamic options (that means for each event value of the option can change) by
-     * the transport
-     *
-     * @return the list of supported dynamic option keys
-     */
-    @Override
-    public String[] getSupportedDynamicOptions() {
-        return new String[0];
-    }
 
     /**
      The initialization method for {@link SinkMapper}, which will be called before other methods and validate
@@ -110,8 +97,19 @@ public class ${classNameOfSinkMapper} extends SinkMapper {
      */
     @Override
     public void init(StreamDefinition streamDefinition, OptionHolder optionHolder, Map<String, TemplateBuilder> map,
-                     ConfigReader configReader, SiddhiAppContext siddhiAppContext) {
+            ConfigReader configReader, SiddhiAppContext siddhiAppContext) {
 
+    }
+
+    /**
+     * Returns a list of supported dynamic options (that means for each event value of the option can change) by
+     * the transport.
+     *
+     * @return the list of supported dynamic option keys
+     */
+    @Override
+    public String[] getSupportedDynamicOptions() {
+        return new String[0];
     }
 
     /**
@@ -126,7 +124,7 @@ public class ${classNameOfSinkMapper} extends SinkMapper {
     }
 
     /**
-     * Method to map the events and send them to {@link SinkListener} for publishing
+     * Method to map the events and send them to {@link SinkListener} for publishing.
      *
      * @param events                 {@link Event}s that need to be mapped
      * @param optionHolder           Option holder containing static and dynamic options related to the mapper
@@ -140,7 +138,7 @@ public class ${classNameOfSinkMapper} extends SinkMapper {
     }
 
     /**
-     * Method to map the event and send it to {@link SinkListener} for publishing
+     * Method to map the event and send it to {@link SinkListener} for publishing.
      *
      * @param event                  {@link Event} that need to be mapped
      * @param optionHolder           Option holder containing static and dynamic options related to the mapper

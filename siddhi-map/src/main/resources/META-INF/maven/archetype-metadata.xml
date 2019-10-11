@@ -58,7 +58,7 @@
                 <include>**/*.ico</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true">
+        <fileSet filtered="false">
             <directory></directory>
             <includes>
                 <include>**/*.js</include>
@@ -70,7 +70,7 @@
                 <include>**/*.</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true">
+        <fileSet filtered="false">
             <directory></directory>
             <includes>
                 <include>**/*.css</include>
