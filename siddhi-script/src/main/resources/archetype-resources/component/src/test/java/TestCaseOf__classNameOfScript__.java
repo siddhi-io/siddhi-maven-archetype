@@ -1,6 +1,9 @@
 package ${package};
 
+/**
+ * Testcase of ${classNameOfScript}.
+ */
 public class TestCaseOf${classNameOfScript} {
-         // If you will want to know about this related testcase,
-        // refer https://github.com/wso2-extensions/siddhi-script-scala/tree/master/component/src/test
+         // To know about this related testcase,
+        // refer https://github.com/siddhi-io/siddhi-script-js/tree/master/component/src/test
 }

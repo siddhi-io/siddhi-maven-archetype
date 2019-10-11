@@ -65,9 +65,7 @@ import io.siddhi.query.api.definition.Attribute.Type;
                 )
         }
 )
-
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#script
-
+// For more information refer https://siddhi.io/en/v5.0/docs/query-guide/#script
 public class ${classNameOfScript} extends Script {
 
     /**
@@ -83,20 +81,7 @@ public class ${classNameOfScript} extends Script {
     }
 
     /**
-     * Method to evaluate the function
-     *
-     * @param s                 denotes the function name of the {@link Script}.
-     * @param objects           contains data of function which is used to evaluate the function.
-     *
-     * @return data after the evaluated.
-     */
-    @Override
-    public Object eval(String s, Object[] objects) {
-        return null;
-    }
-
-    /**
-     * Get return type of the function .
+     * Get return type of the function.
      *
      * @return return type of the function.
      */
@@ -110,5 +95,20 @@ public class ${classNameOfScript} extends Script {
      */
     @Override
     public void setReturnType(Type type) {
+
     }
+
+    /**
+     * Method to evaluate the function.
+     *
+     * @param s                 denotes the function name of the {@link Script}.
+     * @param objects           contains data of function which is used to evaluate the function.
+     *
+     * @return data after the evaluated.
+     */
+    @Override
+    public Object eval(String s, Object[] objects) {
+        return null;
+    }
+
 }
