@@ -1,49 +1,29 @@
-﻿${artifactId}
+﻿#set( $H = '##' )
+Siddhi Execution ${nameOfFunctioninCamel}
 ======================================
 
+The **${artifactId} extension** is a <a target="_blank" href="https://siddhi.io/">Siddhi</a> extension that provides capability to 
 
-## Latest API Docs
+For information on <a target="_blank" href="https://siddhi.io/">Siddhi</a> and it's features refer <a target="_blank" href="https://siddhi.io/redirect/docs.html">Siddhi Documentation</a>. 
 
+$H Download
 
-## How to use
+Versions with group id `${groupId}.*` from <a target="_blank" href="https://mvnrepository.com/artifact/${package}/${artifactId}/">here</a>.
+   
+$H Latest API Docs
+    
+$H Features
+    
+$H Dependencies 
+   
+$H Installation
+   
+For installing this extension on various Siddhi execution environments refer Siddhi documentation section on <a target="_blank" href="https://siddhi.io/redirect/add-extensions.html">adding extensions</a>.
+   
+$H Support and Contribution
+   
+* We encourage users to ask questions and get support via <a target="_blank" href="https://stackoverflow.com/questions/tagged/siddhi">StackOverflow</a>, make sure to add the `siddhi` tag to the issue for better response.
 
-**Using the extension as a [java library](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/user-guide-5.x/#using-siddhi-as-a-java-library)**
+* If you find any issues related to the extension please report them on <a target="_blank" href="https://github.com/siddhi-io/${artifactId}/issues">the issue tracker</a>.
 
-* This extension can be added as a maven dependency along with other Siddhi dependencies to your project.
-
-```
-     <dependency>
-        <groupId>${groupId}.${groupIdPostfix}</groupId>
-        <artifactId>${artifactId}</artifactId>
-        <version>x.x.x</version>
-     </dependency>
-```
-
-**Using the extension in [Local Microservice Siddhi Depoloyment](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/user-guide-5.x/#using-siddhi-as-local-micro-service)**
-
-**Using the extension in [Docker Microservice Siddhi Depoloyment](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/user-guide-5.x/#using-siddhi-as-docker-micro-service)**
-
-**Using the extension in [Kubernetes Microservice Siddhi Depoloyment](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/user-guide-5.x/#using-siddhi-as-kubernetes-micro-service)**
-
-
-## Jenkins Build Status
-
-
-## Features
-
-
-## Contact us 
-
-* Post your questions with the ["Siddhi"](http://stackoverflow.com/search?q=siddhi) tag in [Stackoverflow](http://stackoverflow.com/search?q=siddhi). 
-* For questions and feedback please connect via the [Siddhi user Google group](https://groups.google.com/forum/#!forum/siddhi-user).
-* Engage in community development through [Siddhi dev Google group](https://groups.google.com/forum/#!forum/siddhi-dev). 
-
-## How to Contribute
-
-Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](https://siddhi-io.github.io/siddhi/contribution/) section.
-
-## Support
-
-[WSO2](https://wso2.com/) provides production, and query support for Siddhi and its [extensions](https://siddhi-io.github.io/siddhi/extensions/). For more details contact via [http://wso2.com/support/](http://wso2.com/support?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17)
-
-Siddhi is joint research project initiated by [WSO2](http://wso2.com) and [University of Moratuwa](http://www.mrt.ac.lk/web/), Sri Lanka.
+* For production support and other contribution related information refer <a target="_blank" href="https://siddhi.io/community/">Siddhi Community</a> documentation.

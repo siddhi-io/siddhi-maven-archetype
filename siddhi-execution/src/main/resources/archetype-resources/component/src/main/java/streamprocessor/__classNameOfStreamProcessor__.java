@@ -91,22 +91,7 @@ import java.util.List;
         }
 )
 
-public class ${classNameOfStreamProcessor}  extends StreamProcessor {
-
-    /**
-     * The main processing method that will be called upon event arrival
-     *
-     * @param complexEventChunk     the event chunk that need to be processed
-     * @param processor             the next processor to which the success events need to be passed
-     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
-     * @param complexEventPopulater helps to populate the events with the resultant attributes
-     * @param state                 current processor state
-     */
-    @Override
-    protected void process(ComplexEventChunk complexEventChunk, Processor processor,
-                           StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater,
-                           State state) {
-    }
+public class ${classNameOfStreamProcessor}  extends StreamProcessor<State> {
 
     /**
      * The initialization method for {@link StreamProcessor}, which will be called before other methods and validate
@@ -123,7 +108,7 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
      * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected StateFactory init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
+    protected StateFactory<State> init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
             ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
             StreamEventClonerHolder streamEventClonerHolder, boolean outputExpectsExpiredEvents,
             boolean findToBeExecuted, SiddhiQueryContext siddhiQueryContext) {
@@ -131,38 +116,17 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
     }
 
     /**
-     * This will be called only once and this can be used to acquire
-     * required resources for the processing element.
-     * This will be called after initializing the system and before
-     * starting to process the events.
-     */
-    @Override
-    public void start() {
-
-    }
-
-    /**
-     * This will be called only once and this can be used to release
-     * the acquired resources for processing.
-     * This will be called before shutting down the system.
-     */
-    @Override
-    public void stop() {
-
-    }
-
-    /**
-     * The method should return the output's additional attributes list introduced by the function
+     * The method should return the output's additional attributes list introduced by the function.
      *
      * @return List of additional attributes from the function
      */
     @Override
     public List<Attribute> getReturnAttributes() {
         return null;
-    }
+        }
 
     /**
-     * Defines the behaviour of the processing, will be called after the init
+     * Defines the behaviour of the processing, will be called after the init.
      *
      * @return ProcessingMode processing mode of the processor
      */
@@ -170,4 +134,38 @@ public class ${classNameOfStreamProcessor}  extends StreamProcessor {
     public ProcessingMode getProcessingMode() {
         return null;
     }
+
+    /**
+     * This will be called only once and this can be used to acquire required resources for the processing element.
+     * This will be called after initializing the system and before starting to process the events.
+     */
+    @Override
+    public void start() {
+
+    }
+
+    /**
+     * The main processing method that will be called upon event arrival.
+     *
+     * @param complexEventChunk     the event chunk that need to be processed
+     * @param processor             the next processor to which the success events need to be passed
+     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
+     * @param complexEventPopulater helps to populate the events with the resultant attributes
+     * @param state                 current processor state
+     */
+    @Override
+    protected void process(ComplexEventChunk complexEventChunk, Processor processor,
+        StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater,
+        State state) {
+    }
+
+    /**
+     * This will be called only once and this can be used to release the acquired resources for processing.
+     * This will be called before shutting down the system.
+     */
+    @Override
+    public void stop() {
+
+    }
+
 }

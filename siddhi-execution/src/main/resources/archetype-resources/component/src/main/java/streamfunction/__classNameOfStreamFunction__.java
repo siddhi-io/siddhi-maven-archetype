@@ -6,6 +6,7 @@ import io.siddhi.core.config.SiddhiQueryContext;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.query.processor.stream.function.StreamFunctionProcessor;
 import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.AbstractDefinition;
 import io.siddhi.query.api.definition.Attribute;
@@ -82,29 +83,7 @@ import java.util.List;
         }
 )
 
-public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
-
-    /**
-     * The process method used when more than one function parameters are provided
-     *
-     * @param data the data values for the function parameters
-     * @return the data for additional output attributes introduced by the function
-     */
-    @Override
-    protected Object[] process(Object[] data) {
-        return new Object[0];
-    }
-
-    /**
-     * The process method used when zero or one function parameter is provided
-     *
-     * @param data null if the function parameter count is zero or runtime data value of the function parameter
-     * @return the data for additional output attribute introduced by the function
-     */
-    @Override
-    protected Object[] process(Object data) {
-        return new Object[0];
-    }
+public class ${classNameOfStreamFunction} extends StreamFunctionProcessor<State> {
 
     /**
      * The initialization method for {@link StreamFunctionProcessor}, which will be called before other methods and
@@ -119,34 +98,13 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
      * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected StateFactory init(AbstractDefinition inputDefinition, ExpressionExecutor[] attributeExpressionExecutors,
-            ConfigReader configReader, boolean outputExpectsExpiredEvents,
-            SiddhiQueryContext siddhiQueryContext) {
+    protected StateFactory<State> init(AbstractDefinition inputDefinition,
+                                        ExpressionExecutor[] attributeExpressionExecutors, ConfigReader configReader,
+                                        boolean outputExpectsExpiredEvents, SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
-    /**
-     * This will be called only once and this can be used to acquire
-     * required resources for the processing element.
-     * This will be called after initializing the system and before
-     * starting to process the events.
-     */
-    @Override
-    public void start() {
-
-    }
-
-    /**
-     * This will be called only once and this can be used to release
-     * the acquired resources for processing.
-     * This will be called before shutting down the system.
-     */
-    @Override
-    public void stop() {
-
-    }
-
-    /** The method should return the output's additional attributes list introduced by the function
+    /** The method should return the output's additional attributes list introduced by the function.
      *
      * @return List of additional attributes from the function
      */
@@ -154,4 +112,43 @@ public class ${classNameOfStreamFunction} extends StreamFunctionProcessor {
     public List<Attribute> getReturnAttributes() {
         return null;
     }
+
+    /**
+     * This will be called only once and this can be used to acquire required resources for the processing element.
+     * This will be called after initializing the system and before starting to process the events.
+     */
+    @Override
+    public void start() {
+    }
+
+    /**
+     * The process method used when zero or one function parameter is provided.
+     *
+     * @param data null if the function parameter count is zero or runtime data value of the function parameter
+     * @return the data for additional output attribute introduced by the function
+     */
+    @Override
+    protected Object[] process(Object data) {
+        return new Object[0];
+    }
+
+    /**
+     * The process method used when more than one function parameters are provided.
+     *
+     * @param data the data values for the function parameters
+     * @return the data for additional output attributes introduced by the function
+     */
+    @Override
+    protected Object[] process(Object[] data) {
+        return new Object[0];
+    }
+
+    /**
+     * This will be called only once and this can be used to release the acquired resources for processing.
+     * This will be called before shutting down the system.
+     */
+    @Override
+    public void stop() {
+    }
+
 }

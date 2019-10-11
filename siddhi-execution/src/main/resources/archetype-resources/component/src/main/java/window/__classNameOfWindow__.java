@@ -97,13 +97,11 @@ import java.util.Map;
                 )
         }
 )
-
-// for more information refer https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/#window
-
-public class ${classNameOfWindow} extends WindowProcessor implements FindableProcessor {
+// For more information refer https://siddhi.io/en/v5.0/docs/query-guide/#window
+public class ${classNameOfWindow} extends WindowProcessor<State> implements FindableProcessor {
 
     /**
-     * The init method of the {@link WindowProcessor}, this method will be called before other methods
+     * The init method of the {@link WindowProcessor}, this method will be called before other methods.
      *
      * @param metaStreamEvent              the stream event meta
      * @param abstractDefinition           the incoming stream definition
@@ -116,7 +114,7 @@ public class ${classNameOfWindow} extends WindowProcessor implements FindablePro
      * @return StateFactory for the Function which contains logic for the updated state based on arrived events.
      */
     @Override
-    protected StateFactory init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
+    protected StateFactory<State> init(MetaStreamEvent metaStreamEvent, AbstractDefinition abstractDefinition,
             ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
             StreamEventClonerHolder streamEventClonerHolder, boolean outputExpectsExpiredEvents,
             boolean findToBeExecuted, SiddhiQueryContext siddhiQueryContext) {
@@ -124,51 +122,12 @@ public class ${classNameOfWindow} extends WindowProcessor implements FindablePro
     }
 
     /**
-     * The main processing method that will be called upon event arrival
+     * Defines the behaviour of the processing, will be called after the init.
      *
-     * @param complexEventChunk     the event chunk that need to be processed
-     * @param processor             the next processor to which the success events need to be passed
-     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
-     * @param complexEventPopulater helps to populate the events with the resultant attributes
-     * @param state                 current state of the processor
+     * @return ProcessingMode processing mode of the processor
      */
     @Override
-    protected void processEventChunk(ComplexEventChunk complexEventChunk, Processor processor,
-                                     StreamEventCloner streamEventCloner, ComplexEventPopulater
-                                             complexEventPopulater, State state) {
-
-    }
-    /**
-     * This will be called only once and this can be used to acquire
-     * required resources for the processing element.
-     * This will be called after initializing the system and before
-     * starting to process the events.
-     */
-    @Override
-    public void start() {
-
-    }
-
-    /**
-     * This will be called only once and this can be used to release
-     * the acquired resources for processing.
-     * This will be called before shutting down the system.
-     */
-    @Override
-    public void stop() {
-
-    }
-
-    /**
-     * To find events from the processor event pool, that the matches the matchingEvent based on finder logic.
-     *
-     * @param matchingEvent     the event to be matched with the events at the processor
-     * @param compiledCondition the execution element responsible for matching the corresponding events that matches
-     *                          the matchingEvent based on pool of events at Processor
-     * @return the matched events
-     */
-    @Override
-    public StreamEvent find(StateEvent matchingEvent, CompiledCondition compiledCondition) {
+    public ProcessingMode getProcessingMode() {
         return null;
     }
 
@@ -185,18 +144,56 @@ public class ${classNameOfWindow} extends WindowProcessor implements FindablePro
      */
     @Override
     public CompiledCondition compileCondition(Expression expression, MatchingMetaInfoHolder matchingMetaInfoHolder,
-            List<VariableExpressionExecutor> variableExpressionExecutors,
-            Map<String, Table> tableMap, SiddhiQueryContext siddhiQueryContext) {
+        List<VariableExpressionExecutor> variableExpressionExecutors,
+        Map<String, Table> tableMap, SiddhiQueryContext siddhiQueryContext) {
         return null;
     }
 
     /**
-     * Defines the behaviour of the processing, will be called after the init
-     *
-     * @return ProcessingMode processing mode of the processor
+     * This will be called only once and this can be used to acquire required resources for the processing element.
+     * This will be called after initializing the system and before starting to process the events.
      */
     @Override
-    public ProcessingMode getProcessingMode() {
+    public void start() {
+
+    }
+
+    /**
+     * The main processing method that will be called upon event arrival.
+     *
+     * @param complexEventChunk     the event chunk that need to be processed
+     * @param processor             the next processor to which the success events need to be passed
+     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
+     * @param complexEventPopulater helps to populate the events with the resultant attributes
+     * @param state                 current state of the processor
+     */
+    @Override
+    protected void processEventChunk(ComplexEventChunk complexEventChunk, Processor processor,
+                                     StreamEventCloner streamEventCloner, ComplexEventPopulater
+                                             complexEventPopulater, State state) {
+
+    }
+
+    /**
+     * To find events from the processor event pool, that the matches the matchingEvent based on finder logic.
+     *
+     * @param matchingEvent     the event to be matched with the events at the processor
+     * @param compiledCondition the execution element responsible for matching the corresponding events that matches
+     *                          the matchingEvent based on pool of events at Processor
+     * @return the matched events
+     */
+    @Override
+    public StreamEvent find(StateEvent matchingEvent, CompiledCondition compiledCondition) {
         return null;
+    }
+
+
+    /**
+     * This will be called only once and this can be used to release the acquired resources for processing.
+     * This will be called before shutting down the system.
+     */
+    @Override
+    public void stop() {
+
     }
 }
