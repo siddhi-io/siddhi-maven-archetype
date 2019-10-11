@@ -1,6 +1,9 @@
 package ${package};
 
+/**
+ * Test case for ${className}.
+ */
 public class TestCaseOf${className} {
-        // If you will know about this related testcase,
-        // refer https://github.com/wso2-extensions/siddhi-store-rdbms/tree/master/component/src/test
+      //To know about related testcases, refer
+      //https://github.com/siddhi-io/siddhi-store-rdbms/tree/master/component/src/test/java/
 }
