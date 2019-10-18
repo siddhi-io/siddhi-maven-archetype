@@ -118,7 +118,20 @@ public class ${classNameOfWindow} extends WindowProcessor<State> implements Find
             ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
             StreamEventClonerHolder streamEventClonerHolder, boolean outputExpectsExpiredEvents,
             boolean findToBeExecuted, SiddhiQueryContext siddhiQueryContext) {
-        return null;
+        /*
+        Siddhi state can keep any objects that needs to be updated based on arrival and removal of events.
+        A state factory which can be used to create a State object needs to be returned. The state that is created
+        at the core level will then be returned in processAdd() and processRemove() which then can be manipulated.
+        State object will be specific to a function in this case it returns a Window State.
+
+        Can return null if state need not be kept for the function.
+        */
+        return new StateFactory<State>() {
+            @Override
+            public State createNewState() {
+               return new WindowState();
+            }
+        };
     }
 
     /**
@@ -195,5 +208,45 @@ public class ${classNameOfWindow} extends WindowProcessor<State> implements Find
     @Override
     public void stop() {
 
+    }
+
+    /**
+     * Class used to hold any data that depends on arrival and remoal of events. The state will be stored periodically
+     * if persistence is enabled, and restored in case of server startup after a crash.
+     *
+     * The class is function specific and can keep any variables.
+     */
+    class WindowState extends State {
+
+        /**
+         * Indicates to Siddhi is state can be destroyed in the cleanup of states.
+         *
+         * @return whether state can be destroyed.
+         */
+        @Override
+        public boolean canDestroy() {
+            return false;
+        }
+
+        /**
+         * Persists the returned map.
+         *
+         * @return Map of key value pairs which needs to be persisted
+         */
+        @Override
+        public Map<String, Object> snapshot() {
+            return null;
+        }
+
+        /**
+         * Returns the latest persisted map (returned in snapshot method). This can be used to
+         * restore the State(WindowState)
+         *
+         * @param persistedMap latest map that was returned in the snapshot method.
+         */
+        @Override
+        public void restore(Map<String, Object> persistedMap) {
+
+        }
     }
 }
