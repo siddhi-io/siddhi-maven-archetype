@@ -5,4 +5,20 @@
         <Package name="${package}.aggregate.*" />
         <Bug pattern="SIC_INNER_SHOULD_BE_STATIC"/>
     </Match>
+    <Match>
+        <Package name="${package}.function.*" />
+        <Bug pattern="SIC_INNER_SHOULD_BE_STATIC"/>
+    </Match>
+    <Match>
+        <Package name="${package}.streamfunction.*" />
+        <Bug pattern="SIC_INNER_SHOULD_BE_STATIC"/>
+    </Match>
+    <Match>
+        <Package name="${package}.streamprocessor.*" />
+        <Bug pattern="SIC_INNER_SHOULD_BE_STATIC"/>
+    </Match>
+    <Match>
+        <Package name="${package}.window.*" />
+        <Bug pattern="SIC_INNER_SHOULD_BE_STATIC"/>
+    </Match>
 </FindBugsFilter>
