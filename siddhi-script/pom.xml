@@ -22,7 +22,7 @@
     <parent>
         <groupId>io.siddhi.extension.archetype</groupId>
         <artifactId>siddhi-extension-archetype</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.0.1</version>
     </parent>
     <artifactId>siddhi-archetype-script</artifactId>
     <packaging>maven-archetype</packaging>
