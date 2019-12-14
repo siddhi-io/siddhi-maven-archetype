@@ -1,0 +1,32 @@
+#macro( strip $className $_IOType)
+#set ($stringLength = $className.length() - 8)
+#if($className.endsWith("Function"))$className.substring(0, $stringLength)#else$_IOType.substring(0,1).toUpperCase()$_IOType.substring(1)#end
+#end
+#set( $nameOfFunctioninCamel = "#strip( $classNameOfFunction, $_nameOfFunction )")
+site_name: Siddhi Testsuite ${nameOfTestsuiteinCamel}
+site_description: Siddhi Testsuite ${nameOfTestsuiteinCamel} Extension
+repo_name: Siddhi-Testsuite-${nameOfTestsuiteinCamel}
+repo_url:
+edit_url:
+copyright:
+theme:
+  name: 'material'
+  logo: images/siddhi-logo.svg
+  favicon: images/favicon.ico
+  palette:
+    primary: teal
+    accent: teal
+extra_css:
+  - assets/stylesheets/extra.css
+extra_javascript:
+  - assets/javascripts/extra.js
+extra:
+  social:
+google_analytics:
+markdown_extensions:
+  - markdown.extensions.admonition
+pages:
+  - Information : index.md
+  - API Docs:
+      - latest: api/latest.md
+  - License: license.md
