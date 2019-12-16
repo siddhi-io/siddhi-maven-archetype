@@ -106,7 +106,7 @@
         </fileSet>
 
         <fileSet filtered="true">
-            <directory>component/src/test/resource</directory>
+            <directory>component/src/test/resources</directory>
             <includes>
                 <include>**/*.xml</include>
                 <include>**/*.properties</include>
@@ -114,19 +114,19 @@
         </fileSet>
 
         <fileSet filtered="true">
-            <directory>component/src/test/resource/artifacts/config</directory>
+            <directory>component/src/test/resources/artifacts/config</directory>
             <includes>
                 <include>**/*.yaml</include>
             </includes>
         </fileSet>
         <fileSet filtered="true">
-            <directory>component/src/test/resource/artifacts/jars</directory>
+            <directory>component/src/test/resources/artifacts/jars</directory>
             <includes>
                 <include>**/*.jar</include>
             </includes>
         </fileSet>
         <fileSet filtered="true">
-            <directory>component/src/test/resource/artifacts/apps</directory>
+            <directory>component/src/test/resources/artifacts/apps</directory>
             <includes>
                 <include>**/*.siddhi</include>
             </includes>

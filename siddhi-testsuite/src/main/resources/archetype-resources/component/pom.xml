@@ -117,7 +117,7 @@
     <build>
         <resources>
             <resource>
-                <directory>src/test/resource/</directory>
+                <directory>src/test/resources/</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
