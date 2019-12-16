@@ -34,7 +34,7 @@
         </requiredProperty>
         <requiredProperty key="classNameOfTestsuite">
             <defaultValue>
-                ${_nameOfTestsuite.substring(0,1).toUpperCase()}Testsuite
+                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}Testsuite
             </defaultValue>
         </requiredProperty>
     </requiredProperties>
@@ -75,30 +75,36 @@
                 <include>**/*.css</include>
             </includes>
         </fileSet>
+
+        <!--component-->
         <fileSet filtered="true">
             <directory>component</directory>
             <includes>
                 <include>pom.xml</include>
             </includes>
         </fileSet>
+
         <fileSet filtered="true" packaged="true">
             <directory>component/src/main/java</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" packaged="true">
-            <directory>component/src/test/java</directory>
-            <includes>
-                <include>**/*.java</include>
-            </includes>
-        </fileSet>
+
         <fileSet filtered="true" encoding="UTF-8">
             <directory>component/src/main/resources</directory>
             <includes>
                 <include>**/*.properties</include>
             </includes>
         </fileSet>
+
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
         <fileSet filtered="true">
             <directory>component/src/test/resources</directory>
             <includes>
@@ -106,6 +112,7 @@
                 <include>**/*.properties</include>
             </includes>
         </fileSet>
+
         <fileSet filtered="true">
             <directory>component/src/test/resources/artifacts/config</directory>
             <includes>
@@ -124,5 +131,6 @@
                 <include>**/*.siddhi</include>
             </includes>
         </fileSet>
+
     </fileSets>
 </archetype-descriptor>
