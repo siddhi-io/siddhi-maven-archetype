@@ -34,6 +34,7 @@
         <module>siddhi-store</module>
         <module>siddhi-script</module>
         <module>siddhi-testsuite</module>
+    <module>siddhi-testsuite-name</module>
   </modules>
 
     <build>

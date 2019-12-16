@@ -29,83 +29,83 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class UnitTestsOf${classNameOfTestsuite}{
+public class UnitTestsOf${classNameOfTestsuite} {
 
-private static final Logger logger=LoggerFactory.getLogger(UnitTestsOf${classNameOfTestsuite}.class);
-private static URL appUrl=Resources.getResource("artifacts/apps/SampleApp.siddhi");
-private volatile AtomicInteger count=new AtomicInteger(0);
+    private static final Logger logger = LoggerFactory.getLogger(UnitTestsOf${classNameOfTestsuite}.class);
+    private static URL appUrl = Resources.getResource("artifacts/apps/SampleApp.siddhi");
+    private volatile AtomicInteger count = new AtomicInteger(0);
 
-@BeforeClass
-private void setUpTest(){
-        Map<String, String> envMap=new HashMap<>();
-        envMap.put("CLUSTER_ID","");
-        envMap.put("INPUT_DESTINATION","");
-        envMap.put("OUTPUT_DESTINATION","");
-        envMap.put("NATS_URL","");
-        envMap.put("DATABASE_URL","");
-        envMap.put("USERNAME","");
-        envMap.put("PASSWORD","");
-        envMap.put("JDBC_DRIVER_NAME","");
+    @BeforeClass
+    private void setUpTest() {
+        Map<String, String> envMap = new HashMap<>();
+        envMap.put("CLUSTER_ID", "");
+        envMap.put("INPUT_DESTINATION", "");
+        envMap.put("OUTPUT_DESTINATION", "");
+        envMap.put("NATS_URL", "");
+        envMap.put("DATABASE_URL", "");
+        envMap.put("USERNAME", "");
+        envMap.put("PASSWORD", "");
+        envMap.put("JDBC_DRIVER_NAME", "");
         System.getProperties().putAll(envMap);
-        }
+    }
 
-@Test
-public void testMoniteredFilter()throws InterruptedException,IOException{
+    @Test
+    public void testMoniteredFilter() throws InterruptedException, IOException {
         logger.info("Tests Monitered Filter Query");
 
-        String testQueryName="monitered-filter";
-        SiddhiManager siddhiManager=new SiddhiManager();
-        String siddhiApp=readFileToString(appUrl.getPath());
+        String testQueryName = "monitered-filter";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String siddhiApp = readFileToString(appUrl.getPath());
 
-        SiddhiAppRuntime siddhiAppRuntime=siddhiManager.createSandboxSiddhiAppRuntime(siddhiApp);
-        siddhiAppRuntime.addCallback(testQueryName,new QueryCallback(){
-@Override
-public void receive(long timeStamp,Event[]inEvents,Event[]removeEvents){
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSandboxSiddhiAppRuntime(siddhiApp);
+        siddhiAppRuntime.addCallback(testQueryName, new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
 
-        EventPrinter.print(timeStamp,inEvents,removeEvents);
-        count.incrementAndGet();
-        if(count.get()==1){
-        Assert.assertTrue("CyrusOne".equals(inEvents[0].getData(0)));
-        }
-        if(count.get()==2){
-        Assert.assertTrue("Kennisnet".equals(inEvents[0].getData(0)));
-        }
-        }
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                count.incrementAndGet();
+                if (count.get() == 1) {
+                    Assert.assertTrue("CyrusOne".equals(inEvents[0].getData(0)));
+                }
+                if (count.get() == 2) {
+                    Assert.assertTrue("Kennisnet".equals(inEvents[0].getData(0)));
+                }
+            }
         });
-        InputHandler deviceTemperatureStream=siddhiAppRuntime.getInputHandler("DeviceTemperatureStream");
+        InputHandler deviceTemperatureStream = siddhiAppRuntime.getInputHandler("DeviceTemperatureStream");
         siddhiAppRuntime.start();
 
-        deviceTemperatureStream.send(new Object[]{"monitored","CyrusOne",35.5,"ServerRoom1"});
-        deviceTemperatureStream.send(new Object[]{"internal","Generator",28.6,"Basement"});
-        deviceTemperatureStream.send(new Object[]{"monitored","Kennisnet",60.2,"ServerRoom5"});
-        SiddhiTestHelper.waitForEvents(10,2,count,100);
-        Event[]eventsFromInternalDevicesTempTable=siddhiAppRuntime.query(
-        "from InternalDevicesTempTable ");
+        deviceTemperatureStream.send(new Object[]{"monitored", "CyrusOne", 35.5, "ServerRoom1"});
+        deviceTemperatureStream.send(new Object[]{"internal", "Generator", 28.6, "Basement"});
+        deviceTemperatureStream.send(new Object[]{"monitored", "Kennisnet", 60.2, "ServerRoom5"});
+        SiddhiTestHelper.waitForEvents(10, 2, count, 100);
+        Event[] eventsFromInternalDevicesTempTable = siddhiAppRuntime.query(
+                "from InternalDevicesTempTable ");
         EventPrinter.print(eventsFromInternalDevicesTempTable);
-        Assert.assertEquals(1,eventsFromInternalDevicesTempTable.length);
-        Assert.assertEquals(eventsFromInternalDevicesTempTable[0].getData()[1],"Generator");
+        Assert.assertEquals(1, eventsFromInternalDevicesTempTable.length);
+        Assert.assertEquals(eventsFromInternalDevicesTempTable[0].getData()[1], "Generator");
         siddhiAppRuntime.shutdown();
-        }
+    }
 
-private String readFileToString(String filePath)throws IOException{
-        return new String(Files.readAllBytes(Paths.get(filePath)),Charset.forName("UTF-8"));
-        }
+    private String readFileToString(String filePath) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(filePath)), Charset.forName("UTF-8"));
+    }
 
-@Test
-public void testSiddhiRunnerStartup(){
-        SiddhiRunnerContainer siddhiRunnerContainer=new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
-        .withLogConsumer(new Slf4jLogConsumer(logger));
+    @Test
+    public void testSiddhiRunnerStartup() {
+        SiddhiRunnerContainer siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
+                .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
-        WaitingConsumer consumer=new WaitingConsumer();
-        siddhiRunnerContainer.followOutput(consumer,OutputFrame.OutputType.STDOUT);
-        try{
-        consumer.waitUntil(frame->
-        frame.getUtf8String().contains("Siddhi Runner Distribution started"),
-        5,TimeUnit.SECONDS);
-        }catch(TimeoutException e){
-        Assert.fail("Siddhi Runner failed to start.");
-        }finally{
-        siddhiRunnerContainer.stop();
+        WaitingConsumer consumer = new WaitingConsumer();
+        siddhiRunnerContainer.followOutput(consumer, OutputFrame.OutputType.STDOUT);
+        try {
+            consumer.waitUntil(frame ->
+                            frame.getUtf8String().contains("Siddhi Runner Distribution started"),
+                    5, TimeUnit.SECONDS);
+        } catch (TimeoutException e) {
+            Assert.fail("Siddhi Runner failed to start.");
+        } finally {
+            siddhiRunnerContainer.stop();
         }
-        }
-        }
+    }
+}
