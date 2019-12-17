@@ -1,10 +1,9 @@
-#set ($stringLength = $classNameOfSink.length() - 8)
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Siddhi-Testsuite-#if($classNameOfTestsuite.endsWith("Testsuite"))$classNameOfSink.substring(0, $stringLength)#else$_nameOfTestsuite.substring(0,1).toUpperCase()$_nameOfTestsuite.substring(1)#end-Test-Suite">
-    <test name="Siddhi-testsuite-${_nameOfTestsuite.toLowerCase()}-tests" enabled="true" preserve-order="true" parallel="false">
+<suite name="Siddhi-Testsuite-${_nameOfTestsuite}">
+    <test name="Siddhi-Testsuite-${_nameOfTestsuite.toLowerCase()}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
             <class name="${package}.blackBoxTests.BlackBoxTestsOf${classNameOfTestsuite}"/>
             <class name="${package}.integrationTests.IntegrationTestsOf${classNameOfTestsuite}"/>

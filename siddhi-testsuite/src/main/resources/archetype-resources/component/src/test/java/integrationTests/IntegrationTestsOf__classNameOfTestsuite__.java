@@ -60,7 +60,6 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
 
     @BeforeClass
     public void setUpCluster() throws IOException, InterruptedException {
-        //points to the directory maven-dependency-plugin imported the jars
         Path jarsFromMaven = Paths.get("target", "artifacts/jars");
         URL appUrl = Resources.getResource("artifacts/apps");
         URL extraJarsUrl = Resources.getResource("artifacts/jars");
