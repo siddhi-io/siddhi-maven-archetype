@@ -1,5 +1,5 @@
 ﻿#set( $H = '##' )
-Siddhi Execution ${nameOfTestsuiteinCamel}
+Siddhi Execution ${_nameOfTestsuite}
 ======================================
 
 The **${artifactId} extension** is a <a target="_blank" href="https://siddhi.io/">Siddhi</a> extension that provides capability to 

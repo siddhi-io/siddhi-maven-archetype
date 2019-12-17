@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~ Copyright (c) 2017 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~ Copyright (c) 2019 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
  ~ you may not use this file except in compliance with the License.
@@ -83,28 +83,24 @@
                 <include>pom.xml</include>
             </includes>
         </fileSet>
-
         <fileSet filtered="true" packaged="true">
             <directory>component/src/main/java</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
-
         <fileSet filtered="true" encoding="UTF-8">
             <directory>component/src/main/resources</directory>
             <includes>
                 <include>**/*.properties</include>
             </includes>
         </fileSet>
-
         <fileSet filtered="true" packaged="true">
             <directory>component/src/test/java</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
-
         <fileSet filtered="true">
             <directory>component/src/test/resources</directory>
             <includes>
@@ -112,7 +108,6 @@
                 <include>**/*.properties</include>
             </includes>
         </fileSet>
-
         <fileSet filtered="true">
             <directory>component/src/test/resources/artifacts/config</directory>
             <includes>
@@ -131,6 +126,5 @@
                 <include>**/*.siddhi</include>
             </includes>
         </fileSet>
-
     </fileSets>
 </archetype-descriptor>

@@ -90,7 +90,7 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
         envMap.put("USERNAME", mySQLContainer.getUsername());
         envMap.put("PASSWORD", mySQLContainer.getPassword());
         envMap.put("JDBC_DRIVER_NAME", mySQLContainer.getDriverClassName());
-        siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-ubuntu:latest")
+        siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
                 .withSiddhiApps(appUrl.getPath())
                 .withJars(extraJarsUrl.getPath())
                 .withJars(jarsFromMaven.toString())
@@ -179,14 +179,14 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
         siddhiManager.setExtension("sink-mapper-json", JsonSinkMapper.class);
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(
                 "@App:name(\"PublishToNatsApp\")\n" +
-                        "\n" +
-                        "@App:description('Publishes events to nats topic')\n" +
-                        "\n" +
-                        "@sink(type='nats', cluster.id='" + natsClusterId + "', " +
-                        "destination = '" + natsInputDestination + "', " +
-                        "bootstrap.servers = '" + natsUrl + "' ,@map(type='json'))\n" +
-                        "define stream DeviceTemperatureStream (type string, deviceID string, " +
-                        "temp double, roomID string);");
+                "\n" +
+                "@App:description('Publishes events to nats topic')\n" +
+                "\n" +
+                "@sink(type='nats', cluster.id='" + natsClusterId + "', " +
+                "destination = '" + natsInputDestination + "', " +
+                "bootstrap.servers = '" + natsUrl + "' ,@map(type='json'))\n" +
+                "define stream DeviceTemperatureStream (type string, deviceID string, " +
+                "temp double, roomID string);");
         siddhiAppRuntime.start();
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("DeviceTemperatureStream");
         inputHandler.send(new Object[]{"fooType", "001", 60, "202"});

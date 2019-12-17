@@ -1,11 +1,6 @@
-#macro( strip $className $_IOType)
-#set ($stringLength = $className.length() - 8)
-#if($className.endsWith("Function"))$className.substring(0, $stringLength)#else$_IOType.substring(0,1).toUpperCase()$_IOType.substring(1)#end
-#end
-#set( $nameOfFunctioninCamel = "#strip( $classNameOfFunction, $_nameOfFunction )")
-site_name: Siddhi Testsuite ${nameOfTestsuiteinCamel}
-site_description: Siddhi Testsuite ${nameOfTestsuiteinCamel} Extension
-repo_name: Siddhi-Testsuite-${nameOfTestsuiteinCamel}
+site_name: Siddhi Testsuite ${_nameOfTestsuite}
+site_description: Siddhi Testsuite ${_nameOfTestsuite} Extension
+repo_name: Siddhi-Testsuite-${_nameOfTestsuite}
 repo_url:
 edit_url:
 copyright:
