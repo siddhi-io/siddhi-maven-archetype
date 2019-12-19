@@ -5,9 +5,9 @@
 <suite name="Siddhi-Testsuite-${_nameOfTestsuite}">
     <test name="Siddhi-Testsuite-${_nameOfTestsuite.toLowerCase()}-tests" enabled="true" preserve-order="true" parallel="false">
         <classes>
-            <class name="${package}.blackBoxTests.BlackBoxTestsOf${classNameOfTestsuite}"/>
-            <class name="${package}.integrationTests.IntegrationTestsOf${classNameOfTestsuite}"/>
-            <class name="${package}.unitTests.UnitTestsOf${classNameOfTestsuite}"/>
+            <class name="${package}.blackboxtests.BlackBoxTestsOf${classNameOfTestsuite}"/>
+            <class name="${package}.integrationtests.IntegrationTestsOf${classNameOfTestsuite}"/>
+            <class name="${package}.unittests.UnitTestsOf${classNameOfTestsuite}"/>
         </classes>
     </test>
 </suite>

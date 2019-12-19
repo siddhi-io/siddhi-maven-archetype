@@ -9,7 +9,6 @@ import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.core.util.SiddhiTestHelper;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
-import ${package}.LoggerServiceContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.output.OutputFrame;
@@ -39,8 +38,6 @@ public class UnitTestsOf${classNameOfTestsuite} {
     private static final Logger logger = LoggerFactory.getLogger(UnitTestsOf${classNameOfTestsuite}.class);
     private static URL appUrl = Resources.getResource("artifacts/apps/Temp-Alert-App.siddhi");
     private volatile AtomicInteger count = new AtomicInteger(0);
-
-    LoggerServiceContainer loggerServiceContainer;
 
     @BeforeClass
     private void setUpTest() {
@@ -114,16 +111,6 @@ public class UnitTestsOf${classNameOfTestsuite} {
             Assert.fail("Siddhi Runner failed to start.");
         } finally {
             siddhiRunnerContainer.stop();
-        }
-    }
-
-    @Test
-    public void testLoggerServiceStartup() {
-        loggerServiceContainer = new LoggerServiceContainer()
-                .withLogConsumer(new Slf4jLogConsumer(logger));
-        loggerServiceContainer.start();
-        if (loggerServiceContainer != null) {
-            loggerServiceContainer.stop();
         }
     }
 }
