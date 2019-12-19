@@ -1,4 +1,4 @@
-package ${package}.integrationTests;
+package ${package}.integrationtests;
 
 import com.google.common.io.Resources;
 import io.siddhi.core.SiddhiAppRuntime;
@@ -35,6 +35,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * Class for integration testing.
+ *
+ */
 public class IntegrationTestsOf${classNameOfTestsuite} {
 
     private static final Logger logger = LoggerFactory.getLogger(IntegrationTestsOf${classNameOfTestsuite}.class);
@@ -62,7 +66,6 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
     public void setUpCluster() throws IOException, InterruptedException {
         Path jarsFromMaven = Paths.get("target", "artifacts/jars");
         URL appUrl = Resources.getResource("artifacts/apps");
-        URL extraJarsUrl = Resources.getResource("artifacts/jars");
         URL configUrl = Resources.getResource("artifacts/config/Datasource.yaml");
         Network network = Network.newNetwork();
 
@@ -91,15 +94,13 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
         envMap.put("JDBC_DRIVER_NAME", mySQLContainer.getDriverClassName());
         siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
                 .withSiddhiApps(appUrl.getPath())
-                .withJars(extraJarsUrl.getPath())
-                .withJars(jarsFromMaven.toString())
+                .withJars(jarsFromMaven.toString(), false)
                 .withConfig(configUrl.getPath())
                 .withNetwork(network)
                 .withEnv(envMap)
                 .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
         siddhiRunnerContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
-
         setClusterConfigs(NATS_CLUSTER_ID, natsContainer.getBootstrapServerUrl(), NATS_INPUT_DESTINATION,
                 NATS_OUTPUT_DESTINATION);
     }
@@ -241,7 +242,7 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
                 "        \"roomID\": \"F2-Conference\"\n" +
                 "    }\n" +
                 "}");
+        Thread.sleep(10000);
         Assert.assertTrue(((ArrayList<String>) resultHolder.waitAndGetResults()).get(0).contains("\"peakTemp\":80.0"));
     }
-
 }

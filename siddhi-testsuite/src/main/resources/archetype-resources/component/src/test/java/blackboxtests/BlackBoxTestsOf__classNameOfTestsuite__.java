@@ -1,4 +1,4 @@
-package ${package}.blackBoxTests;
+package ${package}.blackboxtests;
 
 import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.util.NatsClient;
@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * Class for black box testing.
+ *
+ */
 public class BlackBoxTestsOf${classNameOfTestsuite} {
 
     private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOf${classNameOfTestsuite}.class);

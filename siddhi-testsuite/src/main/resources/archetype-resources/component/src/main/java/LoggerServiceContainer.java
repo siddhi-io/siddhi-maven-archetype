@@ -8,6 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 import static org.rnorth.ducttape.unreliables.Unreliables.retryUntilSuccess;
 
+/**
+ * Base class that expose a LoggerService container.
+ *
+ */
 public class LoggerServiceContainer extends GenericContainer<LoggerServiceContainer> {
 
     private static final String IMAGE_NAME = "siddhi-logservice";
@@ -44,4 +48,5 @@ public class LoggerServiceContainer extends GenericContainer<LoggerServiceContai
             }
         });
     }
+
 }

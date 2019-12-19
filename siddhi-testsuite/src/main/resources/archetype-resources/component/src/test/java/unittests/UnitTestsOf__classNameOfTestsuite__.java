@@ -1,4 +1,4 @@
-package ${package}.unitTests;
+package ${package}.unittests;
 
 import com.google.common.io.Resources;
 import io.siddhi.core.SiddhiAppRuntime;
@@ -9,6 +9,7 @@ import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.core.util.SiddhiTestHelper;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
+import ${package}.LoggerServiceContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.output.OutputFrame;
@@ -29,11 +30,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Class for integration testing.
+ *
+ */
 public class UnitTestsOf${classNameOfTestsuite} {
 
     private static final Logger logger = LoggerFactory.getLogger(UnitTestsOf${classNameOfTestsuite}.class);
-    private static URL appUrl = Resources.getResource("artifacts/apps/SampleApp.siddhi");
+    private static URL appUrl = Resources.getResource("artifacts/apps/Temp-Alert-App.siddhi");
     private volatile AtomicInteger count = new AtomicInteger(0);
+
+    LoggerServiceContainer loggerServiceContainer;
 
     @BeforeClass
     private void setUpTest() {
@@ -93,8 +100,9 @@ public class UnitTestsOf${classNameOfTestsuite} {
 
     @Test
     public void testSiddhiRunnerStartup() {
-        SiddhiRunnerContainer siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
-                .withLogConsumer(new Slf4jLogConsumer(logger));
+        SiddhiRunnerContainer siddhiRunnerContainer =
+                new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
+                        .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
         WaitingConsumer consumer = new WaitingConsumer();
         siddhiRunnerContainer.followOutput(consumer, OutputFrame.OutputType.STDOUT);
@@ -106,6 +114,16 @@ public class UnitTestsOf${classNameOfTestsuite} {
             Assert.fail("Siddhi Runner failed to start.");
         } finally {
             siddhiRunnerContainer.stop();
+        }
+    }
+
+    @Test
+    public void testLoggerServiceStartup() {
+        loggerServiceContainer = new LoggerServiceContainer()
+                .withLogConsumer(new Slf4jLogConsumer(logger));
+        loggerServiceContainer.start();
+        if (loggerServiceContainer != null) {
+            loggerServiceContainer.stop();
         }
     }
 }
