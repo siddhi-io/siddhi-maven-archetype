@@ -165,7 +165,7 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
         try {
             siddhiLogConsumer.waitUntil(frame ->
                             frame.getUtf8String().contains("data=[dummyType, dummyDeviceID, 50.0, dummyRoomID]"),
-                    5, TimeUnit.SECONDS);
+                    50, TimeUnit.SECONDS);
         } catch (TimeoutException e) {
             Assert.fail("Message consumption acknowledgement is not available in Siddhi Runner logs.");
         }
@@ -193,7 +193,7 @@ public class IntegrationTestsOf${classNameOfTestsuite} {
         try {
             siddhiLogConsumer.waitUntil(frame ->
                             frame.getUtf8String().contains("data=[fooType, 001, 60.0, 202]"),
-                    5, TimeUnit.SECONDS);
+                    50, TimeUnit.SECONDS);
         } catch (TimeoutException e) {
             Assert.fail("Message consumption acknowledgement is not available in Siddhi Runner logs.");
         } finally {
