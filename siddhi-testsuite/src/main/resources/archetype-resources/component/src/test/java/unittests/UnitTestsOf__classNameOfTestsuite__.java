@@ -9,12 +9,14 @@ import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.core.util.SiddhiTestHelper;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
+import ${package}.containers.LoggerServiceContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.containers.output.WaitingConsumer;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -30,7 +32,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Class for integration testing.
+ * Class for unit testing.
  *
  */
 public class UnitTestsOf${classNameOfTestsuite} {
@@ -38,6 +40,7 @@ public class UnitTestsOf${classNameOfTestsuite} {
     private static final Logger logger = LoggerFactory.getLogger(UnitTestsOf${classNameOfTestsuite}.class);
     private static URL appUrl = Resources.getResource("artifacts/apps/Temp-Alert-App.siddhi");
     private volatile AtomicInteger count = new AtomicInteger(0);
+    LoggerServiceContainer loggerServiceContainer;
 
     @BeforeClass
     private void setUpTest() {
@@ -51,6 +54,10 @@ public class UnitTestsOf${classNameOfTestsuite} {
         envMap.put("PASSWORD", "");
         envMap.put("JDBC_DRIVER_NAME", "");
         System.getProperties().putAll(envMap);
+
+        loggerServiceContainer = new LoggerServiceContainer()
+            .withLogConsumer(new Slf4jLogConsumer(logger));
+        loggerServiceContainer.start();
     }
 
     @Test
@@ -111,6 +118,13 @@ public class UnitTestsOf${classNameOfTestsuite} {
             Assert.fail("Siddhi Runner failed to start.");
         } finally {
             siddhiRunnerContainer.stop();
+        }
+    }
+
+    @AfterClass
+    public void shutdownCluster() {
+        if (loggerServiceContainer != null) {
+            loggerServiceContainer.stop();
         }
     }
 }
