@@ -16,7 +16,6 @@ import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.containers.output.WaitingConsumer;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -41,6 +40,7 @@ public class UnitTestsOf${classNameOfTestsuite} {
     private static URL appUrl = Resources.getResource("artifacts/apps/Temp-Alert-App.siddhi");
     private volatile AtomicInteger count = new AtomicInteger(0);
     LoggerServiceContainer loggerServiceContainer;
+    WaitingConsumer siddhiLogConsumer = new WaitingConsumer();
 
     @BeforeClass
     private void setUpTest() {
@@ -54,10 +54,47 @@ public class UnitTestsOf${classNameOfTestsuite} {
         envMap.put("PASSWORD", "");
         envMap.put("JDBC_DRIVER_NAME", "");
         System.getProperties().putAll(envMap);
+    }
+
+    @Test
+    public void testLoggerService() throws InterruptedException {
+        logger.info("Test logger service container.");
 
         loggerServiceContainer = new LoggerServiceContainer()
             .withLogConsumer(new Slf4jLogConsumer(logger));
         loggerServiceContainer.start();
+        loggerServiceContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
+
+        SiddhiManager siddhiManager = new SiddhiManager();
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(
+                        "@App:name('Convert-Temperature')\n" +
+                        "\n" +
+                        "@App:description('Convert Farenheit into Celcius.')\n" +
+                        "\n" +
+                        "@source(type = 'http', receiver.url = 'http://0.0.0.0:8005/apiRequest', " +
+                                    "basic.auth.enabled = 'false', @map(type = 'json'))\n" +
+                        "define stream TemperatureStream (farenheit int);\n" +
+                        "@sink(type = 'http', publisher.url = \'" + loggerServiceContainer.getUrl() + "\' , " +
+                                    "method = 'POST', @map(type='json'))\n" +
+                        "define stream CalculateTemperature (farenheit int, celcius int);" +
+                        "@info(name='Temperature records information.')\n" +
+                        "from TemperatureStream\n" +
+                        "select farenheit, (farenheit-32)*5/9 as celcius\n" +
+                        "insert into CalculateTemperature; ");
+        siddhiAppRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("TemperatureStream");
+        inputHandler.send(new Object[]{32});
+        try {
+            Thread.sleep(10000);
+            siddhiLogConsumer.waitUntil(frame ->
+                frame.getUtf8String().contains("{event={farenheit=32.0, celcius=0.0}}"),
+            5, TimeUnit.SECONDS);
+        } catch (TimeoutException e) {
+            Assert.fail("Message consumption acknowledgement is not available in Siddhi Runner logs.");
+        } finally {
+            siddhiManager.shutdown();
+            loggerServiceContainer.stop();
+        }
     }
 
     @Test
@@ -118,13 +155,6 @@ public class UnitTestsOf${classNameOfTestsuite} {
             Assert.fail("Siddhi Runner failed to start.");
         } finally {
             siddhiRunnerContainer.stop();
-        }
-    }
-
-    @AfterClass
-    public void shutdownCluster() {
-        if (loggerServiceContainer != null) {
-            loggerServiceContainer.stop();
         }
     }
 }
