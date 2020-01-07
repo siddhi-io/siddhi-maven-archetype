@@ -67,20 +67,20 @@ public class UnitTestsOf${classNameOfTestsuite} {
 
         SiddhiManager siddhiManager = new SiddhiManager();
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(
-                        "@App:name('Convert-Temperature')\n" +
-                        "\n" +
-                        "@App:description('Convert Farenheit into Celcius.')\n" +
-                        "\n" +
-                        "@source(type = 'http', receiver.url = 'http://0.0.0.0:8005/apiRequest', " +
-                                    "basic.auth.enabled = 'false', @map(type = 'json'))\n" +
-                        "define stream TemperatureStream (farenheit int);\n" +
-                        "@sink(type = 'http', publisher.url = \'" + loggerServiceContainer.getUrl() + "\' , " +
-                                    "method = 'POST', @map(type='json'))\n" +
-                        "define stream CalculateTemperature (farenheit int, celcius int);" +
-                        "@info(name='Temperature records information.')\n" +
-                        "from TemperatureStream\n" +
-                        "select farenheit, (farenheit-32)*5/9 as celcius\n" +
-                        "insert into CalculateTemperature; ");
+                    "@App:name('Convert-Temperature')\n" +
+                    "\n" +
+                    "@App:description('Convert Farenheit into Celcius.')\n" +
+                    "\n" +
+                    "define stream TemperatureStream (farenheit int);\n" +
+                    "\n" +
+                    "@sink(type = 'http', publisher.url = \'" + loggerServiceContainer.getUrl() + "\' , " +
+                    "method = 'POST', @map(type='json'))\n" +
+                    "define stream CalculateTemperature (farenheit int, celcius int);" +
+                    "\n" +
+                    "@info(name='Temperature records information.')\n" +
+                    "from TemperatureStream\n" +
+                    "select farenheit, (farenheit-32)*5/9 as celcius\n" +
+                    "insert into CalculateTemperature; ");
         siddhiAppRuntime.start();
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("TemperatureStream");
         inputHandler.send(new Object[]{32});
