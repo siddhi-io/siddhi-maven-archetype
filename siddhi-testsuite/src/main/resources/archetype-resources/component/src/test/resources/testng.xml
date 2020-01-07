@@ -3,7 +3,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Siddhi-Testsuite-${_nameOfTestsuite}">
-    <test name="Siddhi-Testsuite-${_nameOfTestsuite.toLowerCase()}-tests" enabled="true" preserve-order="true" parallel="false">
+    <test name="Siddhi-Testsuite-${_nameOfTestsuite.toLowerCase()}-tests" parallel="false">
         <classes>
             <class name="${package}.blackboxtests.BlackBoxTestsOf${classNameOfTestsuite}"/>
             <class name="${package}.integrationtests.IntegrationTestsOf${classNameOfTestsuite}"/>

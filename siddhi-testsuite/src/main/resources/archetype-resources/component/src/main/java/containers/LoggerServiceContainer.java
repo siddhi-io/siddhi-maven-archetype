@@ -7,6 +7,7 @@ import org.testcontainers.containers.GenericContainer;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URI;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static org.rnorth.ducttape.unreliables.Unreliables.retryUntilSuccess;
@@ -68,4 +69,26 @@ public class LoggerServiceContainer extends GenericContainer<LoggerServiceContai
             return new HTTPClient.HTTPResponseMessage();
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        LoggerServiceContainer that = (LoggerServiceContainer) o;
+        return Objects.equals(IMAGE_NAME, that.IMAGE_NAME) &&
+                Objects.equals(startupTimeoutSeconds, that.startupTimeoutSeconds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), IMAGE_NAME, startupTimeoutSeconds);
+    }
+
 }
