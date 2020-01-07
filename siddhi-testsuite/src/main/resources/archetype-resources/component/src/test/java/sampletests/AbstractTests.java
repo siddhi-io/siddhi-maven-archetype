@@ -1,4 +1,4 @@
-package ${package};
+package sampletests;
 
 import io.siddhi.core.SiddhiAppRuntime;
 import io.siddhi.core.SiddhiManager;

@@ -1,32 +1,40 @@
-package ${package}.blackboxtests;
+package sampletests.integration;
 
 import com.google.common.io.Resources;
+import io.siddhi.core.exception.ConnectionUnavailableException;
 import io.siddhi.distribution.test.framework.MySQLContainer;
 import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
+import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
-import ${package}.AbstractTests;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import sampletests.AbstractTests;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 /**
- * Class for black box testing.
+ * Class for integration testing.
+ *
  */
-public class BlackBoxTestsOf${classNameOfTestsuite} extends AbstractTests {
+public class IntegrationTestsOfTemperatureApp extends AbstractTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOf${classNameOfTestsuite}.class);
+    private static final Logger logger = LoggerFactory.getLogger(IntegrationTestsOfTemperatureApp.class);
 
     private static final String DATABSE_NAME = "TemperaureDB";
     private static final String DATABSE_HOST = "mysqldb";
@@ -80,8 +88,40 @@ public class BlackBoxTestsOf${classNameOfTestsuite} extends AbstractTests {
 
     @AfterClass
     public void shutdownCluster() {
+        if (natsContainer != null) {
+            natsContainer.stop();
+        }
+        if (mySQLContainer != null) {
+            mySQLContainer.stop();
+        }
         if (siddhiRunnerContainer != null) {
             siddhiRunnerContainer.stop();
+        }
+    }
+
+    @Test
+    public void testDBPersistence() throws SQLException, InterruptedException, IOException, TimeoutException,
+            ConnectionUnavailableException {
+
+        natsClient.publish(NATS_INPUT_DESTINATION, "{\n" +
+                "    \"event\": {\n" +
+                "        \"type\": \"internal\",\n" +
+                "        \"deviceID\": \"C250i\",\n" +
+                "        \"temp\": 30.5,\n" +
+                "        \"roomID\": \"F2-Conference\"\n" +
+                "    }\n" +
+                "}");
+        ResultSet resultSet = null;
+        try {
+            Thread.sleep(1000);
+            resultSet = DatabaseClient.executeQuery(mySQLContainer, "SELECT * FROM InternalDevicesTempTable");
+            Assert.assertNotNull(resultSet);
+            Assert.assertEquals("C250i", resultSet.getString(2));
+            Assert.assertEquals(30.5, resultSet.getDouble(3));
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
         }
     }
 }

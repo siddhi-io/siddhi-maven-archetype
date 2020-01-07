@@ -2,12 +2,15 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Siddhi-Testsuite-${_nameOfTestsuite}">
-    <test name="Siddhi-Testsuite-${_nameOfTestsuite.toLowerCase()}-tests" parallel="false">
+<suite name="Siddhi-Testsuite">
+    <test name="Siddhi-Testsuite-Tests" parallel="false">
         <classes>
-            <class name="${package}.blackboxtests.BlackBoxTestsOf${classNameOfTestsuite}"/>
-            <class name="${package}.integrationtests.IntegrationTestsOf${classNameOfTestsuite}"/>
-            <class name="${package}.unittests.UnitTestsOf${classNameOfTestsuite}"/>
+            <class name="sampletests.blackbox.BlackBoxTestsOfTemperatureApp"/>
+            <class name="sampletests.integration.IntegrationTestsOfTemperatureApp"/>
+            <class name="sampletests.unit.UnitTestsOfTemperatureApp"/>
+            <class name="teststemplate.blackbox.BlackBoxTestsOf${classNameOfTest}"/>
+            <class name="teststemplate.integration.IntegrationTestsOf${classNameOfTest}"/>
+            <class name="teststemplate.unit.UnitTestsOf${classNameOfTest}"/>
         </classes>
     </test>
 </suite>

@@ -1,4 +1,4 @@
-package ${package}.containers;
+package sample.containers;
 
 import io.siddhi.distribution.test.framework.util.HTTPClient;
 import org.testcontainers.containers.ContainerLaunchException;

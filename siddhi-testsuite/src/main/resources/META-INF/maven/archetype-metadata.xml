@@ -17,7 +17,7 @@
 <archetype-descriptor>
     <requiredProperties>
         <requiredProperty key="_nameOfTestsuite"/>
-        <requiredProperty key="groupIdPostfix">
+        <requiredProperty key="groupIdPostfix"> //remove
             <defaultValue>
                 ${_nameOfTestsuite.toLowerCase()}
             </defaultValue>
@@ -27,14 +27,14 @@
                 ${groupId}.${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="artifactId">
+        <requiredProperty key="artifactId">  //remove - use name of testsuite
             <defaultValue>
                 siddhi-testsuite-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="classNameOfTestsuite">
+        <requiredProperty key="classNameOfTest">
             <defaultValue>
-                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}Testsuite
+                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
             </defaultValue>
         </requiredProperty>
     </requiredProperties>
@@ -83,20 +83,23 @@
                 <include>pom.xml</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" packaged="true">
-            <directory>component/src/main/java</directory>
+        <fileSet filtered="true">
+            <directory>component/src/main/java/sample/containers</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet filtered="true">
             <directory>component/src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/test/java/sampletests</directory>
             <includes>
-                <include>**/*.properties</include>
+                <include>**/*.java</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" packaged="true">
-            <directory>component/src/test/java</directory>
+        <fileSet filtered="true">
+            <directory>component/src/test/java/teststemplate</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
@@ -115,16 +118,13 @@
             </includes>
         </fileSet>
         <fileSet filtered="true">
-            <directory>component/src/test/resources/artifacts/jars</directory>
-            <includes>
-                <include>**/*.jar</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true">
             <directory>component/src/test/resources/artifacts/apps</directory>
             <includes>
                 <include>**/*.siddhi</include>
             </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/test/resources/artifacts/jars</directory>
         </fileSet>
     </fileSets>
 </archetype-descriptor>
