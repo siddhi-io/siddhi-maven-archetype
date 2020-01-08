@@ -17,7 +17,7 @@
 <archetype-descriptor>
     <requiredProperties>
         <requiredProperty key="_nameOfTestsuite"/>
-        <requiredProperty key="groupIdPostfix"> //remove
+        <requiredProperty key="groupIdPostfix">
             <defaultValue>
                 ${_nameOfTestsuite.toLowerCase()}
             </defaultValue>
@@ -27,7 +27,7 @@
                 ${groupId}.${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="artifactId">  //remove - use name of testsuite
+        <requiredProperty key="artifactId">
             <defaultValue>
                 siddhi-testsuite-${groupIdPostfix}
             </defaultValue>

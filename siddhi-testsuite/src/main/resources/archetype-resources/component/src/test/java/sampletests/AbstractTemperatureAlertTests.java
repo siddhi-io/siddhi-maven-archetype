@@ -2,10 +2,12 @@ package sampletests;
 
 import io.siddhi.core.SiddhiAppRuntime;
 import io.siddhi.core.SiddhiManager;
+import io.siddhi.core.exception.ConnectionUnavailableException;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.distribution.test.framework.MySQLContainer;
 import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
+import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
 import io.siddhi.extension.io.nats.sink.NATSSink;
 import io.siddhi.extension.map.json.sinkmapper.JsonSinkMapper;
@@ -16,26 +18,32 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Class for abstract tests.
+ * Class for AbstractTemperatureAlertTests. This class includes the common logic for integration tests and
+ * blackbox tests.
  *
  */
-public abstract class AbstractTests {
+public abstract class AbstractTemperatureAlertTests {
+
+    public WaitingConsumer siddhiLogConsumer = new WaitingConsumer();
+
     public MySQLContainer mySQLContainer;
     public NatsContainer natsContainer;
     public SiddhiRunnerContainer siddhiRunnerContainer;
-
     public NatsClient natsClient;
-    public WaitingConsumer siddhiLogConsumer = new WaitingConsumer();
-
-    private String natsClusterId = "TemperatureCluster";
-    private String natsUrl = "nats-streaming";
-    private String natsInputDestination = "Temp-Alert-App_DeviceTempStream";
-    private String natsOutputDestination = "Temp-Alert-App_AlertStream";
+    private String natsClusterId;
+    private String natsUrl;
+    private String natsInputDestination;
+    private String natsOutputDestination;
+    private String mySqlUrl;
+    private String mysqlUsername;
+    private String mysqlPassword;
 
     @BeforeClass
     public abstract void setUpCluster() throws IOException, InterruptedException;
@@ -43,12 +51,18 @@ public abstract class AbstractTests {
     @AfterClass
     public abstract void shutdownCluster();
 
-    public void setClusterConfigs(String natsClusterId, String natsUrl, String natsInputDestination,
-                                  String natsOutputDestination) {
+    public void configureNatsConnection(String natsClusterId, String natsUrl, String natsInputDestination,
+                                        String natsOutputDestination) {
         this.natsClusterId = natsClusterId;
         this.natsUrl = natsUrl;
         this.natsInputDestination = natsInputDestination;
         this.natsOutputDestination = natsOutputDestination;
+    }
+
+    public void configureMySqlConnection (String mysqlUrl, String username, String password) {
+        this.mySqlUrl = mysqlUrl;
+        this.mysqlUsername = username;
+        this.mysqlPassword = password;
     }
 
     @Test
@@ -143,5 +157,31 @@ public abstract class AbstractTests {
                 "}");
         Thread.sleep(10000);
         Assert.assertTrue(((ArrayList<String>) resultHolder.waitAndGetResults()).get(0).contains("\"peakTemp\":80.0"));
+    }
+
+    @Test
+    public void testDBPersistence() throws SQLException, InterruptedException, IOException, TimeoutException,
+            ConnectionUnavailableException {
+
+        natsClient.publish(natsInputDestination, "{\n" +
+                "    \"event\": {\n" +
+                "        \"type\": \"internal\",\n" +
+                "        \"deviceID\": \"C250i\",\n" +
+                "        \"temp\": 30.5,\n" +
+                "        \"roomID\": \"F2-Conference\"\n" +
+                "    }\n" +
+                "}");
+        ResultSet resultSet = null;
+        try {
+            Thread.sleep(10000);
+            resultSet = DatabaseClient.executeQuery(mySQLContainer, "SELECT * FROM InternalDevicesTempTable");
+            Assert.assertNotNull(resultSet);
+            Assert.assertEquals("C250i", resultSet.getString(2));
+            Assert.assertEquals(30.5, resultSet.getDouble(3));
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        }
     }
 }

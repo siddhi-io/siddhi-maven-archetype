@@ -8,29 +8,24 @@ import io.siddhi.core.query.output.callback.QueryCallback;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.core.util.SiddhiTestHelper;
-import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testcontainers.containers.output.OutputFrame;
-import org.testcontainers.containers.output.Slf4jLogConsumer;
-import org.testcontainers.containers.output.WaitingConsumer;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Class for unit testing.
+ * This is the class for unit testing. Siddhi is used in an embedded sandbox mode to make sure no network connections
+ * or external dependencies are required for testing. This requires to write a Java code to test the Siddhi app.
  *
  */
 public class UnitTestsOfTemperatureApp {
@@ -38,7 +33,6 @@ public class UnitTestsOfTemperatureApp {
     private static final Logger logger = LoggerFactory.getLogger(UnitTestsOfTemperatureApp.class);
     private static URL appUrl = Resources.getResource("artifacts/apps/Temp-Alert-App.siddhi");
     private volatile AtomicInteger count = new AtomicInteger(0);
-    WaitingConsumer siddhiLogConsumer = new WaitingConsumer();
 
     @BeforeClass
     private void setUpTest() {
@@ -56,9 +50,9 @@ public class UnitTestsOfTemperatureApp {
 
     @Test
     public void testMoniteredFilter() throws InterruptedException, IOException {
-        logger.info("Tests Monitered Filter Query");
+        logger.info("Tests Monitored Filter Query");
 
-        String testQueryName = "monitered-filter";
+        String testQueryName = "monitored-filter";
         SiddhiManager siddhiManager = new SiddhiManager();
         String siddhiApp = readFileToString(appUrl.getPath());
 
@@ -92,26 +86,36 @@ public class UnitTestsOfTemperatureApp {
         siddhiAppRuntime.shutdown();
     }
 
-    private String readFileToString(String filePath) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(filePath)), Charset.forName("UTF-8"));
+    @Test
+    public void testTemperatureRangeFilter() throws InterruptedException, IOException {
+        logger.info("Test temperature-range-filter query");
+
+        String testQueryName = "temperature-range-filter";
+        SiddhiManager siddhiManager = new SiddhiManager();
+        String siddhiApp = readFileToString(appUrl.getPath());
+
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSandboxSiddhiAppRuntime(siddhiApp);
+        siddhiAppRuntime.addCallback(testQueryName, new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
+
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                count.incrementAndGet();
+                if (count.get() == 1) {
+                    Assert.assertTrue("Kennisnet".equals(inEvents[0].getData(0)));
+                }
+            }
+        });
+        InputHandler peakTemperatureStream = siddhiAppRuntime.getInputHandler("PeakTempStream");
+        siddhiAppRuntime.start();
+        peakTemperatureStream.send(new Object[]{"CyrusOne", 35.5, 60.0});
+        peakTemperatureStream.send(new Object[]{"Kennisnet", 28.6, 86.3});
+        peakTemperatureStream.send(new Object[]{"Generator", 60.2, 65.2});
+        SiddhiTestHelper.waitForEvents(10, 1, count, 100);
+        siddhiAppRuntime.shutdown();
     }
 
-    @Test
-    public void testSiddhiRunnerStartup() {
-        SiddhiRunnerContainer siddhiRunnerContainer =
-                new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
-                        .withLogConsumer(new Slf4jLogConsumer(logger));
-        siddhiRunnerContainer.start();
-        WaitingConsumer consumer = new WaitingConsumer();
-        siddhiRunnerContainer.followOutput(consumer, OutputFrame.OutputType.STDOUT);
-        try {
-            consumer.waitUntil(frame ->
-                            frame.getUtf8String().contains("Siddhi Runner Distribution started"),
-                    5, TimeUnit.SECONDS);
-        } catch (TimeoutException e) {
-            Assert.fail("Siddhi Runner failed to start.");
-        } finally {
-            siddhiRunnerContainer.stop();
-        }
+    private String readFileToString(String filePath) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(filePath)), Charset.forName("UTF-8"));
     }
 }

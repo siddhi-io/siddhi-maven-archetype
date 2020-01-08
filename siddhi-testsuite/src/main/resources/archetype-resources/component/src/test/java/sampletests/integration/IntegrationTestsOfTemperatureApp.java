@@ -1,42 +1,36 @@
 package sampletests.integration;
 
 import com.google.common.io.Resources;
-import io.siddhi.core.exception.ConnectionUnavailableException;
 import io.siddhi.distribution.test.framework.MySQLContainer;
 import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
-import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import sampletests.AbstractTests;
+import sampletests.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
 
 /**
- * Class for integration testing.
+ * Class for integration testing. Performs integration tests by running the application and dependent services as
+ * Docker containers. This ensures that the updated Siddhi application functions as expected.
  *
  */
-public class IntegrationTestsOfTemperatureApp extends AbstractTests {
+public class IntegrationTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
 
     private static final Logger logger = LoggerFactory.getLogger(IntegrationTestsOfTemperatureApp.class);
 
-    private static final String DATABSE_NAME = "TemperaureDB";
+    private static final String DATABSE_NAME = "TemperatureDB";
     private static final String DATABSE_HOST = "mysqldb";
     private static final String NATS_CLUSTER_ID = "TemperatureCluster";
     private static final String NATS_CLUSTER_HOST = "nats-streaming";
@@ -82,7 +76,7 @@ public class IntegrationTestsOfTemperatureApp extends AbstractTests {
                 .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
         siddhiRunnerContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
-        setClusterConfigs(NATS_CLUSTER_ID, natsContainer.getBootstrapServerUrl(), NATS_INPUT_DESTINATION,
+        configureNatsConnection(NATS_CLUSTER_ID, natsContainer.getBootstrapServerUrl(), NATS_INPUT_DESTINATION,
                 NATS_OUTPUT_DESTINATION);
     }
 
@@ -96,32 +90,6 @@ public class IntegrationTestsOfTemperatureApp extends AbstractTests {
         }
         if (siddhiRunnerContainer != null) {
             siddhiRunnerContainer.stop();
-        }
-    }
-
-    @Test
-    public void testDBPersistence() throws SQLException, InterruptedException, IOException, TimeoutException,
-            ConnectionUnavailableException {
-
-        natsClient.publish(NATS_INPUT_DESTINATION, "{\n" +
-                "    \"event\": {\n" +
-                "        \"type\": \"internal\",\n" +
-                "        \"deviceID\": \"C250i\",\n" +
-                "        \"temp\": 30.5,\n" +
-                "        \"roomID\": \"F2-Conference\"\n" +
-                "    }\n" +
-                "}");
-        ResultSet resultSet = null;
-        try {
-            Thread.sleep(1000);
-            resultSet = DatabaseClient.executeQuery(mySQLContainer, "SELECT * FROM InternalDevicesTempTable");
-            Assert.assertNotNull(resultSet);
-            Assert.assertEquals("C250i", resultSet.getString(2));
-            Assert.assertEquals(30.5, resultSet.getDouble(3));
-        } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
         }
     }
 }
