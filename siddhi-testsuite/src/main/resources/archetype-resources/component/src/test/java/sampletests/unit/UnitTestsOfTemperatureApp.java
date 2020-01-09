@@ -24,8 +24,9 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * This is the class for unit testing. Siddhi is used in an embedded sandbox mode to make sure no network connections
- * or external dependencies are required for testing. This requires to write a Java code to test the Siddhi app.
+ * This is the class for unit testing of Temp-Alert-App. Siddhi is used in an embedded sandbox mode to make sure no
+ * network connections or external dependencies are required for testing. This requires to write a Java code to test
+ * the Siddhi app.
  *
  */
 public class UnitTestsOfTemperatureApp {

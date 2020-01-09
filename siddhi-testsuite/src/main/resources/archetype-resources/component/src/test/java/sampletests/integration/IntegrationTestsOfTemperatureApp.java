@@ -22,9 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class for integration testing. Performs integration tests by running the application and dependent services as
- * Docker containers. This ensures that the updated Siddhi application functions as expected.
+ * Class for integration testing of Temp-Alert-App. Performs integration tests by running the application and dependent
+ * services as Docker containers. This ensures that the updated Siddhi application functions as expected.
  *
+ * Description: Used for temperature monitoring and anomaly detection. Consumes events from a Nats topic,
+ *              filters the event under types 'monitored' and 'internal'.
+ *              Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic.
+ *              The internal events are persisted to a table.
  */
 public class IntegrationTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
 

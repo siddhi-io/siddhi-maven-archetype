@@ -25,9 +25,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Class for AbstractTemperatureAlertTests. This class includes the common logic for integration tests and
- * blackbox tests.
+ * Class for AbstractTemperatureAlertTests of Temp-Alert-App. This class includes the common logic for integration
+ * tests and blackbox tests.
  *
+ * Description: Used for temperature monitoring and anomaly detection. Consumes events from a Nats topic,
+ *              filters the event under types 'monitored' and 'internal'.
+ *              Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic.
+ *              The internal events are persisted to a table.
  */
 public abstract class AbstractTemperatureAlertTests {
 

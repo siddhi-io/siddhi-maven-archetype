@@ -22,8 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class for black box testing. Run black-box testing by configuring the Siddhi Runner instances to communicate
- * with the actual external systems.
+ * Class for black box testing of Temp-Alert-App. Run black-box testing by configuring the Siddhi Runner instances
+ * to communicate with the actual external systems.
+ *
+ * Description: Used for temperature monitoring and anomaly detection. Consumes events from a Nats topic,
+ *              filters the event under types 'monitored' and 'internal'.
+ *              Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic.
+ *              The internal events are persisted to a table.
  */
 public class BlackBoxTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
     private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOfTemperatureApp.class);

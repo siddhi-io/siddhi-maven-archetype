@@ -8,7 +8,8 @@ import org.testng.annotations.Test;
 import teststemplate.AbstractTests;
 
 /**
- * Class for integration testing.
+ * Class for integration testing. Performs integration tests by running the application and dependent services as
+ * Docker containers. This ensures that the updated Siddhi application functions as expected.
  *
  */
 public class IntegrationTestsOf${classNameOfTest} extends AbstractTests {

@@ -5,7 +5,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
- * Class for abstract tests.
+ * Class for AbstractTemperatureAlertTests. This class includes the common logic for integration tests and
+ * blackbox tests.
  *
  */
 public abstract class AbstractTests {

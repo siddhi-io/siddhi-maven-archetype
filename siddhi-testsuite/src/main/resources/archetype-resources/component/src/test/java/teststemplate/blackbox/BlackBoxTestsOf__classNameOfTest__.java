@@ -7,7 +7,8 @@ import org.testng.annotations.BeforeClass;
 import teststemplate.AbstractTests;
 
 /**
- * Class for black box testing.
+ * Class for black box testing. Run black-box testing by configuring the Siddhi Runner instances to communicate
+ * with the actual external systems.
  */
 public class BlackBoxTestsOf${classNameOfTest} extends AbstractTests {
 
