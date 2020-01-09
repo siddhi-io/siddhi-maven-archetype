@@ -12,7 +12,7 @@ define table InternalDevicesTempTable(currentTime string, deviceID string, temp 
 @sink(type='nats', cluster.id='${CLUSTER_ID}', destination = '${OUTPUT_DESTINATION}', bootstrap.servers = '${NATS_URL}' ,@map(type='json'))
 define stream AlertStream (deviceID string, peakTemp double, authorityContactEmail string);
 
-@info(name = 'monitered-filter')
+@info(name = 'monitored-filter')
 from DeviceTemperatureStream[type == 'monitored']
 select deviceID, temp, roomID
 insert current events into MonitoredDevicesTempStream;

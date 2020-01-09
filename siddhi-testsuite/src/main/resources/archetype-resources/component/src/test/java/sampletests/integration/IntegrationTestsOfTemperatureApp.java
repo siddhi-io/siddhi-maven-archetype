@@ -80,6 +80,32 @@ public class IntegrationTestsOfTemperatureApp extends AbstractTemperatureAlertTe
                 NATS_OUTPUT_DESTINATION);
     }
 
+    @Test
+    public void testDBPersistence() throws SQLException, InterruptedException, IOException, TimeoutException,
+            ConnectionUnavailableException {
+
+        natsClient.publish(natsInputDestination, "{\n" +
+                "    \"event\": {\n" +
+                "        \"type\": \"internal\",\n" +
+                "        \"deviceID\": \"C250i\",\n" +
+                "        \"temp\": 30.5,\n" +
+                "        \"roomID\": \"F2-Conference\"\n" +
+                "    }\n" +
+                "}");
+        ResultSet resultSet = null;
+        try {
+            Thread.sleep(10000);
+            resultSet = DatabaseClient.executeQuery(mySQLContainer, "SELECT * FROM InternalDevicesTempTable");
+            Assert.assertNotNull(resultSet);
+            Assert.assertEquals("C250i", resultSet.getString(2));
+            Assert.assertEquals(30.5, resultSet.getDouble(3));
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        }
+    }
+
     @AfterClass
     public void shutdownCluster() {
         if (natsContainer != null) {

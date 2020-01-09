@@ -158,30 +158,4 @@ public abstract class AbstractTemperatureAlertTests {
         Thread.sleep(10000);
         Assert.assertTrue(((ArrayList<String>) resultHolder.waitAndGetResults()).get(0).contains("\"peakTemp\":80.0"));
     }
-
-    @Test
-    public void testDBPersistence() throws SQLException, InterruptedException, IOException, TimeoutException,
-            ConnectionUnavailableException {
-
-        natsClient.publish(natsInputDestination, "{\n" +
-                "    \"event\": {\n" +
-                "        \"type\": \"internal\",\n" +
-                "        \"deviceID\": \"C250i\",\n" +
-                "        \"temp\": 30.5,\n" +
-                "        \"roomID\": \"F2-Conference\"\n" +
-                "    }\n" +
-                "}");
-        ResultSet resultSet = null;
-        try {
-            Thread.sleep(10000);
-            resultSet = DatabaseClient.executeQuery(mySQLContainer, "SELECT * FROM InternalDevicesTempTable");
-            Assert.assertNotNull(resultSet);
-            Assert.assertEquals("C250i", resultSet.getString(2));
-            Assert.assertEquals(30.5, resultSet.getDouble(3));
-        } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-        }
-    }
 }

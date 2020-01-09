@@ -22,16 +22,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class for black box testing.
+ * Class for black box testing. Run black-box testing by configuring the Siddhi Runner instances to communicate
+ * with the actual external systems.
  */
-public class BlackBoxTestsOfTemperatureApp extends AbstractTests {
-
+public class BlackBoxTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
     private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOfTemperatureApp.class);
 
-    private static final String DATABSE_NAME = "TemperaureDB";
-    private static final String DATABSE_HOST = "mysqldb";
+    private static final String DATABSE_JDBC_URL = "jdbc:mysql://mysql:3306/";
+    private static final String DATABSE_USERNAME = "username";
+    private static final String DATABSE_PASSWORD = "password";
+    private static final String DATABSE_DRIVER_NAME = "com.mysql.jdbc.Driver";
     private static final String NATS_CLUSTER_ID = "TemperatureCluster";
-    private static final String NATS_CLUSTER_HOST = "nats-streaming";
+    private static final String NATS_BOOTSTRAP_URL = "nats://nats-streaming:443";
     private static final String NATS_INPUT_DESTINATION = "Temp-Alert-App_DeviceTempStream";
     private static final String NATS_OUTPUT_DESTINATION = "Temp-Alert-App_AlertStream";
 
@@ -40,42 +42,29 @@ public class BlackBoxTestsOfTemperatureApp extends AbstractTests {
         Path jarsFromMaven = Paths.get("target", "artifacts/jars");
         URL appUrl = Resources.getResource("artifacts/apps");
         URL configUrl = Resources.getResource("artifacts/config/Datasource.yaml");
-        Network network = Network.newNetwork();
 
-        mySQLContainer = new MySQLContainer()
-                .withDatabaseName(DATABSE_NAME)
-                .withNetworkAliases(DATABSE_HOST)
-                .withNetwork(network);
-        mySQLContainer.start();
-
-        natsContainer = new NatsContainer()
-                .withNetwork(network)
-                .withClusterId(NATS_CLUSTER_ID)
-                .withNetworkAliases(NATS_CLUSTER_HOST);
-        natsContainer.start();
-        natsClient = new NatsClient(NATS_CLUSTER_ID, natsContainer.getBootstrapServerUrl());
+        natsClient = new NatsClient(NATS_CLUSTER_ID, NATS_BOOTSTRAP_URL);
         natsClient.connect();
 
         Map<String, String> envMap = new HashMap<>();
         envMap.put("CLUSTER_ID", NATS_CLUSTER_ID);
         envMap.put("INPUT_DESTINATION", NATS_INPUT_DESTINATION);
         envMap.put("OUTPUT_DESTINATION", NATS_OUTPUT_DESTINATION);
-        envMap.put("NATS_URL", natsContainer.getNetworkedBootstrapServerUrl());
-        envMap.put("DATABASE_URL", mySQLContainer.getNetworkedJdbcUrl());
-        envMap.put("USERNAME", mySQLContainer.getUsername());
-        envMap.put("PASSWORD", mySQLContainer.getPassword());
-        envMap.put("JDBC_DRIVER_NAME", mySQLContainer.getDriverClassName());
+        envMap.put("NATS_URL", NATS_BOOTSTRAP_URL);
+        envMap.put("DATABASE_URL", DATABSE_JDBC_URL);
+        envMap.put("USERNAME", DATABSE_USERNAME);
+        envMap.put("PASSWORD", DATABSE_PASSWORD);
+        envMap.put("JDBC_DRIVER_NAME", DATABSE_DRIVER_NAME);
         siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
                 .withSiddhiApps(appUrl.getPath())
                 .withJars(jarsFromMaven.toString(), false)
                 .withConfig(configUrl.getPath())
-                .withNetwork(network)
                 .withEnv(envMap)
                 .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
         siddhiRunnerContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
-        setClusterConfigs(NATS_CLUSTER_ID, natsContainer.getBootstrapServerUrl(), NATS_INPUT_DESTINATION,
-                NATS_OUTPUT_DESTINATION);
+        configureNatsConnection(NATS_CLUSTER_ID, NATS_BOOTSTRAP_URL, NATS_INPUT_DESTINATION, NATS_OUTPUT_DESTINATION);
+        configureMySqlConnection(DATABSE_JDBC_URL, DATABSE_USERNAME, DATABSE_PASSWORD);
     }
 
     @AfterClass

@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -102,7 +102,8 @@ public class UnitTestsOfTemperatureApp {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
                 count.incrementAndGet();
                 if (count.get() == 1) {
-                    Assert.assertTrue("Kennisnet".equals(inEvents[0].getData(0)));
+                    Double obj1 = new Double(86.3);
+                    Assert.assertTrue(obj1.equals(inEvents[0].getData(1)));
                 }
             }
         });
