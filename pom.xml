@@ -54,7 +54,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
+            <plugin><!-- Overridden from parent pom to point to common checkstyle suppression -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven.checkstyleplugin.version}</version>

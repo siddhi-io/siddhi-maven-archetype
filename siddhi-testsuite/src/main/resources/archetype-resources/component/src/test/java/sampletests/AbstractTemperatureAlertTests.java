@@ -2,12 +2,10 @@ package sampletests;
 
 import io.siddhi.core.SiddhiAppRuntime;
 import io.siddhi.core.SiddhiManager;
-import io.siddhi.core.exception.ConnectionUnavailableException;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.distribution.test.framework.MySQLContainer;
 import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
-import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
 import io.siddhi.extension.io.nats.sink.NATSSink;
 import io.siddhi.extension.map.json.sinkmapper.JsonSinkMapper;
@@ -18,8 +16,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;

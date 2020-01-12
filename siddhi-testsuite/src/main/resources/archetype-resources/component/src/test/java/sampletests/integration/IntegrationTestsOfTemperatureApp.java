@@ -1,25 +1,32 @@
 package sampletests.integration;
 
 import com.google.common.io.Resources;
+import io.siddhi.core.exception.ConnectionUnavailableException;
 import io.siddhi.distribution.test.framework.MySQLContainer;
 import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
+import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import sampletests.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Class for integration testing of Temp-Alert-App. Performs integration tests by running the application and dependent
@@ -88,7 +95,7 @@ public class IntegrationTestsOfTemperatureApp extends AbstractTemperatureAlertTe
     public void testDBPersistence() throws SQLException, InterruptedException, IOException, TimeoutException,
             ConnectionUnavailableException {
 
-        natsClient.publish(natsInputDestination, "{\n" +
+        natsClient.publish(NATS_INPUT_DESTINATION, "{\n" +
                 "    \"event\": {\n" +
                 "        \"type\": \"internal\",\n" +
                 "        \"deviceID\": \"C250i\",\n" +

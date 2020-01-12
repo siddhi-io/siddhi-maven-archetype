@@ -1,18 +1,15 @@
 package sampletests.blackbox;
 
 import com.google.common.io.Resources;
-import io.siddhi.distribution.test.framework.MySQLContainer;
-import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import io.siddhi.distribution.test.framework.util.NatsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testcontainers.containers.Network;
 import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import sampletests.AbstractTests;
+import sampletests.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;

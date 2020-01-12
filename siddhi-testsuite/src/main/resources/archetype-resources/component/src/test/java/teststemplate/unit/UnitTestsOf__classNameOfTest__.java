@@ -20,16 +20,8 @@ public class UnitTestsOf${classNameOfTest} {
     }
 
     @Test
-    public void testMoniteredFilter() {
+    public void testQuery() {
 
     }
 
-    private String readFileToString(String filePath) {
-        return null;
-    }
-
-    @Test
-    public void testSiddhiRunnerStartup() {
-
-    }
 }

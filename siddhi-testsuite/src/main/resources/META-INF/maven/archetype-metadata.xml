@@ -22,11 +22,6 @@
                 ${_nameOfTestsuite.toLowerCase()}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="package">
-            <defaultValue>
-                ${groupId}.${groupIdPostfix}
-            </defaultValue>
-        </requiredProperty>
         <requiredProperty key="artifactId">
             <defaultValue>
                 siddhi-testsuite-${groupIdPostfix}
