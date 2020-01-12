@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import static org.rnorth.ducttape.unreliables.Unreliables.retryUntilSuccess;
 
 /**
- * Siddhi Logger Service container class.
+ * Siddhi Logger Service container class. This is a sample LoggerServiceContainer which can be used to log a message.
  */
 public class LoggerServiceContainer extends GenericContainer<LoggerServiceContainer> {
 

@@ -109,6 +109,7 @@ To generate specific type of extensions archetype, issue the command from your C
     | _nameOfTestsuite | Name of TestSuite | Y | - 
     | groupIdPostfix| Name of TestSuite is added as postfix to the groupId as a convention | N | {_nameOfTestsuite}
     | artifactId | Artifact Id of the project | N | siddhi-testsuite-{_nameOfTestsuite}
+    | classNameOfAbstractTest | Class name of the AbstractTest logic common for both Integration and BlackBox tests | N | AbstractTestsOf{_nameOfTestsuite}
     | classNameOfUnitTest | Class name of the UnitTest | N | UnitTestsOf{_nameOfTestsuite}
     | classNameOfIntegrationTest | Class name of the IntegrationTest | N | IntegrationTestsOf{_nameOfTestsuite}
     | classNameOfBlackBoxTest | Class name of the BlackBoxTest | N | BlackBoxTestsOf{_nameOfTestsuite}

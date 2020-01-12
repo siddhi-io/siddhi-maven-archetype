@@ -27,6 +27,11 @@
                 siddhi-testsuite-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
+        <requiredProperty key="classNameOfAbstractTest">
+            <defaultValue>
+                AbstractTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+            </defaultValue>
+        </requiredProperty>
         <requiredProperty key="classNameOfUnitTest">
             <defaultValue>
                 UnitTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}

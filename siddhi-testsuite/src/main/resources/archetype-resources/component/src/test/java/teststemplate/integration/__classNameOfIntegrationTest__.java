@@ -5,14 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import teststemplate.AbstractTests;
+import teststemplate.${classNameOfAbstractTest};
 
 /**
  * Class for integration testing. Performs integration tests by running the application and dependent services as
  * Docker containers. This ensures that the updated Siddhi application functions as expected.
  *
  */
-public class ${classNameOfIntegrationTest} extends AbstractTests {
+public class ${classNameOfIntegrationTest} extends ${classNameOfAbstractTest} {
 
     private static final Logger logger = LoggerFactory.getLogger(${classNameOfIntegrationTest}.class);
 

@@ -19,3 +19,10 @@ Note : An AbstractTest class is used for the common logic for integration tests 
 
 3. **Blackbox Testing** : 
     Run black-box testing by configuring the Siddhi Runner instances to communicate with the actual external systems.
+
+**Description of Sample Siddhi application provided**
+
+* Used for temperature monitoring and anomaly detection. 
+* Consumes events from a Nats topic, filters events under types ‘monitored’ and ‘internal’.
+* Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic. 
+* The internal events are persisted into a table. 

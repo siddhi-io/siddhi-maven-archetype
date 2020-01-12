@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
  * blackbox tests.
  *
  */
-public abstract class AbstractTests {
+public abstract class ${classNameOfAbstractTest} {
 
     @BeforeClass
     public abstract void setUpCluster();
