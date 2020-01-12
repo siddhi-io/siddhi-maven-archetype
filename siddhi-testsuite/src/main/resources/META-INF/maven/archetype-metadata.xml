@@ -59,32 +59,6 @@
                 <include>**/*.md</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true">
-            <directory></directory>
-            <includes>
-                <include>**/*.png</include>
-                <include>**/*.svg</include>
-                <include>**/*.ico</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="false">
-            <directory></directory>
-            <includes>
-                <include>**/*.js</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true">
-            <directory></directory>
-            <includes>
-                <include>**/*.</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true">
-            <directory></directory>
-            <includes>
-                <include>**/*.css</include>
-            </includes>
-        </fileSet>
 
         <!--component-->
         <fileSet filtered="true">
