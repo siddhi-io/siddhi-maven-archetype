@@ -96,6 +96,23 @@ To generate specific type of extensions archetype, issue the command from your C
     | artifactId | Artifact Id of the project | N | siddhi-script-{_nameOfScript}
     | classNameOfScript | Class name of the Script | N | Eval{_nameOfScript}
 
+1. Siddhi TestSuite
+
+        mvn archetype:generate \
+            -DarchetypeGroupId=io.siddhi.extension.archetype \
+            -DarchetypeArtifactId=siddhi-archetype-testsuite \
+            -DgroupId=io.siddhi.testsuite \
+            -Dversion=1.0.0-SNAPSHOT
+           
+    | Properties | Description | Mandatory | Default Value |
+    | ------------- |-------------| ---- | ----- |
+    | _nameOfTestsuite | Name of TestSuite | Y | - 
+    | groupIdPostfix| Name of TestSuite is added as postfix to the groupId as a convention | N | {_nameOfTestsuite}
+    | artifactId | Artifact Id of the project | N | siddhi-testsuite-{_nameOfTestsuite}
+    | classNameOfUnitTest | Class name of the UnitTest | N | UnitTestsOf{_nameOfTestsuite}
+    | classNameOfIntegrationTest | Class name of the IntegrationTest | N | IntegrationTestsOf{_nameOfTestsuite}
+    | classNameOfBlackBoxTest | Class name of the BlackBoxTest | N | BlackBoxTestsOf{_nameOfTestsuite}
+
 ## How to build from the source
 ### Prerequisites
 * Java 8 or above

@@ -27,9 +27,19 @@
                 siddhi-testsuite-${groupIdPostfix}
             </defaultValue>
         </requiredProperty>
-        <requiredProperty key="classNameOfTest">
+        <requiredProperty key="classNameOfUnitTest">
             <defaultValue>
-                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+                UnitTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfIntegrationTest">
+            <defaultValue>
+                IntegrationTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfBlackBoxTest">
+            <defaultValue>
+                BlackBoxTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
             </defaultValue>
         </requiredProperty>
     </requiredProperties>

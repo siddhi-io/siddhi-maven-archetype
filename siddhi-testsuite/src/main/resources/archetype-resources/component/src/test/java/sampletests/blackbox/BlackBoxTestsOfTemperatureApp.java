@@ -66,7 +66,6 @@ public class BlackBoxTestsOfTemperatureApp extends AbstractTemperatureAlertTests
         siddhiRunnerContainer.start();
         siddhiRunnerContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
         configureNatsConnection(NATS_CLUSTER_ID, NATS_BOOTSTRAP_URL, NATS_INPUT_DESTINATION, NATS_OUTPUT_DESTINATION);
-        configureMySqlConnection(DATABSE_JDBC_URL, DATABSE_USERNAME, DATABSE_PASSWORD);
     }
 
     @AfterClass

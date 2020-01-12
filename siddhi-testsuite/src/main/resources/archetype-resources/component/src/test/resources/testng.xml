@@ -8,9 +8,9 @@
             <class name="sampletests.blackbox.BlackBoxTestsOfTemperatureApp"/>
             <class name="sampletests.integration.IntegrationTestsOfTemperatureApp"/>
             <class name="sampletests.unit.UnitTestsOfTemperatureApp"/>
-            <class name="teststemplate.blackbox.BlackBoxTestsOf${classNameOfTest}"/>
-            <class name="teststemplate.integration.IntegrationTestsOf${classNameOfTest}"/>
-            <class name="teststemplate.unit.UnitTestsOf${classNameOfTest}"/>
+            <class name="teststemplate.blackbox.${classNameOfBlackBoxTest}"/>
+            <class name="teststemplate.integration.${classNameOfIntegrationTest}"/>
+            <class name="teststemplate.unit.${classNameOfUnitTest}"/>
         </classes>
     </test>
 </suite>

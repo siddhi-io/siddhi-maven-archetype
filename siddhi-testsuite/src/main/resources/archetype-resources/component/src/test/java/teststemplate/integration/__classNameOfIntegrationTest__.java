@@ -12,9 +12,9 @@ import teststemplate.AbstractTests;
  * Docker containers. This ensures that the updated Siddhi application functions as expected.
  *
  */
-public class IntegrationTestsOf${classNameOfTest} extends AbstractTests {
+public class ${classNameOfIntegrationTest} extends AbstractTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(IntegrationTestsOf${classNameOfTest}.class);
+    private static final Logger logger = LoggerFactory.getLogger(${classNameOfIntegrationTest}.class);
 
     @BeforeClass
     public void setUpCluster() {

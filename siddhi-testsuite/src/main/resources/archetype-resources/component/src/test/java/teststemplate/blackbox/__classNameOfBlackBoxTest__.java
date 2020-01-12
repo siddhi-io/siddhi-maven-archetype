@@ -10,9 +10,9 @@ import teststemplate.AbstractTests;
  * Class for black box testing. Run black-box testing by configuring the Siddhi Runner instances to communicate
  * with the actual external systems.
  */
-public class BlackBoxTestsOf${classNameOfTest} extends AbstractTests {
+public class ${classNameOfBlackBoxTest} extends AbstractTests {
 
-    private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOf${classNameOfTest}.class);
+    private static final Logger logger = LoggerFactory.getLogger(${classNameOfBlackBoxTest}.class);
 
     @BeforeClass
     public void setUpCluster() {

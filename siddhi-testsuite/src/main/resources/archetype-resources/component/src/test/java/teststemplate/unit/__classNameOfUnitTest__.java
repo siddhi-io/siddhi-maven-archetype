@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
  * or external dependencies are required for testing. This requires to write a Java code to test the Siddhi app.
  *
  */
-public class UnitTestsOf${classNameOfTest} {
+public class ${classNameOfUnitTest} {
 
-    private static final Logger logger = LoggerFactory.getLogger(UnitTestsOf${classNameOfTest}.class);
+    private static final Logger logger = LoggerFactory.getLogger(${classNameOfUnitTest}.class);
 
     @BeforeClass
     private void setUpTest() {

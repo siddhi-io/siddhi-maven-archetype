@@ -41,9 +41,6 @@ public abstract class AbstractTemperatureAlertTests {
     private String natsUrl;
     private String natsInputDestination;
     private String natsOutputDestination;
-    private String mySqlUrl;
-    private String mysqlUsername;
-    private String mysqlPassword;
 
     @BeforeClass
     public abstract void setUpCluster() throws IOException, InterruptedException;
@@ -57,12 +54,6 @@ public abstract class AbstractTemperatureAlertTests {
         this.natsUrl = natsUrl;
         this.natsInputDestination = natsInputDestination;
         this.natsOutputDestination = natsOutputDestination;
-    }
-
-    public void configureMySqlConnection (String mysqlUrl, String username, String password) {
-        this.mySqlUrl = mysqlUrl;
-        this.mysqlUsername = username;
-        this.mysqlPassword = password;
     }
 
     @Test
