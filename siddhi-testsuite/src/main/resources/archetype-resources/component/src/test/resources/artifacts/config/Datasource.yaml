@@ -4,7 +4,7 @@ dataSources:
   definition:
     type: RDBMS
     configuration:
-      jdbcUrl: '${DATABASE_URL}'
+      jdbcUrl: ${DATABASE_URL}
       username: ${USERNAME}
       password: ${PASSWORD}
       driverClassName: ${JDBC_DRIVER_NAME}

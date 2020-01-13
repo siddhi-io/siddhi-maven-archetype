@@ -100,7 +100,7 @@
                         </goals>
                         <configuration>
                             <artifactItems>
-                                <!--Jars to be included for AppTest. Explain why this added-->
+                                <!--Jars to be included for AppTest.-->
                                 <artifactItem>
                                     <groupId>com.google.protobuf</groupId>
                                     <artifactId>protobuf-java</artifactId>
