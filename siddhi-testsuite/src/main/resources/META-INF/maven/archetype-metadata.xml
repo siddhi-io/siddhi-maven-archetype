@@ -22,6 +22,11 @@
                 ${_nameOfTestsuite.toLowerCase()}
             </defaultValue>
         </requiredProperty>
+        <requiredProperty key="package">
+            <defaultValue>
+                io.siddhi.testsuite.${groupIdPostfix}
+            </defaultValue>
+        </requiredProperty>
         <requiredProperty key="artifactId">
             <defaultValue>
                 siddhi-testsuite-${groupIdPostfix}
@@ -29,22 +34,22 @@
         </requiredProperty>
         <requiredProperty key="classNameOfAbstractTest">
             <defaultValue>
-                AbstractTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}AbstractTestCase
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfUnitTest">
             <defaultValue>
-                UnitTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}UnitTestCase
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfIntegrationTest">
             <defaultValue>
-                IntegrationTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}IntegrationTestCase
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfBlackBoxTest">
             <defaultValue>
-                BlackBoxTestsOf${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}
+                ${_nameOfTestsuite.substring(0,1).toUpperCase()}${_nameOfTestsuite.substring(1)}BlackBoxTestCase
             </defaultValue>
         </requiredProperty>
     </requiredProperties>
@@ -68,7 +73,7 @@
             </includes>
         </fileSet>
         <fileSet filtered="true">
-            <directory>component/src/main/java/sample/containers</directory>
+            <directory>component/src/main/java/io/siddhi/testsuite/containers</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
@@ -76,14 +81,8 @@
         <fileSet filtered="true">
             <directory>component/src/main/resources</directory>
         </fileSet>
-        <fileSet filtered="true">
-            <directory>component/src/test/java/sample</directory>
-            <includes>
-                <include>**/*.java</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true">
-            <directory>component/src/test/java/template</directory>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/test/java</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>

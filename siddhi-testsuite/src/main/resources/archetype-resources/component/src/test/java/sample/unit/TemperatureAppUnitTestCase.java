@@ -1,4 +1,22 @@
-package sample.unit;
+/*
+ *  Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *  WSO2 Inc. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
+package ${package}.sample.unit;
 
 import com.google.common.io.Resources;
 import io.siddhi.core.SiddhiAppRuntime;
@@ -24,14 +42,14 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * This is the class for unit testing of Temp-Alert-App. Siddhi is used in an embedded sandbox mode to make sure no
+ * Unit tests for Temp-Alert-App. Siddhi is used in an embedded sandbox mode to make sure no
  * network connections or external dependencies are required for testing. This requires to write a Java code to test
  * the Siddhi app.
  *
  */
-public class UnitTestsOfTemperatureApp {
+public class TemperatureAppUnitTestCase {
 
-    private static final Logger logger = LoggerFactory.getLogger(UnitTestsOfTemperatureApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(TemperatureAppUnitTestCase.class);
     private static URL appUrl = Resources.getResource("artifacts/apps/Temp-Alert-App.siddhi");
     private volatile AtomicInteger count = new AtomicInteger(0);
 

@@ -1,10 +1,26 @@
-package sample;
+/*
+ *  Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *  WSO2 Inc. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
+package ${package}.sample;
 
 import io.siddhi.core.SiddhiAppRuntime;
 import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.stream.input.InputHandler;
-import io.siddhi.distribution.test.framework.MySQLContainer;
-import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import io.siddhi.distribution.test.framework.util.NatsClient;
 import io.siddhi.extension.io.nats.sink.NATSSink;
@@ -21,27 +37,27 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Class for AbstractTemperatureAlertTests of Temp-Alert-App. This class includes the common logic for integration
- * tests and blackbox tests.
+ * Abstract tests for Temp-Alert-App. This class includes the common logic for integration tests and blackbox tests.
  *
  * Description: Used for temperature monitoring and anomaly detection. Consumes events from a Nats topic,
  *              filters the event under types 'monitored' and 'internal'.
  *              Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic.
  *              The internal events are persisted to a table.
  */
-public abstract class AbstractTemperatureAlertTests {
+public abstract class TemperatureAlertAbstractTestCase {
 
     public WaitingConsumer siddhiLogConsumer = new WaitingConsumer();
 
-    public MySQLContainer mySQLContainer;
-    public NatsContainer natsContainer;
     public SiddhiRunnerContainer siddhiRunnerContainer;
+
     public NatsClient natsClient;
     private String natsClusterId;
     private String natsUrl;
     private String natsInputDestination;
     private String natsOutputDestination;
 
+    //Configure the necessary infrastructure such as MySQL container, NATS container and Siddhi Runner container
+    //to run the test cases.
     @BeforeClass
     public abstract void setUpCluster() throws IOException, InterruptedException;
 

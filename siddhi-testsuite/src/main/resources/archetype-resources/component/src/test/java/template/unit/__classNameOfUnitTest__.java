@@ -1,4 +1,4 @@
-package template.unit;
+package ${package}.template.unit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

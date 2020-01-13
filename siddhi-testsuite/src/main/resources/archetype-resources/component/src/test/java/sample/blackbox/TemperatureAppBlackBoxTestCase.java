@@ -1,15 +1,33 @@
-package sample.blackbox;
+/*
+ *  Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *  WSO2 Inc. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
+package ${package}.sample.blackbox;
 
 import com.google.common.io.Resources;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import io.siddhi.distribution.test.framework.util.NatsClient;
+import ${package}.sample.TemperatureAlertAbstractTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import sample.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,18 +37,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class for black box testing of Temp-Alert-App. Run black-box testing by configuring the Siddhi Runner instances
+ * Blackbox tests for Temp-Alert-App. Run black-box testing by configuring the Siddhi Runner instances
  * to communicate with the actual external systems.
  *
  * Description: Used for temperature monitoring and anomaly detection. Consumes events from a Nats topic,
  *              filters the event under types 'monitored' and 'internal'.
  *              Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic.
  *              The internal events are persisted to a table.
+ *
+ * Note: This class is disabled in testng. After updating the Nats and MySql configurations as per your environment,
+ * enable it from src/test/resources/testng.xml file.
  */
-public class BlackBoxTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
-    private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOfTemperatureApp.class);
+public class TemperatureAppBlackBoxTestCase extends TemperatureAlertAbstractTestCase {
+    private static final Logger logger = LoggerFactory.getLogger(TemperatureAppBlackBoxTestCase.class);
 
-    //Provide configurations for Nats and mysql environments.
+    //Update the Nats and MySql configurations as per your environment for Siddhi test framework to communicate with
+    // the said instances
     private static final String DATABSE_JDBC_URL = "jdbc:mysql://mysql:3306/";
     private static final String DATABSE_USERNAME = "username";
     private static final String DATABSE_PASSWORD = "password";

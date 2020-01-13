@@ -100,7 +100,8 @@
                         </goals>
                         <configuration>
                             <artifactItems>
-                                <!--Jars to be included for AppTest.-->
+                                <!--Jars to be included for AppTest by default. Users can import the dependent jars to
+                                be included in the Siddhi Runner container.-->
                                 <artifactItem>
                                     <groupId>com.google.protobuf</groupId>
                                     <artifactId>protobuf-java</artifactId>

@@ -1,4 +1,22 @@
-package sample.integration;
+/*
+ *  Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ *  WSO2 Inc. licenses this file to you under the Apache License,
+ *  Version 2.0 (the "License"); you may not use this file except
+ *  in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ *  KIND, either express or implied.  See the License for the
+ *  specific language governing permissions and limitations
+ *  under the License.
+ */
+
+package ${package}.sample.integration;
 
 import com.google.common.io.Resources;
 import io.siddhi.core.exception.ConnectionUnavailableException;
@@ -7,6 +25,7 @@ import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
+import ${package}.sample.TemperatureAlertAbstractTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.Network;
@@ -16,7 +35,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import sample.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +47,7 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Class for integration testing of Temp-Alert-App. Performs integration tests by running the application and dependent
+ * Integration tests for Temp-Alert-App. Performs integration tests by running the application and dependent
  * services as Docker containers. This ensures that the updated Siddhi application functions as expected.
  *
  * Description: Used for temperature monitoring and anomaly detection. Consumes events from a Nats topic,
@@ -37,9 +55,12 @@ import java.util.concurrent.TimeoutException;
  *              Monitored events are then sent through a pattern and the matched events will be alerted to a Nats topic.
  *              The internal events are persisted to a table.
  */
-public class IntegrationTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
+public class TemperatureAppIntegrationTestCase extends TemperatureAlertAbstractTestCase {
 
-    private static final Logger logger = LoggerFactory.getLogger(IntegrationTestsOfTemperatureApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(TemperatureAppIntegrationTestCase.class);
+
+    public MySQLContainer mySQLContainer;
+    public NatsContainer natsContainer;
 
     private static final String DATABSE_NAME = "TemperatureDB";
     private static final String DATABSE_HOST = "mysqldb";
