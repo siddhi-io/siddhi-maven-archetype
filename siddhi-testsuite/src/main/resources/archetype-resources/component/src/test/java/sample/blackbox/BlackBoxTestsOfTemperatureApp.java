@@ -1,4 +1,4 @@
-package sampletests.blackbox;
+package sample.blackbox;
 
 import com.google.common.io.Resources;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
@@ -9,7 +9,7 @@ import org.testcontainers.containers.output.OutputFrame;
 import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import sampletests.AbstractTemperatureAlertTests;
+import sample.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +30,7 @@ import java.util.Map;
 public class BlackBoxTestsOfTemperatureApp extends AbstractTemperatureAlertTests {
     private static final Logger logger = LoggerFactory.getLogger(BlackBoxTestsOfTemperatureApp.class);
 
+    //Provide configurations for Nats and mysql environments.
     private static final String DATABSE_JDBC_URL = "jdbc:mysql://mysql:3306/";
     private static final String DATABSE_USERNAME = "username";
     private static final String DATABSE_PASSWORD = "password";

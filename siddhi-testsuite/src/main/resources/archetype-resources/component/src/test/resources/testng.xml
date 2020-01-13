@@ -5,12 +5,12 @@
 <suite name="Siddhi-Testsuite">
     <test name="Siddhi-Testsuite-Tests" parallel="false">
         <classes>
-            <class name="sampletests.blackbox.BlackBoxTestsOfTemperatureApp"/>
-            <class name="sampletests.integration.IntegrationTestsOfTemperatureApp"/>
-            <class name="sampletests.unit.UnitTestsOfTemperatureApp"/>
-            <class name="teststemplate.blackbox.${classNameOfBlackBoxTest}"/>
-            <class name="teststemplate.integration.${classNameOfIntegrationTest}"/>
-            <class name="teststemplate.unit.${classNameOfUnitTest}"/>
+            <class name="sample.blackbox.BlackBoxTestsOfTemperatureApp"/>
+            <class name="sample.integration.IntegrationTestsOfTemperatureApp"/>
+            <class name="sample.unit.UnitTestsOfTemperatureApp"/>
+            <class name="template.blackbox.${classNameOfBlackBoxTest}"/>
+            <class name="template.integration.${classNameOfIntegrationTest}"/>
+            <class name="template.unit.${classNameOfUnitTest}"/>
         </classes>
     </test>
 </suite>

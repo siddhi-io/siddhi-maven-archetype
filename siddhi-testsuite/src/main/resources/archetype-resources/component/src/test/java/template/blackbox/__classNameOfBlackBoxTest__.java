@@ -1,10 +1,10 @@
-package teststemplate.blackbox;
+package template.blackbox;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import teststemplate.${classNameOfAbstractTest};
+import template.${classNameOfAbstractTest};
 
 /**
  * Class for black box testing. Run black-box testing by configuring the Siddhi Runner instances to communicate

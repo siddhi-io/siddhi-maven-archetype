@@ -1,4 +1,4 @@
-package sampletests.integration;
+package sample.integration;
 
 import com.google.common.io.Resources;
 import io.siddhi.core.exception.ConnectionUnavailableException;
@@ -16,7 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import sampletests.AbstractTemperatureAlertTests;
+import sample.AbstractTemperatureAlertTests;
 
 import java.io.IOException;
 import java.net.URL;

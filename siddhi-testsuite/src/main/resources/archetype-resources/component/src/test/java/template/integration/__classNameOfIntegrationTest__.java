@@ -1,11 +1,11 @@
-package teststemplate.integration;
+package template.integration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import teststemplate.${classNameOfAbstractTest};
+import template.${classNameOfAbstractTest};
 
 /**
  * Class for integration testing. Performs integration tests by running the application and dependent services as

@@ -77,13 +77,13 @@
             <directory>component/src/main/resources</directory>
         </fileSet>
         <fileSet filtered="true">
-            <directory>component/src/test/java/sampletests</directory>
+            <directory>component/src/test/java/sample</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>
         </fileSet>
         <fileSet filtered="true">
-            <directory>component/src/test/java/teststemplate</directory>
+            <directory>component/src/test/java/template</directory>
             <includes>
                 <include>**/*.java</include>
             </includes>

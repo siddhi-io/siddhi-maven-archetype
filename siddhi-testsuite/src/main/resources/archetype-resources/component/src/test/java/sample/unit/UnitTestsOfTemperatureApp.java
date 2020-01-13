@@ -1,4 +1,4 @@
-package sampletests.unit;
+package sample.unit;
 
 import com.google.common.io.Resources;
 import io.siddhi.core.SiddhiAppRuntime;
