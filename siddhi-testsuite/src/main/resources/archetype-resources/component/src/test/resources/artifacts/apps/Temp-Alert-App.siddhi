@@ -9,6 +9,7 @@ define stream DeviceTemperatureStream (type string, deviceID string, temp double
 define table InternalDevicesTempTable(currentTime string, deviceID string, temp double);
 
 @sink(type = 'log')
+@sink(type='http', publisher.url = '${LOGGER_SERVICE_URL}', method = 'POST', @map(type='json'))
 @sink(type='nats', cluster.id='${CLUSTER_ID}', destination = '${OUTPUT_DESTINATION}', bootstrap.servers = '${NATS_URL}' ,@map(type='json'))
 define stream AlertStream (deviceID string, peakTemp double, authorityContactEmail string);
 

@@ -25,6 +25,7 @@ import io.siddhi.distribution.test.framework.NatsContainer;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import io.siddhi.distribution.test.framework.util.DatabaseClient;
 import io.siddhi.distribution.test.framework.util.NatsClient;
+import io.siddhi.testsuite.containers.LoggerServiceContainer;
 import ${package}.sample.TemperatureAlertAbstractTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,6 +77,11 @@ public class TemperatureAppIntegrationTestCase extends TemperatureAlertAbstractT
         URL configUrl = Resources.getResource("artifacts/config/Datasource.yaml");
         Network network = Network.newNetwork();
 
+        LoggerServiceContainer loggerServiceContainer = new LoggerServiceContainer()
+                .withLogConsumer(new Slf4jLogConsumer(logger));
+        loggerServiceContainer.start();
+        loggerServiceContainer.followOutput(logConsumer, OutputFrame.OutputType.STDOUT);
+
         mySQLContainer = new MySQLContainer()
                 .withDatabaseName(DATABSE_NAME)
                 .withNetworkAliases(DATABSE_HOST)
@@ -99,6 +105,7 @@ public class TemperatureAppIntegrationTestCase extends TemperatureAlertAbstractT
         envMap.put("USERNAME", mySQLContainer.getUsername());
         envMap.put("PASSWORD", mySQLContainer.getPassword());
         envMap.put("JDBC_DRIVER_NAME", mySQLContainer.getDriverClassName());
+        envMap.put("LOGGER_SERVICE_URL", loggerServiceContainer.getUrl());
         siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
                 .withSiddhiApps(appUrl.getPath())
                 .withJars(jarsFromMaven.toString(), false)
@@ -107,7 +114,7 @@ public class TemperatureAppIntegrationTestCase extends TemperatureAlertAbstractT
                 .withEnv(envMap)
                 .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
-        siddhiRunnerContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
+        siddhiRunnerContainer.followOutput(logConsumer, OutputFrame.OutputType.STDOUT);
         configureNatsConnection(NATS_CLUSTER_ID, natsContainer.getBootstrapServerUrl(), NATS_INPUT_DESTINATION,
                 NATS_OUTPUT_DESTINATION);
     }

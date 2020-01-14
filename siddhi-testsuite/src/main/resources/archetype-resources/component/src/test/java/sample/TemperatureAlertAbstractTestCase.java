@@ -46,7 +46,7 @@ import java.util.concurrent.TimeoutException;
  */
 public abstract class TemperatureAlertAbstractTestCase {
 
-    public WaitingConsumer siddhiLogConsumer = new WaitingConsumer();
+    public WaitingConsumer logConsumer = new WaitingConsumer();
 
     public SiddhiRunnerContainer siddhiRunnerContainer;
 
@@ -83,7 +83,7 @@ public abstract class TemperatureAlertAbstractTestCase {
                 "    }\n" +
                 "}");
         try {
-            siddhiLogConsumer.waitUntil(frame ->
+            logConsumer.waitUntil(frame ->
                             frame.getUtf8String().contains("data=[dummyType, dummyDeviceID, 50.0, dummyRoomID]"),
                     50, TimeUnit.SECONDS);
         } catch (TimeoutException e) {
@@ -111,7 +111,7 @@ public abstract class TemperatureAlertAbstractTestCase {
         InputHandler inputHandler = siddhiAppRuntime.getInputHandler("DeviceTemperatureStream");
         inputHandler.send(new Object[]{"fooType", "001", 60, "202"});
         try {
-            siddhiLogConsumer.waitUntil(frame ->
+            logConsumer.waitUntil(frame ->
                             frame.getUtf8String().contains("data=[fooType, 001, 60.0, 202]"),
                     50, TimeUnit.SECONDS);
         } catch (TimeoutException e) {

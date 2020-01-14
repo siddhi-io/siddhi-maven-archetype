@@ -64,6 +64,7 @@ public class TemperatureAppUnitTestCase {
         envMap.put("USERNAME", "");
         envMap.put("PASSWORD", "");
         envMap.put("JDBC_DRIVER_NAME", "");
+        envMap.put("LOGGER_SERVICE_URL", "");
         System.getProperties().putAll(envMap);
     }
 

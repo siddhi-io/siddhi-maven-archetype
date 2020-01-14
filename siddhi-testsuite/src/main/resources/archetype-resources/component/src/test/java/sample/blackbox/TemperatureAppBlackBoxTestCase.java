@@ -21,6 +21,7 @@ package ${package}.sample.blackbox;
 import com.google.common.io.Resources;
 import io.siddhi.distribution.test.framework.SiddhiRunnerContainer;
 import io.siddhi.distribution.test.framework.util.NatsClient;
+import io.siddhi.testsuite.containers.LoggerServiceContainer;
 import ${package}.sample.TemperatureAlertAbstractTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +69,11 @@ public class TemperatureAppBlackBoxTestCase extends TemperatureAlertAbstractTest
         URL appUrl = Resources.getResource("artifacts/apps");
         URL configUrl = Resources.getResource("artifacts/config/Datasource.yaml");
 
+        LoggerServiceContainer loggerServiceContainer = new LoggerServiceContainer()
+                .withLogConsumer(new Slf4jLogConsumer(logger));
+        loggerServiceContainer.start();
+        loggerServiceContainer.followOutput(logConsumer, OutputFrame.OutputType.STDOUT);
+
         natsClient = new NatsClient(NATS_CLUSTER_ID, NATS_BOOTSTRAP_URL);
         natsClient.connect();
 
@@ -80,6 +86,7 @@ public class TemperatureAppBlackBoxTestCase extends TemperatureAlertAbstractTest
         envMap.put("USERNAME", DATABSE_USERNAME);
         envMap.put("PASSWORD", DATABSE_PASSWORD);
         envMap.put("JDBC_DRIVER_NAME", DATABSE_DRIVER_NAME);
+        envMap.put("LOGGER_SERVICE_URL", loggerServiceContainer.getUrl());
         siddhiRunnerContainer = new SiddhiRunnerContainer("siddhiio/siddhi-runner-alpine:latest-dev")
                 .withSiddhiApps(appUrl.getPath())
                 .withJars(jarsFromMaven.toString(), false)
@@ -87,7 +94,7 @@ public class TemperatureAppBlackBoxTestCase extends TemperatureAlertAbstractTest
                 .withEnv(envMap)
                 .withLogConsumer(new Slf4jLogConsumer(logger));
         siddhiRunnerContainer.start();
-        siddhiRunnerContainer.followOutput(siddhiLogConsumer, OutputFrame.OutputType.STDOUT);
+        siddhiRunnerContainer.followOutput(logConsumer, OutputFrame.OutputType.STDOUT);
         configureNatsConnection(NATS_CLUSTER_ID, NATS_BOOTSTRAP_URL, NATS_INPUT_DESTINATION, NATS_OUTPUT_DESTINATION);
     }
 
