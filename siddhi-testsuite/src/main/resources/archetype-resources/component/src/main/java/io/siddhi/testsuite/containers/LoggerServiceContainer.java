@@ -18,13 +18,10 @@
 
 package io.siddhi.testsuite.containers;
 
-import io.siddhi.distribution.test.framework.util.HTTPClient;
 import org.testcontainers.containers.ContainerLaunchException;
 import org.testcontainers.containers.GenericContainer;
 
-import java.io.IOException;
 import java.net.Socket;
-import java.net.URI;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -73,19 +70,6 @@ public class LoggerServiceContainer extends GenericContainer<LoggerServiceContai
                 return null;
             }
         });
-    }
-
-    private HTTPClient.HTTPResponseMessage callHealthAPI() {
-        try {
-            URI baseURI = URI.create(String.format("http://%s:%d", "0.0.0.0",
-                    this.getMappedPort(DEFAULT_LOGSERVICE_PORT)));
-
-            HTTPClient healthRequest = new HTTPClient(baseURI, "/logger", false, false,
-                    "GET", (String) null, "admin", "admin");
-            return healthRequest.getResponse();
-        } catch (IOException var2) {
-            return new HTTPClient.HTTPResponseMessage();
-        }
     }
 
     @Override
