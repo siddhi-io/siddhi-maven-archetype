@@ -14,11 +14,13 @@ public class ${classNameOfBlackBoxTest} extends ${classNameOfAbstractTest} {
 
     private static final Logger logger = LoggerFactory.getLogger(${classNameOfBlackBoxTest}.class);
 
+    //Set up a cluster with dependent systems for the siddhi app before running tests.
     @BeforeClass
     public void setUpCluster() {
 
     }
 
+    //Stop the siddhi runner container after running tests.
     @AfterClass
     public void shutdownCluster() {
 

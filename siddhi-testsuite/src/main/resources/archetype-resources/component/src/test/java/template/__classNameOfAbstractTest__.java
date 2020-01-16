@@ -11,9 +11,11 @@ import org.testng.annotations.Test;
  */
 public abstract class ${classNameOfAbstractTest} {
 
+    //Abstract method used to set up a cluster with dependent docker containers for the siddhi app.
     @BeforeClass
     public abstract void setUpCluster();
 
+    //Abstract method used to stop the running docker containers.
     @AfterClass
     public abstract void shutdownCluster();
 

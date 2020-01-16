@@ -15,11 +15,13 @@ public class ${classNameOfIntegrationTest} extends ${classNameOfAbstractTest} {
 
     private static final Logger logger = LoggerFactory.getLogger(${classNameOfIntegrationTest}.class);
 
+    //Set up a cluster with dependent docker containers for the siddhi app before running tests.
     @BeforeClass
     public void setUpCluster() {
 
     }
 
+    //Use to stop the running docker containers after running tests.
     @AfterClass
     public void shutdownCluster() {
 

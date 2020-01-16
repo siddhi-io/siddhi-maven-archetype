@@ -14,11 +14,13 @@ public class ${classNameOfUnitTest} {
 
     private static final Logger logger = LoggerFactory.getLogger(${classNameOfUnitTest}.class);
 
+    //Used to set up environment variables required to run the siddhi app before running tests.
     @BeforeClass
     private void setUpTest() {
 
     }
 
+    //Used to test the queries written in siddhi app.
     @Test
     public void testQuery() {
 
