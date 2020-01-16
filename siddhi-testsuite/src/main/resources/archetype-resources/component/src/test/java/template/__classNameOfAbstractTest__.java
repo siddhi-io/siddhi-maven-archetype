@@ -17,21 +17,15 @@ public abstract class ${classNameOfAbstractTest} {
     @AfterClass
     public abstract void shutdownCluster();
 
-    public void setClusterConfigs(String natsClusterId, String natsUrl, String natsInputDestination,
-                                  String natsOutputDestination) {
-
-    }
-
+    //testMessageConsumption() could be used for testing message consumption and it's implementation will
+    // differ according to the siddhi app used.
     @Test
     public void testMessageConsumption() {
 
     }
 
-    @Test
-    public void testMessagePublishingWithSiddhi() {
-
-    }
-
+    //testAppOutput() could be used for testing the output of the siddhi app and it's implementation will
+    // differ according to the siddhi app used.
     @Test
     public void testAppOutput() {
 

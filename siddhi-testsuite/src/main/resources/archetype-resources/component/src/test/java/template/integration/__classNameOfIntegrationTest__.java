@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 /**
  * Class for integration testing. Performs integration tests by running the application and dependent services as
@@ -26,8 +25,4 @@ public class ${classNameOfIntegrationTest} extends ${classNameOfAbstractTest} {
 
     }
 
-    @Test
-    public void testDBPersistence() {
-
-    }
 }
