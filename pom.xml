@@ -34,7 +34,8 @@
         <module>siddhi-io</module>
         <module>siddhi-store</module>
         <module>siddhi-script</module>
-    </modules>
+        <module>siddhi-testsuite</module>
+  </modules>
 
     <build>
         <extensions>

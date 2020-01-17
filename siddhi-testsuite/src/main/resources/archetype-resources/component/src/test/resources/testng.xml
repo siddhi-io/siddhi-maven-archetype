@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Siddhi-Testsuite">
+    <test name="Siddhi-Testsuite-Tests" parallel="false">
+        <classes>
+<!--            <class name="${package}.sample.blackbox.TemperatureAppBlackBoxTestCase"/>-->
+            <class name="${package}.sample.integration.TemperatureAppIntegrationTestCase"/>
+            <class name="${package}.sample.unit.TemperatureAppUnitTestCase"/>
+            <class name="${package}.template.blackbox.${classNameOfBlackBoxTest}"/>
+            <class name="${package}.template.integration.${classNameOfIntegrationTest}"/>
+            <class name="${package}.template.unit.${classNameOfUnitTest}"/>
+        </classes>
+    </test>
+</suite>
